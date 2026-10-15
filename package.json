@@ -1,0 +1,49 @@
+{
+  "name": "camelhub-bulk-apikey",
+  "version": "1.0.0",
+  "description": "Bulk API keys for camel-hub.cn (CaMeL AI) — free tier: 469 models (claude-haiku-4-5, gemini-2.5-flash, deepseek-chat, glm-4.5), $1.00 on sign-up plus a daily check-in. One account per key; mint any number.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "camelhub-bulk-apikey": "cli.js",
+    "camelhub-bulk-apikey-launcher": "launcher.js"
+  },
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node launcher.js",
+    "mint": "node cli.js"
+  },
+  "keywords": [
+    "api-key",
+    "bulk",
+    "register",
+    "launcher",
+    "camelhub",
+    "bulk",
+    "apikey"
+  ],
+  "files": [
+    "cdp.js",
+    "chrome-flags.js",
+    "cli.js",
+    "emailnator.js",
+    "imap.js",
+    "ipban.js",
+    "launcher.js",
+    "lib.js",
+    "mailbox-imap.js",
+    "mint-newapi-pinned.js",
+    "mint.js",
+    "newapi.js",
+    "provider-cli.js",
+    "proxy.js",
+    "verify-key.js",
+    "verify.js",
+    "xwave-lib.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
