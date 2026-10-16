@@ -20,10 +20,10 @@
  *   exit_banned   the panel **banned the exit** (`IP banned`) — the key was never
  *                 measured; the run retires that exit and continues on the next
  *
- *   node verify.js                 # every key on disk that is not already ok
- *   node verify.js --key <key>     # one key
- *   node verify.js --all           # also re-check keys whose last run said ok
- *   node verify.js --model claude-haiku-4-5
+ *   node src/verify.js                 # every key on disk that is not already ok
+ *   node src/verify.js --key <key>     # one key
+ *   node src/verify.js --all           # also re-check keys whose last run said ok
+ *   node src/verify.js --model claude-haiku-4-5
  *
  * Verdicts are written to `accounts.json` (`verifyIndependent`), a fresh model
  * list to `models.json`, the exits that proved reachable to
@@ -46,15 +46,16 @@ ipban.guard({ Panel });
 
 const BASE = 'https://api.camel-hub.com';
 const HOST = new URL(BASE).host;
-const POOL = path.join(__dirname, 'proxies.txt');
-const ACCOUNTS = path.join(__dirname, 'accounts.json');
-const KEYS = path.join(__dirname, 'keys.txt');
-const MODELS_FILE = path.join(__dirname, 'models.json');
-const OUT = path.join(__dirname, 'out');
+const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
+const POOL = path.join(ROOT, 'proxies.txt');
+const ACCOUNTS = path.join(ROOT, 'accounts.json');
+const KEYS = path.join(ROOT, 'keys.txt');
+const MODELS_FILE = path.join(__dirname, 'models.json'); // the shipped catalogue sits beside the code
+const OUT = path.join(ROOT, 'out');
 
 const USAGE = `camelhub-bulk-apikey · verify — re-check keys already on disk
 
-usage: node verify.js [options]
+usage: node src/verify.js [options]
 
   --key K          verify one key instead of every key on disk
   --all            also re-check keys whose last run said they work

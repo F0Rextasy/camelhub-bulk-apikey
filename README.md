@@ -11,7 +11,7 @@
 
 # camelhub-bulk-apikey
 
-**Bulk-create CaMeL AI accounts with auto-generated API keys — OpenAI-compatible inference + 9Router connector.**
+**Bulk-create CaMeL AI accounts with auto-generated API keys — OpenAI-compatible + 9Router connector.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
@@ -68,13 +68,13 @@ cd camelhub-bulk-apikey
 printf 'socks5://127.0.0.1:1080\n' > proxies.txt
 
 # 2) go
-node launcher.js               # interactive: mint / verify / settings
+node src/launcher.js               # interactive: mint / verify / settings
 # or drive it directly:
-node cli.js mint --count 30            # any N; 5 is the sample default
-node cli.js mint --count 10 --scan-conc 8
-node cli.js verify                     # re-check every key in keys.txt
-node cli.js help                       # task list
-node mint.js --help                    # the flags mint actually reads
+node src/cli.js mint --count 30            # any N; 5 is the sample default
+node src/cli.js mint --count 10 --scan-conc 8
+node src/cli.js verify                     # re-check every key in keys.txt
+node src/cli.js help                       # task list
+node src/mint.js --help                    # the flags mint actually reads
 ```
 
 Keys are appended to `keys.txt`, one per line, once a key has answered `GET /v1/models`
@@ -153,7 +153,7 @@ listed ids for that reason, and `--model <id>` pins the one you care about.
 CaMeL AI is OpenAI-compatible, so register it once and use every key:
 
 ```bash
-node connect-9router.js \
+node src/connect-9router.js \
   --base http://localhost:20128 --password 123456 \
   --keys-file keys.txt
 ```
@@ -169,16 +169,19 @@ camelhub/glm-4.5
 ```
 
 Point the connector at a refreshed `keys.txt` to add more accounts; the node and
-its model list stay the same. `node launcher.js --connect-9router` runs exactly
+its model list stay the same. `node src/launcher.js --connect-9router` runs exactly
 this and asks for the base URL and password first.
 
 ## ⚙️ Options
 
+All code lives in `src/` — run it from the repository root as `node src/<file>.js`; the data files
+(`keys.txt`, `proxies.txt`, `accounts.json`, `out/`) stay in the repository root.
+
 | tool | flags |
 |---|---|
-| `mint.js` | `--count N` (5) · `--pool FILE` (`proxies.txt`) · `--mail emailnator\|imap` · `--imap-user` / `--imap-pass` (or `IMAP_USER` / `IMAP_PASS`) · `--mail-address` · `--base URL` · `--model ID` · `--poll-ms` (2000) · `--code-wait` (300000) · `--max-cycle` (3) · `--scan` (200) · `--scan-conc` (8, max 8) · `--budget` (2400 s) |
-| `verify.js` | `--key K` · `--all` · `--model ID` · `--max-tokens` (8) · `--want` (3) · `--pool FILE` · `--base URL` |
-| `launcher.js` | interactive: mint / verify / settings — `count` (keys per run) and `conc` (parallel exit probes) persist in `launcher.config.json` |
+| `src/mint.js` | `--count N` (5) · `--pool FILE` (`proxies.txt`) · `--mail emailnator\|imap` · `--imap-user` / `--imap-pass` (or `IMAP_USER` / `IMAP_PASS`) · `--mail-address` · `--base URL` · `--model ID` · `--poll-ms` (2000) · `--code-wait` (300000) · `--max-cycle` (3) · `--scan` (200) · `--scan-conc` (8, max 8) · `--budget` (2400 s) |
+| `src/verify.js` | `--key K` · `--all` · `--model ID` · `--max-tokens` (8) · `--want` (3) · `--pool FILE` · `--base URL` |
+| `src/launcher.js` | interactive: mint / verify / settings — `count` (keys per run) and `conc` (parallel exit probes) persist in `launcher.config.json` |
 
 `--count` controls how many keys one run produces; the panel's grant is per account, so N
 keys are N accounts. `--scan` / `--scan-conc` control how much of your exit list is probed

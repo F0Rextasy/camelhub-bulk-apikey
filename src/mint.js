@@ -11,9 +11,9 @@
  * and points the two engine lookups that belong to a provider *folder* (its
  * temp-mail module and the folder `keys.txt` lives in) at this repository.
  *
- *   node mint.js                          # 5 keys, exits from proxies.txt
- *   node mint.js --count 30               # any number; accounts run one after another
- *   node mint.js --count 10 --scan-conc 8 # exits probed eight at a time
+ *   node src/mint.js                          # 5 keys, exits from proxies.txt
+ *   node src/mint.js --count 30               # any number; accounts run one after another
+ *   node src/mint.js --count 10 --scan-conc 8 # exits probed eight at a time
  *
  * A key is appended to `keys.txt` only after `GET /v1/models` answered 200 for it
  * and a model call came back (a completion, or a credit refusal); per-account
@@ -26,7 +26,8 @@ const path = require('path');
 
 const BASE = 'https://api.camel-hub.com';
 const TAG = 'chb';
-const POOL = path.join(__dirname, 'proxies.txt');
+const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
+const POOL = path.join(ROOT, 'proxies.txt');
 const DEFAULTS = { count: '5', 'poll-ms': '2000', 'code-wait': '300000', 'max-cycle': '3', scan: '200', 'scan-conc': '8', budget: '2400' };
 // The panel's verification mail has exactly one sender, and a shared mailbox is
 // full of other people's codes: a code is only submitted when the mail it came
@@ -36,7 +37,7 @@ const SENDER = 'camelbot@kr777\\.top|CaMeL AI';
 
 const USAGE = `camelhub-bulk-apikey · mint — one CaMeL AI account per key
 
-usage: node mint.js [options]
+usage: node src/mint.js [options]
 
   --count N        keys to mint (default 5)
   --pool FILE      exit list, one per line (default proxies.txt)
@@ -100,8 +101,8 @@ if (!exits.length) {
 //    the engine's "provider folder" is this repository root.
 const lib = require('./lib.js');
 lib.providerDir = () => {
-  fs.mkdirSync(path.join(__dirname, 'out'), { recursive: true });
-  return __dirname;
+  fs.mkdirSync(path.join(ROOT, 'out'), { recursive: true });
+  return ROOT;
 };
 
 // 2) the engine reads its temp-mail module from `cloudflare-wai/` — a sibling

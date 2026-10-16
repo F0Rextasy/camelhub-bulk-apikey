@@ -5,16 +5,17 @@
   "license": "MIT",
   "type": "commonjs",
   "bin": {
-    "camelhub-bulk-apikey": "cli.js",
-    "camelhub-bulk-apikey-launcher": "launcher.js"
+    "camelhub-bulk-apikey": "src/cli.js",
+    "camelhub-bulk-apikey-launcher": "src/launcher.js"
   },
-  "main": "cli.js",
+  "main": "src/cli.js",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "start": "node launcher.js",
-    "mint": "node cli.js"
+    "start": "node src/launcher.js",
+    "mint": "node src/cli.js",
+    "9router": "node src/connect-9router.js"
   },
   "keywords": [
     "api-key",
@@ -26,24 +27,7 @@
     "apikey"
   ],
   "files": [
-    "cdp.js",
-    "chrome-flags.js",
-    "cli.js",
-    "emailnator.js",
-    "imap.js",
-    "ipban.js",
-    "launcher.js",
-    "lib.js",
-    "mailbox-imap.js",
-    "mint-newapi-pinned.js",
-    "mint.js",
-    "newapi.js",
-    "provider-cli.js",
-    "proxy.js",
-    "verify-key.js",
-    "verify.js",
-    "xwave-lib.js",
-    "connect-9router.js",
+    "src",
     "README.md",
     "LICENSE"
   ]

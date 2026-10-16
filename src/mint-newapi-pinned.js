@@ -27,7 +27,7 @@
  * register body, the panel's verbatim answer, the exit line and the cookie seen
  * at sendCode vs register.
  *
- *   node mint-newapi-pinned.js --name aiaiai \
+ *   node src/mint-newapi-pinned.js --name aiaiai \
  *     --base https://api.aiaiai001.com --tag aaa --count 3 \
  *     --pool out/pool/aiaiai-live.txt --probe
  */
@@ -509,15 +509,15 @@ async function dumpInbox(box, freshDump, extra = {}) {
 
 // --------------------------------------------------------------------------- exit lists
 
-const ROOT = path.resolve(__dirname);
+const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const HOT_FILES = [
-  path.join(__dirname, 'out', 'pool', 'mintx2-live.txt'),
-  path.join(__dirname, 'out', 'community-live-aiaiai.txt'),
-  path.join(__dirname, 'out', 'pool-exits.txt'),
+  path.join(ROOT, 'out', 'pool', 'mintx2-live.txt'),
+  path.join(ROOT, 'out', 'community-live-aiaiai.txt'),
+  path.join(ROOT, 'out', 'pool-exits.txt'),
 ];
 const MAIL_FILES = [
-  path.join(__dirname, 'out', 'pool', 'mintx2-mail-live.txt'),
-  path.join(__dirname, 'out', 'community-live-emailnator.txt'),
+  path.join(ROOT, 'out', 'pool', 'mintx2-mail-live.txt'),
+  path.join(ROOT, 'out', 'community-live-emailnator.txt'),
 ];
 
 function loadSoft(files) {
@@ -597,7 +597,7 @@ async function probeRegister(panel, email) {
 
 (async () => {
   const priority = loadSoft(POOLS.length ? POOLS.filter((f) => !/emailnator|mail/.test(f)) : HOT_FILES);
-  for (const a of loadAnnotated(path.join(__dirname, 'out', 'pool-exits.txt'))) {
+  for (const a of loadAnnotated(path.join(ROOT, 'out', 'pool-exits.txt'))) {
     try {
       const p = require('./proxy.js').parseProxy(a.line);
       if (p) {

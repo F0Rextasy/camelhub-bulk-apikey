@@ -6,7 +6,7 @@
  * the engines shared (one place to fix bugs) while each provider folder stays
  * self-contained and re-runnable — the rule for shipping a provider.
  *
- *   node provider-cli.js --name kuaipao [--count 3] [--mail emailnator] …
+ *   node src/provider-cli.js --name kuaipao [--count 3] [--mail emailnator] …
  *
  * config.json:
  *   {
@@ -33,8 +33,14 @@ if (!NAME) {
   process.exit(1);
 }
 
-const DIR = __dirname;
-const cfg = JSON.parse(fs.readFileSync(path.join(DIR, 'config.json'), 'utf8'));
+const DIR = path.resolve(__dirname, '..'); // data root (the repo root)
+let cfg = null;
+try {
+  cfg = JSON.parse(fs.readFileSync(path.join(DIR, 'config.json'), 'utf8'));
+} catch (e) {
+  console.error(`provider-cli: no config.json at ${path.join(DIR, 'config.json')} — this runner needs the per-provider config shipped by the workspace build`);
+  process.exit(2);
+}
 
 const ENGINE = {
   'newapi-node': 'mint-newapi.js',

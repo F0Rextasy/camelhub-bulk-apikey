@@ -14,18 +14,19 @@
 const http = require('http');
 const path = require('path');
 const { loadExits, req } = require('./lib');
+const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const { parseProxy } = require(path.join(__dirname, 'proxy'));
 
 const O = (...p) => path.join(__dirname, '..', ...p);
 
 const DEFAULT_LISTS = [
-  path.join(__dirname, 'proxies.txt'), // rewritten by the pool every round, `# proven=<host>` tagged
-  path.join(__dirname, 'proxies.txt'),
-  path.join(__dirname, 'proxies.txt'),
-  path.join(__dirname, 'proxies.txt'),
-  path.join(__dirname, 'proxies.txt'),
-  path.join(__dirname, 'proxies.txt'),
-  path.join(__dirname, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'), // rewritten by the pool every round, `# proven=<host>` tagged
+  path.join(ROOT, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'),
+  path.join(ROOT, 'proxies.txt'),
 ];
 
 function poolGet(url) {

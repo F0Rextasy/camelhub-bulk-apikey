@@ -17,9 +17,9 @@
  * and pins it for both calls. When no distinct exit can be proven it says so
  * (`independent:false`) instead of silently reusing the mint exit.
  *
- *   node verify-key.js --name dmxapi
- *   node verify-key.js --name liangjiewis --model glm-4-flash --max-tokens 8
- *   node verify-key.js --name yjs --key <key> --all
+ *   node src/verify-key.js --name dmxapi
+ *   node src/verify-key.js --name liangjiewis --model glm-4-flash --max-tokens 8
+ *   node src/verify-key.js --name yjs --key <key> --all
  *
  * Updates `accounts.json` (`verifyIndependent` block), `models.json` (when the
  * panel lists models) and appends to `keys.txt` only keys that answered 200.
@@ -48,7 +48,7 @@ if (!NAME) {
   process.exit(2);
 }
 
-const DIR = __dirname;
+const DIR = path.resolve(__dirname, '..'); // data root (the repo root)
 const CFG = readJson(path.join(DIR, 'config.json'), {});
 const BASE = one('base', CFG.base);
 if (!BASE) {
@@ -91,7 +91,7 @@ function rankCheapest(ids) {
  * pushed to the back so the *independent* exit is the one that gets pinned.
  */
 async function exitPool(avoid = []) {
-  const extra = POOLS.length ? POOLS : [path.join(__dirname, 'out', 'pool', `screened-${HOST}.txt`)];
+  const extra = POOLS.length ? POOLS : [path.join(DIR, 'out', 'pool', `screened-${HOST}.txt`)];
   const { candidates } = await collectCandidates({ host: HOST, extra, log: (m) => log('· ' + m) });
   const avoidSet = new Set(avoid.filter(Boolean));
   const ordered = [...candidates.filter((p) => !avoidSet.has(p.line)), ...candidates.filter((p) => avoidSet.has(p.line))];
@@ -100,7 +100,7 @@ async function exitPool(avoid = []) {
   // then serves every later mint for this host (an early lesson — a mint’s own
   // screen is the expensive half, and the next run re-pays for it otherwise).
   if (good.length) {
-    const file = path.join(__dirname, 'out', 'pool', `screened-${HOST}.txt`);
+    const file = path.join(DIR, 'out', 'pool', `screened-${HOST}.txt`);
     try {
       const seen = new Set();
       if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) seen.add(l.split('#')[0].trim());
