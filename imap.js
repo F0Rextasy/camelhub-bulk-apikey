@@ -1,1 +1,284 @@
-const a0_0x234419=a0_0x5677;(function(_0x92a308,_0x2f7c6e){const _0x3c00de=a0_0x5677,_0x1af661=_0x92a308();while(!![]){try{const _0x1e4da5=-parseInt(_0x3c00de(0xec))/0x1+parseInt(_0x3c00de(0xc4))/0x2+-parseInt(_0x3c00de(0xe3))/0x3+parseInt(_0x3c00de(0xd9))/0x4*(-parseInt(_0x3c00de(0xd1))/0x5)+-parseInt(_0x3c00de(0x106))/0x6+-parseInt(_0x3c00de(0xc6))/0x7+-parseInt(_0x3c00de(0x109))/0x8*(-parseInt(_0x3c00de(0xe9))/0x9);if(_0x1e4da5===_0x2f7c6e)break;else _0x1af661['push'](_0x1af661['shift']());}catch(_0x3e66f4){_0x1af661['push'](_0x1af661['shift']());}}}(a0_0x50c0,0x7371a));const a0_0x51d97f=(function(){let _0x5e644c=!![];return function(_0x457e81,_0x39b9e5){const _0x20cbf0=_0x5e644c?function(){const _0x197208=a0_0x5677;if(_0x39b9e5){const _0x5c22b3=_0x39b9e5[_0x197208(0xe4)](_0x457e81,arguments);return _0x39b9e5=null,_0x5c22b3;}}:function(){};return _0x5e644c=![],_0x20cbf0;};}()),a0_0x271e47=a0_0x51d97f(this,function(){const _0x5b3423=a0_0x5677;if(a0_0x271e47[_0x5b3423(0xf9)]()['toString']()[_0x5b3423(0xfd)]('\x0a')!==-0x1)return;return a0_0x271e47[_0x5b3423(0xcf)]()[_0x5b3423(0xcb)](_0x5b3423(0x10e))[_0x5b3423(0xcf)]()[_0x5b3423(0xd0)](a0_0x271e47)[_0x5b3423(0xcb)]('(((.+)+)+)+$');});function a0_0x50c0(){const _0x9b8006=['DhjPBq','kcGOlISPkYKRksSK','zMLSDgvY','BM8GDMvYAwzPy2f0Aw9UignVzguGzM9Yia','su1bucbUB3qGy29UBMvJDgvK','D3jPDgu','C2vHCMnOvw5ZzwvUvg8','ChjVEhK','C2XPy2u','y29TBwfUza','otm5menPBefWyW','BMv0','mZCWmJm3mfvuC1Lwsa','DxnLCG','ieXpr09vva0k','Ag9ZDa','zxHWB3j0CW','C2vHCMnO','Aw5KzxG','zMv0y2HnzxnZywDL','C3bSAxq','Dg9tDhjPBMC','y29UC3rYDwn0B3i','ntvfs01sBgK','x3bYB2nLC3m','zNjVBq','y2XVC2u','x29Ur3jLzxrPBMDszwPLy3q','su1buca','D2fPDezVCKnVzgu','DgvZDa','mJuWntG4r1blvgXI','C2vX','x29Ur3jLzxrPBMC','iejprfKUuevfs1TD','C29JA2v0','lI9WCM94Eq','C2vSzwn0','Aw1HCc5NBwfPBc5JB20','C3rYAw5NAwz5','DgXZ','mJy0otC1mePduhL6ra','yxbWBhK','DgfN','yNvMzMvY','igzYB20GBwvZC2fNzsa','Cg9YDa','mte3uhLhwNzz','Bg9N','CMvQzwn0','nZyYmJi0q2Xpve5N','y29UBMvJDa','BwfW','CMvWBgfJzq','Aw1HCdOGy29Kzsa','vuLeifnfqvjdscbvtLnfru4Gve8G','x29Urgf0yq','dqOncG','su5ct1G','zxHLyW','zMLUza','BgvUz3rO','Dg9mB3DLCKnHC2u','yMLUza','C3rHCNrZv2L0Aa','u0vmrunuia','CM91BMq','Aw5KzxHpzG','Bg9NAw4','su1bucbJB25Uzwn0Aw9UignSB3nLza','CgvUzgLUzW','BM93','yMfZzty0','Bg9Nz2vKsw4','Aw5JBhvKzxm','DgLTzw91De1Z','mJm5odu5mgjPqxbqwa','su1bucbNCMvLDgLUzYb0Aw1LB3v0','Dgv4Dc9WBgfPBG','mJi5nJi2nertA3bNqW','CgfZC3DVCMq','zNjVBunOyxjdB2rL','CMv2zxjZzq'];a0_0x50c0=function(){return _0x9b8006;};return a0_0x50c0();}a0_0x271e47();'use strict';const tls=require(a0_0x234419(0xe2)),net=require(a0_0x234419(0xc5)),{openTunnel}=require(a0_0x234419(0xde)),DEFAULT_TIMEOUT_MS=0x4e20;function parseHeaderBlock(_0x4b03a9){const _0x3a7759=a0_0x234419,_0xf2dd9d={};for(const _0x599a98 of _0x4b03a9[_0x3a7759(0xce)](/\r?\n/)){const _0x3a4d9f=/^([A-Za-z-]+):\s*(.*)$/['exec'](_0x599a98);if(_0x3a4d9f)_0xf2dd9d[_0x3a4d9f[0x1]['toLowerCase']()]=_0x3a4d9f[0x2][_0x3a7759(0x10d)]();}return _0xf2dd9d;}function decodeQuotedPrintable(_0x456ba2){const _0x2a0b52=a0_0x234419;return _0x456ba2[_0x2a0b52(0xef)](/=\r?\n/g,'')[_0x2a0b52(0xef)](/=([0-9A-Fa-f]{2})/g,(_0x4113ef,_0x167856)=>String[_0x2a0b52(0x10b)](parseInt(_0x167856,0x10)));}function decodeBase64(_0x24411b){const _0x51f0bc=a0_0x234419;try{return Buffer[_0x51f0bc(0xd3)](_0x24411b[_0x51f0bc(0xef)](/\s+/g,''),_0x51f0bc(0x102))['toString']('utf8');}catch(_0x2146b1){return _0x24411b;}}function htmlToText(_0x2e61e2){const _0x1cc4f1=a0_0x234419;return _0x2e61e2[_0x1cc4f1(0xef)](/<style[\s\S]*?<\/style>/gi,'\x20')[_0x1cc4f1(0xef)](/<script[\s\S]*?<\/script>/gi,'\x20')['replace'](/<br\s*\/?>/gi,'\x0a')[_0x1cc4f1(0xef)](/<\/(p|div|tr|h\d)>/gi,'\x0a')[_0x1cc4f1(0xef)](/<[^>]+>/g,'\x20');}function messageText(_0x26ded4){const _0x5c3ef1=a0_0x234419,_0x255b50=_0x26ded4['indexOf'](_0x5c3ef1(0xf3)),_0x413c76=_0x255b50===-0x1?_0x26ded4[_0x5c3ef1(0xfd)]('\x0a\x0a'):_0x255b50;if(_0x413c76===-0x1)return _0x26ded4;const _0x3a4ec8=parseHeaderBlock(_0x26ded4['slice'](0x0,_0x413c76)),_0x231672=_0x26ded4[_0x5c3ef1(0xc2)](_0x413c76+(_0x255b50===-0x1?0x2:0x4)),_0x21cfa3=_0x3a4ec8['content-type']||_0x5c3ef1(0x108),_0x45e796=/boundary="?([^";]+)"?/i[_0x5c3ef1(0xf5)](_0x21cfa3)?.[0x1];if(/^multipart\//i[_0x5c3ef1(0xd8)](_0x21cfa3)&&_0x45e796){const _0x592159=_0x231672[_0x5c3ef1(0xce)]('--'+_0x45e796);return _0x592159[_0x5c3ef1(0xee)](_0x2dbd5f=>/^\s*$/['test'](_0x2dbd5f)||/^--/[_0x5c3ef1(0xd8)](_0x2dbd5f[_0x5c3ef1(0x10d)]())?'':messageText(_0x2dbd5f[_0x5c3ef1(0xef)](/^\r?\n/,'')))[_0x5c3ef1(0x10f)](Boolean)['join']('\x0a');}const _0x47b475=(_0x3a4ec8['content-transfer-encoding']||'')[_0x5c3ef1(0xf8)]();let _0x592485=_0x231672;if(_0x47b475[_0x5c3ef1(0x104)]('quoted-printable'))_0x592485=decodeQuotedPrintable(_0x592485);else{if(_0x47b475['includes'](_0x5c3ef1(0x102)))_0x592485=decodeBase64(_0x592485);}if(/text\/html/i[_0x5c3ef1(0xd8)](_0x21cfa3))_0x592485=htmlToText(_0x592485);return _0x592485;}function a0_0x5677(_0xcc0d7f,_0x317dbf){_0xcc0d7f=_0xcc0d7f-0xc0;const _0x7c66f4=a0_0x50c0();let _0x271e47=_0x7c66f4[_0xcc0d7f];if(a0_0x5677['WyrIat']===undefined){var _0x51d97f=function(_0x3d245d){const _0x2171af='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x406314='',_0x1e24b9='',_0x3de6fe=_0x406314+_0x51d97f,_0x539702=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x5e644c=0x0,_0x457e81,_0x39b9e5,_0x20cbf0=0x0;_0x39b9e5=_0x3d245d['charAt'](_0x20cbf0++);~_0x39b9e5&&(_0x457e81=_0x5e644c%0x4?_0x457e81*0x40+_0x39b9e5:_0x39b9e5,_0x5e644c++%0x4)?_0x406314+=_0x539702||_0x3de6fe['charCodeAt'](_0x20cbf0+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x457e81>>(-0x2*_0x5e644c&0x6)):_0x5e644c:0x0){_0x39b9e5=_0x2171af['indexOf'](_0x39b9e5);}for(let _0x5c22b3=0x0,_0x4b03a9=_0x406314['length'];_0x5c22b3<_0x4b03a9;_0x5c22b3++){_0x1e24b9+='%'+('00'+_0x406314['charCodeAt'](_0x5c22b3)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1e24b9);};a0_0x5677['BgzObm']=_0x51d97f,a0_0x5677['jtUNJW']={},a0_0x5677['WyrIat']=!![];}const _0x50c079=_0x7c66f4[0x0];a0_0x5677['AOKDZL']!==_0x50c079&&(a0_0x5677['jtUNJW']={},a0_0x5677['AOKDZL']=_0x50c079);const _0x5677ff=a0_0x5677['jtUNJW'][_0xcc0d7f];if(_0x5677ff===undefined){const _0xf2dd9d=function(_0x599a98){this['bzcvjk']=_0x599a98,this['tvnEtC']=[0x1,0x0,0x0],this['DOgrqG']=function(){return'newState';},this['vEGsln']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['vPnJIm']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0xf2dd9d['prototype']['fDYZrh']=function(){const _0x3a4d9f=new RegExp(this['vEGsln']+this['vPnJIm']),_0x456ba2=_0x3a4d9f['test'](this['DOgrqG']['toString']())?--this['tvnEtC'][0x1]:--this['tvnEtC'][0x0];return this['cgyHWf'](_0x456ba2);},_0xf2dd9d['prototype']['cgyHWf']=function(_0x4113ef){if(!Boolean(~_0x4113ef))return _0x4113ef;return this['QzpTEs'](this['bzcvjk']);},_0xf2dd9d['prototype']['QzpTEs']=function(_0x167856){for(let _0x24411b=0x0,_0x2146b1=this['tvnEtC']['length'];_0x24411b<_0x2146b1;_0x24411b++){this['tvnEtC']['push'](Math['round'](Math['random']())),_0x2146b1=this['tvnEtC']['length'];}return _0x167856(this['tvnEtC'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0xf2dd9d(a0_0x5677)['fDYZrh'](),_0x271e47=a0_0x5677['BgzObm'](_0x271e47),a0_0x5677['jtUNJW'][_0xcc0d7f]=_0x271e47;}else _0x271e47=_0x5677ff;return _0x271e47;}function extractCode(_0x36c7e8){const _0x226cdf=a0_0x234419,_0x4b1626=_0x36c7e8[_0x226cdf(0xef)](/\s+/g,'\x20'),_0x150cd5=/(?:code|kod|otp|verification)[^0-9]{0,40}(\d{6})/i[_0x226cdf(0xf5)](_0x4b1626);if(_0x150cd5)return _0x150cd5[0x1];const _0x2596c9=/\b(\d{6})\b/['exec'](_0x4b1626);return _0x2596c9?_0x2596c9[0x1]:null;}class Imap{constructor({host:host=a0_0x234419(0xe0),port:port=0x3e1,user:_0x1e6cfa,password:_0x2f64e1,proxy:proxy=null,timeoutMs:timeoutMs=DEFAULT_TIMEOUT_MS,log:_0x22987e}={}){const _0x885fc6=a0_0x234419;this['host']=host,this[_0x885fc6(0xe8)]=port,this[_0x885fc6(0xc7)]=_0x1e6cfa,this[_0x885fc6(0x10a)]=_0x2f64e1,this[_0x885fc6(0xc1)]=proxy,this[_0x885fc6(0x105)]=timeoutMs,this[_0x885fc6(0xea)]=_0x22987e||(()=>{}),this[_0x885fc6(0xdd)]=null,this[_0x885fc6(0xe6)]='',this['seq']=0x0,this[_0x885fc6(0x100)]=null;}async[a0_0x234419(0xed)](){const _0x5867e3=a0_0x234419;if(this[_0x5867e3(0xdd)])return;const _0x131878=new Promise((_0x313af9,_0x1ccdec)=>{const _0x14ff6a=_0x5867e3,_0x320607=setTimeout(()=>_0x1ccdec(new Error(_0x14ff6a(0x107))),this[_0x14ff6a(0x105)]),_0x7652ce=()=>{const _0x1df7b3=_0x14ff6a;/\* OK/['test'](this[_0x1df7b3(0xe6)])&&(clearTimeout(_0x320607),_0x313af9());};this[_0x14ff6a(0xe6)]='',this['_onGreeting']=_0x7652ce,this['_onGreetingReject']=_0x100136=>{clearTimeout(_0x320607),_0x1ccdec(_0x100136);};}),_0x43846b=this[_0x5867e3(0xc1)]?tls['connect']({'socket':await openTunnel(this[_0x5867e3(0xc1)],{'host':this[_0x5867e3(0xc9)],'port':this[_0x5867e3(0xe8)],'timeoutMs':this['timeoutMs']}),'servername':this[_0x5867e3(0xc9)]}):tls[_0x5867e3(0xed)]({'host':this[_0x5867e3(0xc9)],'port':this[_0x5867e3(0xe8)],'servername':this['host']});this[_0x5867e3(0xdd)]=_0x43846b,_0x43846b['setNoDelay'](!![]),_0x43846b['on']('data',_0x4c3d0e=>this[_0x5867e3(0xf2)](_0x4c3d0e)),_0x43846b['on']('error',_0xa2b29=>{const _0x5319b0=_0x5867e3;if(this[_0x5319b0(0xd5)])this[_0x5319b0(0xd5)](_0xa2b29);if(this[_0x5319b0(0x100)])this['pending'][_0x5319b0(0xeb)](_0xa2b29);}),_0x43846b['on']('close',()=>{const _0x55ad09=_0x5867e3;if(this[_0x55ad09(0x100)])this[_0x55ad09(0x100)][_0x55ad09(0xeb)](new Error(_0x55ad09(0xff)));this['socket']=null;}),await _0x131878,this[_0x5867e3(0xdb)]=null,this['_onGreetingReject']=null;}[a0_0x234419(0xf2)](_0x249df9){const _0x434cf5=a0_0x234419;this[_0x434cf5(0xe6)]+=_0x249df9[_0x434cf5(0xcf)]('binary');if(!this['pending']){if(this[_0x434cf5(0xdb)]&&/\* OK/['test'](this[_0x434cf5(0xe6)]))this[_0x434cf5(0xdb)]();return;}this[_0x434cf5(0xd2)]();}[a0_0x234419(0xd2)](){const _0x186dae=a0_0x234419;for(;;){const _0x53830c=this[_0x186dae(0xe6)][_0x186dae(0xfd)]('\x0a');if(_0x53830c===-0x1)return;const _0xe54ebf=this['buffer'][_0x186dae(0xc2)](0x0,_0x53830c+0x1),_0x11eff2=/\{(\d+)\}\r?\n$/[_0x186dae(0xf5)](_0xe54ebf);if(_0x11eff2){const _0x55c6b1=parseInt(_0x11eff2[0x1],0xa);if(this[_0x186dae(0xe6)][_0x186dae(0xf7)]<_0x53830c+0x1+_0x55c6b1+0x1)return;this[_0x186dae(0xe6)]=this[_0x186dae(0xe6)]['slice'](_0x53830c+0x1+_0x55c6b1);continue;}this[_0x186dae(0xe6)]=this[_0x186dae(0xe6)][_0x186dae(0xc2)](_0x53830c+0x1),this[_0x186dae(0x100)]['response']+=_0xe54ebf;if(_0xe54ebf[_0x186dae(0xfa)](this[_0x186dae(0x100)][_0x186dae(0xe5)]+'\x20')){const {resolve:_0x15b6ac,reject:_0x10cbe5,response:_0x426bbf}=this[_0x186dae(0x100)];this[_0x186dae(0x100)]=null;const _0x49ecd7=_0xe54ebf['trim']();if(/\sOK\b/i['test'](_0x49ecd7))_0x15b6ac(_0x426bbf[_0x186dae(0x10d)]());else _0x10cbe5(new Error(_0x186dae(0xd6)+_0x49ecd7));return;}}}[a0_0x234419(0xc3)](_0x3a099e){const _0x5eb532=a0_0x234419;if(!this[_0x5eb532(0xdd)])return Promise['reject'](new Error(_0x5eb532(0x111)));const _0x3bf1ff='A'+ ++this[_0x5eb532(0xda)];return new Promise((_0x3f4c87,_0x508b36)=>{const _0x356534=_0x5eb532,_0x5cc0df=setTimeout(()=>{const _0x59cf0e=a0_0x5677;this[_0x59cf0e(0x100)]&&this[_0x59cf0e(0x100)][_0x59cf0e(0xe5)]===_0x3bf1ff&&(this[_0x59cf0e(0x100)]=null,_0x508b36(new Error('IMAP\x20timeout\x20on\x20'+_0x3a099e[_0x59cf0e(0xce)]('\x20')[0x0])));},this[_0x356534(0x105)]);this[_0x356534(0x100)]={'tag':_0x3bf1ff,'response':'','resolve':_0x334a3e=>{clearTimeout(_0x5cc0df),_0x3f4c87(_0x334a3e);},'reject':_0x8cf284=>{clearTimeout(_0x5cc0df),_0x508b36(_0x8cf284);}},this['socket'][_0x356534(0x112)](_0x3bf1ff+'\x20'+_0x3a099e+'\x0d\x0a');});}async[a0_0x234419(0xfe)](){const _0x3a643e=a0_0x234419;await this[_0x3a643e(0xc3)]('LOGIN\x20'+JSON['stringify'](this[_0x3a643e(0xc7)])+'\x20'+JSON[_0x3a643e(0xe1)](this[_0x3a643e(0x10a)])),this[_0x3a643e(0xea)]('imap:\x20logged\x20in\x20as\x20'+this[_0x3a643e(0xc7)]);}async[a0_0x234419(0xdf)](_0xe437a0=a0_0x234419(0xf4)){const _0x31ac88=a0_0x234419;return this[_0x31ac88(0xc3)](_0x31ac88(0xfb)+JSON['stringify'](_0xe437a0));}async[a0_0x234419(0xc0)](_0x30d6ba){const _0x1646f2=a0_0x234419,_0x148edc=await this['command'](_0x1646f2(0xf1)+JSON[_0x1646f2(0xe1)](_0x30d6ba)),_0x1deac8=_0x148edc[_0x1646f2(0xce)](/\r?\n/)[_0x1646f2(0xf6)](_0xa94b40=>/^\* SEARCH/['test'](_0xa94b40))||'';return _0x1deac8['replace'](/^\* SEARCH\s*/,'')[_0x1646f2(0x10d)]()[_0x1646f2(0xce)](/\s+/)[_0x1646f2(0x10f)](Boolean);}async[a0_0x234419(0xcd)](_0x64218e){const _0x12ab74=a0_0x234419,_0x2655f0=await this['command']('UID\x20FETCH\x20'+_0x64218e+_0x12ab74(0xdc)),_0xcd8afc=_0x2655f0[_0x12ab74(0xcb)](/BODY\[\][^\n]*\n|\{\d+\}\r?\n/);if(_0xcd8afc===-0x1)return _0x2655f0;const _0x47f4c7=/\{(\d+)\}\r?\n/[_0x12ab74(0xf5)](_0x2655f0);if(_0x47f4c7)return _0x2655f0[_0x12ab74(0xc2)](_0x47f4c7[_0x12ab74(0xcc)]+_0x47f4c7[0x0][_0x12ab74(0xf7)],_0x47f4c7[_0x12ab74(0xcc)]+_0x47f4c7[0x0]['length']+parseInt(_0x47f4c7[0x1],0xa));const _0x3b505c=_0x2655f0[_0x12ab74(0xfd)]('\x0a',_0xcd8afc);return _0x3b505c===-0x1?_0x2655f0:_0x2655f0[_0x12ab74(0xc2)](_0x3b505c+0x1);}async[a0_0x234419(0xd7)]({to:_0x2fd977,timeoutMs:timeoutMs=0x1d4c0,pollMs:pollMs=0xfa0,log:_0x543872}={}){const _0x379771=a0_0x234419;await this['connect']();!this[_0x379771(0x103)]&&(await this[_0x379771(0xfe)](),await this[_0x379771(0xdf)](_0x379771(0xf4)),this[_0x379771(0x103)]=!![]);const _0x5cd302=_0x543872||this[_0x379771(0xea)],_0x21d155=Date[_0x379771(0x101)]()+timeoutMs;while(Date[_0x379771(0x101)]()<_0x21d155){const _0x2fab7c=await this[_0x379771(0xc0)](_0x2fd977);for(const _0x383e51 of _0x2fab7c[_0x379771(0x10c)]()){const _0x18b7e2=messageText(await this[_0x379771(0xcd)](_0x383e51)),_0x373c3d=extractCode(_0x18b7e2);if(_0x373c3d)return _0x5cd302(_0x379771(0xf0)+_0x373c3d+_0x379771(0xe7)+_0x383e51),_0x373c3d;}await new Promise(_0x5e0cbb=>setTimeout(_0x5e0cbb,pollMs));}throw new Error(_0x379771(0x110)+_0x2fd977+'\x20within\x20'+Math[_0x379771(0xfc)](timeoutMs/0x3e8)+'s');}[a0_0x234419(0xd4)](){const _0x270f7e=a0_0x234419;if(!this[_0x270f7e(0xdd)])return;try{this[_0x270f7e(0xdd)][_0x270f7e(0x112)]('A'+ ++this[_0x270f7e(0xda)]+_0x270f7e(0xc8));}catch(_0xb33d60){}this[_0x270f7e(0xdd)]['end'](),this[_0x270f7e(0xdd)]=null,this[_0x270f7e(0x103)]=![];}}module[a0_0x234419(0xca)]={'Imap':Imap,'messageText':messageText,'extractCode':extractCode,'decodeQuotedPrintable':decodeQuotedPrintable,'htmlToText':htmlToText};
+'use strict';
+
+/**
+ * Minimal IMAP client — just enough to read a verification code out of a real
+ * mailbox, through the same proxy tunnel as the rest of the tool.
+ *
+ * Why it exists: the sign-up gate accepts mainstream domains (gmail.com,
+ * outlook.com) and refuses every disposable-inbox domain that has an API
+ * (mail.tm, mail.gw, guerrillamail, mailinator, maildrop — measured
+ * 2026-10-13). Those mainstream providers have no free HTTP API, but they do
+ * speak IMAP, and an app password is enough to log in.
+ *
+ * Scope: connect over the tunnel, LOGIN, SELECT, UID SEARCH, UID FETCH, and
+ * decode a body well enough to find a 6-digit code. No IDLE, no flags, no
+ * folder management — polling UID SEARCH is enough at this scale.
+ *
+ * Zero dependencies: Node's net/tls plus the hand-rolled tunnel from ./proxy.
+ */
+
+const tls = require('tls');
+const net = require('net');
+const { openTunnel } = require('./proxy');
+
+const DEFAULT_TIMEOUT_MS = 20000;
+
+/** Splits "text/plain; charset=utf-8" into its parts. */
+function parseHeaderBlock(raw) {
+  const headers = {};
+  for (const line of raw.split(/\r?\n/)) {
+    const m = /^([A-Za-z-]+):\s*(.*)$/.exec(line);
+    if (m) headers[m[1].toLowerCase()] = m[2].trim();
+  }
+  return headers;
+}
+
+function decodeQuotedPrintable(text) {
+  return text
+    .replace(/=\r?\n/g, '')
+    .replace(/=([0-9A-Fa-f]{2})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+}
+
+function decodeBase64(text) {
+  try {
+    return Buffer.from(text.replace(/\s+/g, ''), 'base64').toString('utf8');
+  } catch (e) {
+    return text;
+  }
+}
+
+function htmlToText(html) {
+  return html
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|tr|h\d)>/gi, '\n')
+    .replace(/<[^>]+>/g, ' ');
+}
+
+/** All readable text of a raw RFC822 message, multipart included. */
+function messageText(raw) {
+  const split = raw.indexOf('\r\n\r\n');
+  const sep = split === -1 ? raw.indexOf('\n\n') : split;
+  if (sep === -1) return raw;
+  const headers = parseHeaderBlock(raw.slice(0, sep));
+  const body = raw.slice(sep + (split === -1 ? 2 : 4));
+  const ctype = headers['content-type'] || 'text/plain';
+
+  const boundary = /boundary="?([^";]+)"?/i.exec(ctype)?.[1];
+  if (/^multipart\//i.test(ctype) && boundary) {
+    const parts = body.split(`--${boundary}`);
+    return parts
+      .map((p) => (/^\s*$/.test(p) || /^--/.test(p.trim()) ? '' : messageText(p.replace(/^\r?\n/, ''))))
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  const encoding = (headers['content-transfer-encoding'] || '').toLowerCase();
+  let text = body;
+  if (encoding.includes('quoted-printable')) text = decodeQuotedPrintable(text);
+  else if (encoding.includes('base64')) text = decodeBase64(text);
+  if (/text\/html/i.test(ctype)) text = htmlToText(text);
+  return text;
+}
+
+/** 6-digit code, preferring one sitting next to the word "code". */
+function extractCode(text) {
+  const words = text.replace(/\s+/g, ' ');
+  const near = /(?:code|kod|otp|verification)[^0-9]{0,40}(\d{6})/i.exec(words);
+  if (near) return near[1];
+  const any = /\b(\d{6})\b/.exec(words);
+  return any ? any[1] : null;
+}
+
+class Imap {
+  /**
+   * @param {{host?: string, port?: number, user: string, password: string, proxy?: object|null, timeoutMs?: number, log?: Function}} opts
+   */
+  constructor({ host = 'imap.gmail.com', port = 993, user, password, proxy = null, timeoutMs = DEFAULT_TIMEOUT_MS, log } = {}) {
+    this.host = host;
+    this.port = port;
+    this.user = user;
+    this.password = password;
+    this.proxy = proxy;
+    this.timeoutMs = timeoutMs;
+    this.log = log || (() => {});
+    this.socket = null;
+    this.buffer = '';
+    this.seq = 0;
+    this.pending = null; // { tag, resolve, reject, until, literals }
+  }
+
+  /** Opens the socket — through the proxy when one is given — and reads the greeting. */
+  async connect() {
+    if (this.socket) return;
+    const greeting = new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('IMAP greeting timeout')), this.timeoutMs);
+      const onData = () => {
+        if (/\* OK/.test(this.buffer)) {
+          clearTimeout(timer);
+          resolve();
+        }
+      };
+      this.buffer = '';
+      this._onGreeting = onData;
+      this._onGreetingReject = (e) => {
+        clearTimeout(timer);
+        reject(e);
+      };
+    });
+
+    const socket = this.proxy
+      ? tls.connect({ socket: await openTunnel(this.proxy, { host: this.host, port: this.port, timeoutMs: this.timeoutMs }), servername: this.host })
+      : tls.connect({ host: this.host, port: this.port, servername: this.host });
+    this.socket = socket;
+    socket.setNoDelay(true);
+    socket.on('data', (chunk) => this._onData(chunk));
+    socket.on('error', (e) => {
+      if (this._onGreetingReject) this._onGreetingReject(e);
+      if (this.pending) this.pending.reject(e);
+    });
+    socket.on('close', () => {
+      if (this.pending) this.pending.reject(new Error('IMAP connection closed'));
+      this.socket = null;
+    });
+    await greeting;
+    this._onGreeting = null;
+    this._onGreetingReject = null;
+  }
+
+  _onData(chunk) {
+    this.buffer += chunk.toString('binary');
+    // Greeting path
+    if (!this.pending) {
+      if (this._onGreeting && /\* OK/.test(this.buffer)) this._onGreeting();
+      return;
+    }
+    this._process();
+  }
+
+  /**
+   * Walks complete lines. A line ending in `{n}` is a literal: n raw bytes
+   * follow, and a body containing "\r\nA2 OK" must not be mistaken for the
+   * tagged completion of the command that asked for it.
+   */
+  _process() {
+    for (;;) {
+      const lineEnd = this.buffer.indexOf('\n');
+      if (lineEnd === -1) return;
+      const line = this.buffer.slice(0, lineEnd + 1);
+      const literal = /\{(\d+)\}\r?\n$/.exec(line);
+      if (literal) {
+        const need = parseInt(literal[1], 10);
+        if (this.buffer.length < lineEnd + 1 + need + 1) return; // wait for the rest
+        this.buffer = this.buffer.slice(lineEnd + 1 + need);
+        continue;
+      }
+      this.buffer = this.buffer.slice(lineEnd + 1);
+      this.pending.response += line;
+      if (line.startsWith(`${this.pending.tag} `)) {
+        const { resolve, reject, response } = this.pending;
+        this.pending = null;
+        const status = line.trim();
+        if (/\sOK\b/i.test(status)) resolve(response.trim());
+        else reject(new Error(`IMAP ${status}`));
+        return;
+      }
+    }
+  }
+
+  /** Sends a command and resolves with the untagged response text. */
+  command(text) {
+    if (!this.socket) return Promise.reject(new Error('IMAP not connected'));
+    const tag = `A${++this.seq}`;
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        if (this.pending && this.pending.tag === tag) {
+          this.pending = null;
+          reject(new Error(`IMAP timeout on ${text.split(' ')[0]}`));
+        }
+      }, this.timeoutMs);
+      this.pending = {
+        tag,
+        response: '',
+        resolve: (v) => {
+          clearTimeout(timer);
+          resolve(v);
+        },
+        reject: (e) => {
+          clearTimeout(timer);
+          reject(e);
+        },
+      };
+      this.socket.write(`${tag} ${text}\r\n`);
+    });
+  }
+
+  async login() {
+    await this.command(`LOGIN ${JSON.stringify(this.user)} ${JSON.stringify(this.password)}`);
+    this.log(`imap: logged in as ${this.user}`);
+  }
+
+  async select(mailbox = 'INBOX') {
+    return this.command(`SELECT ${JSON.stringify(mailbox)}`);
+  }
+
+  /** UIDs of unseen messages addressed to `to` (IMAP TO search is a substring match). */
+  async searchUnseenTo(to) {
+    const res = await this.command(`UID SEARCH UNSEEN TO ${JSON.stringify(to)}`);
+    const line = res.split(/\r?\n/).find((l) => /^\* SEARCH/.test(l)) || '';
+    return line.replace(/^\* SEARCH\s*/, '').trim().split(/\s+/).filter(Boolean);
+  }
+
+  /** Raw message for a UID. */
+  async fetchMessage(uid) {
+    const res = await this.command(`UID FETCH ${uid} BODY.PEEK[]`);
+    const start = res.search(/BODY\[\][^\n]*\n|\{\d+\}\r?\n/);
+    if (start === -1) return res;
+    // Everything after the literal header is the message.
+    const literal = /\{(\d+)\}\r?\n/.exec(res);
+    if (literal) return res.slice(literal.index + literal[0].length, literal.index + literal[0].length + parseInt(literal[1], 10));
+    const nl = res.indexOf('\n', start);
+    return nl === -1 ? res : res.slice(nl + 1);
+  }
+
+  /**
+   * Polls the mailbox until a message addressed to `to` carries a 6-digit code.
+   * Leaves the message unseen: nothing here marks it, so a second look is free.
+   */
+  async waitForCode({ to, timeoutMs = 120000, pollMs = 4000, log } = {}) {
+    await this.connect();
+    if (!this.loggedIn) {
+      await this.login();
+      await this.select('INBOX');
+      this.loggedIn = true;
+    }
+    const say = log || this.log;
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      const uids = await this.searchUnseenTo(to);
+      for (const uid of uids.reverse()) {
+        const text = messageText(await this.fetchMessage(uid));
+        const code = extractCode(text);
+        if (code) {
+          say(`imap: code ${code} from message ${uid}`);
+          return code;
+        }
+      }
+      await new Promise((r) => setTimeout(r, pollMs));
+    }
+    throw new Error(`no verification code for ${to} within ${Math.round(timeoutMs / 1000)}s`);
+  }
+
+  close() {
+    if (!this.socket) return;
+    try {
+      this.socket.write(`A${++this.seq} LOGOUT\r\n`);
+    } catch (e) {}
+    this.socket.end();
+    this.socket = null;
+    this.loggedIn = false;
+  }
+}
+
+module.exports = { Imap, messageText, extractCode, decodeQuotedPrintable, htmlToText };

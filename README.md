@@ -11,15 +11,16 @@
 
 # camelhub-bulk-apikey
 
-**Bulk API keys for [camel-hub.cn](https://camel-hub.cn) (CaMeL AI) — 469 models listed, $1.00 of credit on sign-up plus a daily check-in, one account per key. Every key is verified live — `GET /v1/models` 200 *and* a real completion on a second exit — before it lands in `keys.txt`.**
+**Bulk-create CaMeL AI accounts with auto-generated API keys — OpenAI-compatible inference + 9Router connector.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
+[![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6.svg?style=for-the-badge)](#-connect-to-9router)
 [![Models](https://img.shields.io/badge/models-469%20listed-d97706?style=for-the-badge)](https://camel-hub.cn)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Quick start](#-quick-start) · [✅ Verified](#-verified-authentic--spendable) · [🤖 Models & free tier](#-models--free-tier) · [⚙️ Options](#️-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
+[🛠 Quick start](#-quick-start) · [✅ Verified](#-verified-authentic--spendable) · [🤖 Models & free tier](#-models--free-tier) · [🔌 9Router](#-connect-to-9router) · [⚙️ Options](#️-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Issues](#-issues)
 
 </div>
 
@@ -60,7 +61,7 @@
 ## 🛠 Quick start
 
 ```bash
-git clone https://github.com/F0Rextasy/camelhub-bulk-apikey.git
+# clone this repository (or download the ZIP), then:
 cd camelhub-bulk-apikey
 
 # 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
@@ -147,6 +148,30 @@ Both 404s came from the same key that answered 200 for `claude-haiku-4-5` second
 a down channel is a property of the model, not of your key. `verify.js` walks the cheapest
 listed ids for that reason, and `--model <id>` pins the one you care about.
 
+## 🔌 Connect to 9Router
+
+CaMeL AI is OpenAI-compatible, so register it once and use every key:
+
+```bash
+node connect-9router.js \
+  --base http://localhost:20128 --password 123456 \
+  --keys-file keys.txt
+```
+
+Every key in `keys.txt` becomes one connection of the `camelhub` provider node
+(`--api-key <key>` registers a single key instead, `--model <id>` overrides the
+default). Then pick a model inside 9Router:
+
+```
+camelhub/claude-haiku-4-5
+camelhub/deepseek-chat
+camelhub/glm-4.5
+```
+
+Point the connector at a refreshed `keys.txt` to add more accounts; the node and
+its model list stay the same. `node launcher.js --connect-9router` runs exactly
+this and asks for the base URL and password first.
+
 ## ⚙️ Options
 
 | tool | flags |
@@ -189,6 +214,6 @@ MIT — see [LICENSE](LICENSE). Use it on accounts you are allowed to create.
 
 <div align="center">
 
-**Built by F0REXTASY** · [github.com/F0Rextasy](https://github.com/F0Rextasy) · [x.com/bigbullapp](https://x.com/bigbullapp)
+**Built by camelhub-bulk-apikey contributors** · [x.com/bigbullapp](https://x.com/bigbullapp)
 
 </div>

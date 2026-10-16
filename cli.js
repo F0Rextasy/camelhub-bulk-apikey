@@ -1,2 +1,54 @@
 #!/usr/bin/env node
-'use strict';const a0_0x64c69a=a0_0x4bf4;(function(_0x3921d0,_0x27bfe5){const _0x3c0965=a0_0x4bf4,_0x11a5c3=_0x3921d0();while(!![]){try{const _0x265a24=-parseInt(_0x3c0965(0x152))/0x1*(parseInt(_0x3c0965(0x158))/0x2)+-parseInt(_0x3c0965(0x15b))/0x3*(-parseInt(_0x3c0965(0x148))/0x4)+-parseInt(_0x3c0965(0x15c))/0x5+parseInt(_0x3c0965(0x159))/0x6*(-parseInt(_0x3c0965(0x153))/0x7)+parseInt(_0x3c0965(0x160))/0x8+-parseInt(_0x3c0965(0x15f))/0x9+parseInt(_0x3c0965(0x166))/0xa*(parseInt(_0x3c0965(0x162))/0xb);if(_0x265a24===_0x27bfe5)break;else _0x11a5c3['push'](_0x11a5c3['shift']());}catch(_0x3c4fb7){_0x11a5c3['push'](_0x11a5c3['shift']());}}}(a0_0x1395,0x1e60a));function a0_0x4bf4(_0x272b3c,_0x530e57){_0x272b3c=_0x272b3c-0x141;const _0x45e631=a0_0x1395();let _0x34be97=_0x45e631[_0x272b3c];if(a0_0x4bf4['ubLZfg']===undefined){var _0xa22b6b=function(_0x116083){const _0xb462f2='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x41d2b5='',_0x280fdc='',_0x35b92c=_0x41d2b5+_0xa22b6b,_0x2925f3=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x41fb90=0x0,_0xc935ac,_0x431eff,_0x46c859=0x0;_0x431eff=_0x116083['charAt'](_0x46c859++);~_0x431eff&&(_0xc935ac=_0x41fb90%0x4?_0xc935ac*0x40+_0x431eff:_0x431eff,_0x41fb90++%0x4)?_0x41d2b5+=_0x2925f3||_0x35b92c['charCodeAt'](_0x46c859+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0xc935ac>>(-0x2*_0x41fb90&0x6)):_0x41fb90:0x0){_0x431eff=_0xb462f2['indexOf'](_0x431eff);}for(let _0x111908=0x0,_0x5d2398=_0x41d2b5['length'];_0x111908<_0x5d2398;_0x111908++){_0x280fdc+='%'+('00'+_0x41d2b5['charCodeAt'](_0x111908)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x280fdc);};a0_0x4bf4['iOLKJh']=_0xa22b6b,a0_0x4bf4['yctihE']={},a0_0x4bf4['ubLZfg']=!![];}const _0x1395f4=_0x45e631[0x0];a0_0x4bf4['FEwBPu']!==_0x1395f4&&(a0_0x4bf4['yctihE']={},a0_0x4bf4['FEwBPu']=_0x1395f4);const _0x4bf4e7=a0_0x4bf4['yctihE'][_0x272b3c];if(_0x4bf4e7===undefined){const _0x3f1f99=function(_0x8ac763){this['sXFhzk']=_0x8ac763,this['pZoKnJ']=[0x1,0x0,0x0],this['hrSsiM']=function(){return'newState';},this['GVVZni']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['xyXCzb']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x3f1f99['prototype']['XaaNvu']=function(){const _0x1e8f29=new RegExp(this['GVVZni']+this['xyXCzb']),_0x298fa9=_0x1e8f29['test'](this['hrSsiM']['toString']())?--this['pZoKnJ'][0x1]:--this['pZoKnJ'][0x0];return this['JWHIGn'](_0x298fa9);},_0x3f1f99['prototype']['JWHIGn']=function(_0x147d00){if(!Boolean(~_0x147d00))return _0x147d00;return this['xtYOqL'](this['sXFhzk']);},_0x3f1f99['prototype']['xtYOqL']=function(_0x57ad15){for(let _0x1a92b7=0x0,_0x14b938=this['pZoKnJ']['length'];_0x1a92b7<_0x14b938;_0x1a92b7++){this['pZoKnJ']['push'](Math['round'](Math['random']())),_0x14b938=this['pZoKnJ']['length'];}return _0x57ad15(this['pZoKnJ'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x3f1f99(a0_0x4bf4)['XaaNvu'](),_0x34be97=a0_0x4bf4['iOLKJh'](_0x34be97),a0_0x4bf4['yctihE'][_0x272b3c]=_0x34be97;}else _0x34be97=_0x4bf4e7;return _0x34be97;}const path=require(a0_0x64c69a(0x161)),{spawnSync}=require(a0_0x64c69a(0x165)),TASKS={'mint':{'file':a0_0x64c69a(0x14f),'note':a0_0x64c69a(0x142)},'verify':{'file':a0_0x64c69a(0x169),'note':'re-check\x20keys\x20that\x20are\x20already\x20on\x20disk'}};function help(){const _0x193dd9=a0_0x64c69a,_0x41fb90=(function(){let _0x431eff=!![];return function(_0x46c859,_0x111908){const _0x5d2398=_0x431eff?function(){const _0x246d0f=a0_0x4bf4;if(_0x111908){const _0x3f1f99=_0x111908[_0x246d0f(0x14a)](_0x46c859,arguments);return _0x111908=null,_0x3f1f99;}}:function(){};return _0x431eff=![],_0x5d2398;};}()),_0xc935ac=_0x41fb90(this,function(){const _0x5f5a0a=a0_0x4bf4;if(_0xc935ac['bind']()[_0x5f5a0a(0x147)]()[_0x5f5a0a(0x151)]('\x0a')!==-0x1)return;return _0xc935ac[_0x5f5a0a(0x147)]()[_0x5f5a0a(0x156)]('(((.+)+)+)+$')['toString']()[_0x5f5a0a(0x168)](_0xc935ac)['search'](_0x5f5a0a(0x150));});_0xc935ac(),console['log']('camelhub-bulk-apikey\x20—\x20One\x20CaMeL\x20AI\x20account\x20per\x20API\x20key\x20—\x20469\x20models,\x20$1.00\x20on\x20sign-up\x20plus\x20a\x20daily\x20check-in,\x20every\x20key\x20live-verified\x0a'),console[_0x193dd9(0x14c)](_0x193dd9(0x141)),console[_0x193dd9(0x14c)](_0x193dd9(0x145));for(const [_0x8ac763,_0x1e8f29]of Object['entries'](TASKS))console[_0x193dd9(0x14c)]('\x20\x20'+_0x8ac763[_0x193dd9(0x14b)](0x9)+'\x20'+_0x1e8f29[_0x193dd9(0x15e)]);console[_0x193dd9(0x14c)](_0x193dd9(0x15d)),console['log'](_0x193dd9(0x14d)),console[_0x193dd9(0x14c)](_0x193dd9(0x154)),console[_0x193dd9(0x14c)](_0x193dd9(0x163)),console[_0x193dd9(0x14c)](_0x193dd9(0x146));}const argv=process['argv'][a0_0x64c69a(0x14e)](0x2),task=argv[0x0];(!task||task===a0_0x64c69a(0x144)||task===a0_0x64c69a(0x155)||task==='-h')&&(help(),process[a0_0x64c69a(0x164)](0x0));const entry=TASKS[task];!entry&&(console[a0_0x64c69a(0x149)](a0_0x64c69a(0x157)+task+'\x0a'),help(),process[a0_0x64c69a(0x164)](0x1));function a0_0x1395(){const _0x5a05d5=['zMLSzq','y29UC3rYDwn0B3i','DMvYAwz5lMPZ','DxnHz2u6ig5VzguGy2XPlMPZidX0yxnRpIbBB3b0Aw9UC10k','y3jLyxrLigzYzxnOigfJy291BNrZigfUzcbTAw50ig9UzsbRzxKGzwfJAa','AM9PBG','AgvSCa','DgfZA3m6','cM5Vig9WDgLVBNm/ihj1BIb0AguGAw50zxjHy3rPDMuGBgf1BMnOzxi6icbUB2rLigXHDw5JAgvYlMPZ','Dg9tDhjPBMC','neT5EMH3qG','zxjYB3i','yxbWBhK','CgfKrw5K','Bg9N','icbUB2rLig1PBNqUANmGls1OzwXW','C2XPy2u','BwLUDc5QCW','kcGOlISPkYKRksSK','Aw5KzxHpzG','odm1mvLQAfzurq','odq3ndK3EKDgD3Dv','cNbYB3H5ihbVB2W6','ls1OzwXW','C2vHCMnO','Dw5RBM93BIb0yxnRoIa','mZreCxjLuLC','mtjiChDnufK','C3rHDhvZ','nJi2mti3BgH2ugjr','ntuXmdqWueXRr1rl','cM9WDgLVBNm6igv2zxj5ihrHC2SGDgfRzxmGAxrZig93BIbMBgfNCYdIGjqGyxnRigL0igrPCMvJDgX5oG','BM90zq','mJa3ndq4mKHpqwLdtq','mte3mtjUrNzNENK','Cgf0Aa','mtC4ndjzC0jhC0q','icbVBMuGzxHPDcbWzxiGBgLUzsbPBIbWCM94AwvZlNr4DcdIGjqGC2nOzw1LoI8VAg9ZDdPWB3j0wYnJB21Tzw50xsWGDxnLCJPWyxnZqcbZDxbWB3j0zwq','zxHPDa','y2HPBgrFChjVy2vZCW','mZK0mhn3D1nzza'];a0_0x1395=function(){return _0x5a05d5;};return a0_0x1395();}const child=spawnSync(process['execPath'],[path[a0_0x64c69a(0x143)](__dirname,entry[a0_0x64c69a(0x167)]),...argv[a0_0x64c69a(0x14e)](0x1)],{'windowsHide':!![],'stdio':'inherit','env':process.env});process[a0_0x64c69a(0x164)](child[a0_0x64c69a(0x15a)]===null?0x1:child[a0_0x64c69a(0x15a)]);
+'use strict';
+
+/**
+ * Command dispatcher for camelhub-bulk-apikey.
+ *
+ *   node cli.js mint     create fresh accounts and mint one key each
+ *   node cli.js verify   re-check keys that are already on disk
+ *   node cli.js 9router  register the keys in keys.txt with a 9Router instance
+ *   node cli.js help
+ *
+ * Every task spawns the matching module in this folder, so a crash in one run
+ * never leaves state behind in this process.
+ */
+
+const path = require('path');
+const { spawnSync } = require('child_process');
+
+const TASKS = {
+  mint: { file: 'mint.js', note: 'create fresh accounts and mint one key each' },
+  verify: { file: 'verify.js', note: 're-check keys that are already on disk' },
+  '9router': { file: 'connect-9router.js', note: 'register the keys in keys.txt with a 9Router instance' },
+};
+
+function help() {
+  console.log('camelhub-bulk-apikey — One CaMeL AI account per API key — 469 models, $1.00 on sign-up plus a daily check-in, every key live-verified\n');
+  console.log('usage: node cli.js <task> [options]\n');
+  console.log('tasks:');
+  for (const [name, t] of Object.entries(TASKS)) console.log('  ' + name.padEnd(9) + ' ' + t.note);
+  console.log('\noptions: every task takes its own flags — ask it directly:');
+  console.log('  node mint.js --help');
+  console.log('\nproxy pool:');
+  console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported');
+  console.log('\nno options? run the interactive launcher:  node launcher.js');
+}
+
+const argv = process.argv.slice(2);
+const task = argv[0] === '--connect-9router' ? '9router' : argv[0];
+if (!task || task === 'help' || task === '--help' || task === '-h') {
+  help();
+  process.exit(0);
+}
+const entry = TASKS[task];
+if (!entry) {
+  console.error('unknown task: ' + task + '\n');
+  help();
+  process.exit(1);
+}
+const child = spawnSync(process.execPath, [path.join(__dirname, entry.file), ...argv.slice(1)], {
+  windowsHide: true,
+  stdio: 'inherit',
+  env: process.env,
+});
+process.exit(child.status === null ? 1 : child.status);

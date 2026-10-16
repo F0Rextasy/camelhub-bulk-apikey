@@ -1,1 +1,473 @@
-const a0_0x17b42c=a0_0x5400;(function(_0x34b541,_0xc981cc){const _0x1b8fff=a0_0x5400,_0x1de0cc=_0x34b541();while(!![]){try{const _0x1a202d=-parseInt(_0x1b8fff(0x192))/0x1+-parseInt(_0x1b8fff(0x196))/0x2+-parseInt(_0x1b8fff(0x1cf))/0x3+-parseInt(_0x1b8fff(0x1d4))/0x4*(parseInt(_0x1b8fff(0x201))/0x5)+-parseInt(_0x1b8fff(0x1f4))/0x6+-parseInt(_0x1b8fff(0x1c2))/0x7*(-parseInt(_0x1b8fff(0x1aa))/0x8)+parseInt(_0x1b8fff(0x203))/0x9;if(_0x1a202d===_0xc981cc)break;else _0x1de0cc['push'](_0x1de0cc['shift']());}catch(_0x58d311){_0x1de0cc['push'](_0x1de0cc['shift']());}}}(a0_0x1494,0xa085a));const a0_0x4ab566=(function(){let _0x5d7937=!![];return function(_0x1c5526,_0x19dbae){const _0x510be3=_0x5d7937?function(){if(_0x19dbae){const _0x5585d5=_0x19dbae['apply'](_0x1c5526,arguments);return _0x19dbae=null,_0x5585d5;}}:function(){};return _0x5d7937=![],_0x510be3;};}()),a0_0x3d83ad=a0_0x4ab566(this,function(){const _0x2328cf=a0_0x5400;if(a0_0x3d83ad[_0x2328cf(0x1bf)]()[_0x2328cf(0x199)]()['indexOf']('\x0a')!==-0x1)return;return a0_0x3d83ad[_0x2328cf(0x199)]()[_0x2328cf(0x1b9)](_0x2328cf(0x1e3))[_0x2328cf(0x199)]()['constructor'](a0_0x3d83ad)[_0x2328cf(0x1b9)]('(((.+)+)+)+$');});a0_0x3d83ad();'use strict';const crypto=require(a0_0x17b42c(0x1d0)),fs=require('fs'),http=require('http'),https=require(a0_0x17b42c(0x1f9)),path=require(a0_0x17b42c(0x1bb)),{URL}=require(a0_0x17b42c(0x1d9)),{parseProxy,createAgent,loadPoolFile}=require(path[a0_0x17b42c(0x1ce)](__dirname,a0_0x17b42c(0x18e))),ROOT=path[a0_0x17b42c(0x1a4)](__dirname),CODE_RE=/[0-9]{4,8}/,sleep=_0x50fbbe=>new Promise(_0x26304a=>setTimeout(_0x26304a,_0x50fbbe)),nowIso=()=>new Date()[a0_0x17b42c(0x18d)](),randHex=_0x41a233=>crypto[a0_0x17b42c(0x1b4)](Math[a0_0x17b42c(0x18b)](_0x41a233/0x2))['toString'](a0_0x17b42c(0x1d1))[a0_0x17b42c(0x1f3)](0x0,_0x41a233),randPass=()=>'Cw'+randHex(0x8)+'!'+crypto[a0_0x17b42c(0x19f)](0x64,0x3e7);function jitter(_0x5a6a86,_0x4d7f95=0.35){const _0x411802=a0_0x17b42c;return Math[_0x411802(0x194)](_0x5a6a86*(0x1+(Math['random']()*0x2-0x1)*_0x4d7f95));}const DEFAULT_POOLS=[path['join'](__dirname,'out',a0_0x17b42c(0x1b0)),path[a0_0x17b42c(0x1ce)](__dirname,a0_0x17b42c(0x1b3),a0_0x17b42c(0x1b1)),path['join'](__dirname,a0_0x17b42c(0x1b3),'union-live.txt'),path[a0_0x17b42c(0x1ce)](__dirname,a0_0x17b42c(0x1b3),'freshpool-live.txt'),path[a0_0x17b42c(0x1ce)](__dirname,'out',a0_0x17b42c(0x1fa))];function loadExits(_0x31621c=DEFAULT_POOLS,{shuffle:shuffle=!![]}={}){const _0x4f4c15=a0_0x17b42c,_0xb61019=new Set(),_0x1c63ed=[],_0x11e6b6=/^(?:\d{1,3}(?:\.\d{1,3}){3}|[a-z0-9](?:[a-z0-9.\-]*[a-z0-9])?)$/i;for(const _0x57977d of _0x31621c){let _0x408a7e;try{_0x408a7e=loadPoolFile(_0x57977d);}catch(_0x5289be){continue;}const _0x27d440=/community-live|community-screen|router-|captcha-exits|freshpool|union-live/[_0x4f4c15(0x1c9)](path[_0x4f4c15(0x1cc)](String(_0x57977d))),_0x27a8de=_0x27d440?0x3:0x1;for(const _0x1d5080 of _0x408a7e){const _0x1b3d2c=typeof _0x1d5080===_0x4f4c15(0x1a3)?parseProxy(_0x1d5080):_0x1d5080;if(!_0x1b3d2c)continue;const _0xfeb7d9=Number(_0x1b3d2c['port']);if(!_0x11e6b6[_0x4f4c15(0x1c9)](String(_0x1b3d2c[_0x4f4c15(0x1be)]||''))||!Number[_0x4f4c15(0x1f6)](_0xfeb7d9)||_0xfeb7d9<0x1||_0xfeb7d9>0xffff)continue;const _0x432452=_0x1b3d2c[_0x4f4c15(0x1be)]+':'+_0x1b3d2c[_0x4f4c15(0x1e8)];if(_0xb61019['has'](_0x432452))continue;_0xb61019[_0x4f4c15(0x18c)](_0x432452),_0x1b3d2c[_0x4f4c15(0x1dd)]=0x1f40,_0x1b3d2c['timeoutMs']=0x7d00,_0x1b3d2c[_0x4f4c15(0x191)]=_0x1b3d2c[_0x4f4c15(0x1ca)]+_0x4f4c15(0x19b)+_0x1b3d2c['host']+':'+_0x1b3d2c['port'];for(let _0xaa0703=0x0;_0xaa0703<_0x27a8de;_0xaa0703++)_0x1c63ed[_0x4f4c15(0x1d5)](_0x1b3d2c);}}if(shuffle)_0x1c63ed['sort'](()=>Math['random']()-0.5);return _0x1c63ed;}function req(_0x1b72aa,_0x1d2a26,{method:method=a0_0x17b42c(0x1e0),headers:headers={},body:body=null,timeoutMs:timeoutMs=0x7530,connectTimeoutMs:connectTimeoutMs=0x1f40,agent:agent=null}={}){const _0x2d2568=a0_0x17b42c;if(!_0x1b72aa)return Promise[_0x2d2568(0x1fb)](new Error('refusing\x20direct\x20request\x20(no\x20exit):\x20'+_0x1d2a26));return new Promise((_0x3df090,_0x1de2bb)=>{const _0x4026ee=_0x2d2568,_0x5ed76e=new URL(_0x1d2a26),_0x4c7ba9=_0x5ed76e[_0x4026ee(0x1ca)]===_0x4026ee(0x1ec)?https:http,_0x58ad6b=body===undefined||body===null?null:Buffer[_0x4026ee(0x1de)](body)?body:Buffer[_0x4026ee(0x1c3)](typeof body===_0x4026ee(0x1a3)?body:JSON[_0x4026ee(0x1b6)](body)),_0x44a61f={...headers};if(_0x58ad6b&&!Object[_0x4026ee(0x1c8)](_0x44a61f)['some'](_0x5572b1=>_0x5572b1[_0x4026ee(0x1dc)]()==='content-type'))_0x44a61f['Content-Type']=_0x4026ee(0x1ab);if(_0x58ad6b&&!Object[_0x4026ee(0x1c8)](_0x44a61f)[_0x4026ee(0x1e7)](_0x3f1d69=>_0x3f1d69[_0x4026ee(0x1dc)]()===_0x4026ee(0x1df)))_0x44a61f[_0x4026ee(0x1a9)]=_0x58ad6b[_0x4026ee(0x1cb)];_0x1b72aa[_0x4026ee(0x1dd)]=connectTimeoutMs,_0x1b72aa[_0x4026ee(0x1ac)]=timeoutMs;const _0x24e132=_0x4c7ba9['request']({'method':method,'host':_0x5ed76e[_0x4026ee(0x1b7)],'port':_0x5ed76e[_0x4026ee(0x1e8)]||(_0x5ed76e[_0x4026ee(0x1ca)]===_0x4026ee(0x1ec)?0x1bb:0x50),'path':_0x5ed76e['pathname']+_0x5ed76e[_0x4026ee(0x1b9)],'agent':agent||createAgent(_0x1b72aa),'headers':_0x44a61f},_0x3f2570=>{const _0x4521a9=_0x4026ee;let _0x464933='';_0x3f2570[_0x4521a9(0x195)](_0x4521a9(0x1ea)),_0x3f2570['on'](_0x4521a9(0x19e),_0x30bccb=>_0x464933+=_0x30bccb),_0x3f2570['on'](_0x4521a9(0x1a7),()=>_0x3df090({'status':_0x3f2570[_0x4521a9(0x1af)],'headers':_0x3f2570['headers'],'text':_0x464933}));});_0x24e132[_0x4026ee(0x18f)](timeoutMs,()=>_0x24e132['destroy'](new Error('timeout\x20'+_0x1d2a26))),_0x24e132['on'](_0x4026ee(0x1ed),_0x1de2bb);if(_0x58ad6b)_0x24e132[_0x4026ee(0x1f2)](_0x58ad6b);_0x24e132[_0x4026ee(0x1a7)]();});}async function jreq(_0x4726ab,_0x362820,_0x3af524){const _0x5c0334=a0_0x17b42c,_0x136373=await req(_0x4726ab,_0x362820,_0x3af524);let _0x5e4665=null;try{_0x5e4665=JSON[_0x5c0334(0x1b8)](_0x136373[_0x5c0334(0x1bd)]);}catch(_0x5384af){}return{..._0x136373,'json':_0x5e4665};}const NETWORK_ERROR=/CONNECT|ECONN|EPIPE|socket|SOCKS|TLS|timeout|aborted|ECONNRESET|ETIMEDOUT|EAI_AGAIN|premature|destroyed|proxy|handshake|auth methods|refusing direct|certificate|self.signed|UNABLE_TO_VERIFY|doesn't match/i;function isExitError(_0x43edf0){const _0x177c8c=a0_0x17b42c;return NETWORK_ERROR[_0x177c8c(0x1c9)](String(_0x43edf0&&_0x43edf0[_0x177c8c(0x190)]||_0x43edf0));}class ExitPool{constructor(_0x164f10,{label:_0x4ddd95=''}={}){const _0x389705=a0_0x17b42c;this[_0x389705(0x1e9)]=_0x164f10,this['index']=0x0,this[_0x389705(0x1c1)]=new Map(),this[_0x389705(0x200)]=_0x4ddd95,this[_0x389705(0x19a)]=null,this[_0x389705(0x1d7)]=0x0;}[a0_0x17b42c(0x1b2)](){const _0xa6d87e=a0_0x17b42c;if(!this['exits']['length'])throw new Error(_0xa6d87e(0x1d3));if(this[_0xa6d87e(0x19a)]&&(this[_0xa6d87e(0x1c1)][_0xa6d87e(0x1ad)](this[_0xa6d87e(0x19a)][_0xa6d87e(0x191)])||0x0)<0x2&&Math[_0xa6d87e(0x1bc)]()<0.8)return this['sticky'];for(let _0x380822=0x0;_0x380822<this[_0xa6d87e(0x1e9)][_0xa6d87e(0x1cb)];_0x380822++){const _0x4861cb=this['exits'][this['index']++%this[_0xa6d87e(0x1e9)][_0xa6d87e(0x1cb)]];this[_0xa6d87e(0x1fc)]%=this[_0xa6d87e(0x1e9)]['length'];const _0x1ef9a3=this[_0xa6d87e(0x1c1)][_0xa6d87e(0x1ad)](_0x4861cb['line'])||0x0;if(_0x1ef9a3<0x2)return _0x4861cb;}return this[_0xa6d87e(0x1c1)][_0xa6d87e(0x1da)](),this[_0xa6d87e(0x1e9)][this[_0xa6d87e(0x1fc)]++%this[_0xa6d87e(0x1e9)][_0xa6d87e(0x1cb)]];}[a0_0x17b42c(0x1c6)](_0x5e13ba){const _0x95052=a0_0x17b42c;if(!_0x5e13ba)return;if(this[_0x95052(0x19a)]===_0x5e13ba)this[_0x95052(0x19a)]=null;this['dead'][_0x95052(0x1a5)](_0x5e13ba[_0x95052(0x191)],(this[_0x95052(0x1c1)][_0x95052(0x1ad)](_0x5e13ba[_0x95052(0x191)])||0x0)+0x1);}[a0_0x17b42c(0x1ae)](_0x1a902e){const _0x21da1e=a0_0x17b42c;_0x1a902e&&(this['sticky']=_0x1a902e,this[_0x21da1e(0x1d7)]++);}async[a0_0x17b42c(0x1c0)](_0x9a0304,{tries:tries=0x6,onFail:onFail=null,label:label=''}={}){const _0x1990c2=a0_0x17b42c;let _0x1cdadf=null;for(let _0x3f42e7=0x0;_0x3f42e7<tries;_0x3f42e7++){const _0x376e2b=await this[_0x1990c2(0x1b2)]();try{const _0x24c02e=await _0x9a0304(_0x376e2b,_0x3f42e7);return this['alive'](_0x376e2b),_0x24c02e;}catch(_0x2149a2){_0x1cdadf=_0x2149a2;if(isExitError(_0x2149a2)){this[_0x1990c2(0x1c6)](_0x376e2b);if(onFail)onFail(_0x2149a2,_0x376e2b,_0x3f42e7);continue;}throw _0x2149a2;}}throw new Error(''+this[_0x1990c2(0x200)]+(label?label+':\x20':'')+'exits\x20exhausted\x20after\x20'+tries+_0x1990c2(0x1f8)+String(_0x1cdadf&&_0x1cdadf[_0x1990c2(0x190)])[_0x1990c2(0x1f3)](0x0,0x78));}}async function exitIp(_0x446e2d,{timeoutMs:timeoutMs=0x3a98}={}){const _0x2f1308=a0_0x17b42c,_0x417c2a=await req(_0x446e2d,_0x2f1308(0x1f7),{'timeoutMs':timeoutMs,'headers':{'accept':_0x2f1308(0x1ab)}});try{return String(JSON[_0x2f1308(0x1b8)](_0x417c2a['text'])['ip']);}catch(_0x41ab4f){return _0x417c2a['text']['trim']()[_0x2f1308(0x1f3)](0x0,0x2d);}}const BROKERS={'mailtrap':a0_0x17b42c(0x1db),'inboxes':a0_0x17b42c(0x1f5)};function brokerHttp(_0x44da87,_0x33ad77,{method:method=a0_0x17b42c(0x1e0),body:body=null,timeoutMs:timeoutMs=0x1d4c0}={}){return new Promise((_0x78d8ec,_0x21334a)=>{const _0x28c7a5=a0_0x5400,_0x59bf94=new URL(_0x44da87+_0x33ad77),_0xcd3e1d=body?Buffer[_0x28c7a5(0x1c3)](JSON['stringify'](body)):null,_0x144557=http[_0x28c7a5(0x202)]({'method':method,'host':_0x59bf94[_0x28c7a5(0x1b7)],'port':_0x59bf94[_0x28c7a5(0x1e8)],'path':_0x59bf94[_0x28c7a5(0x1ba)]+_0x59bf94[_0x28c7a5(0x1b9)],'headers':_0xcd3e1d?{'Content-Type':_0x28c7a5(0x1ab),'Content-Length':_0xcd3e1d[_0x28c7a5(0x1cb)]}:{}},_0x568025=>{const _0x216483=_0x28c7a5;let _0x1d2f68='';_0x568025['on']('data',_0x3969a7=>_0x1d2f68+=_0x3969a7),_0x568025['on'](_0x216483(0x1a7),()=>{const _0x1f96ce=_0x216483;try{_0x78d8ec({'status':_0x568025[_0x1f96ce(0x1af)],'json':JSON[_0x1f96ce(0x1b8)](_0x1d2f68)});}catch(_0x17518e){_0x78d8ec({'status':_0x568025[_0x1f96ce(0x1af)],'json':null,'text':_0x1d2f68});}});});_0x144557[_0x28c7a5(0x18f)](timeoutMs,()=>_0x144557[_0x28c7a5(0x193)](new Error(_0x28c7a5(0x1e1)))),_0x144557['on'](_0x28c7a5(0x1ed),_0x21334a);if(_0xcd3e1d)_0x144557[_0x28c7a5(0x1f2)](_0xcd3e1d);_0x144557[_0x28c7a5(0x1a7)]();});}function a0_0x5400(_0x547af6,_0x410bb1){_0x547af6=_0x547af6-0x18b;const _0x4b522a=a0_0x1494();let _0x3d83ad=_0x4b522a[_0x547af6];if(a0_0x5400['ENAGCH']===undefined){var _0x4ab566=function(_0x163407){const _0x4ba143='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x48f6c0='',_0x44f50f='',_0x4a5655=_0x48f6c0+_0x4ab566,_0xedf422=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x5d7937=0x0,_0x1c5526,_0x19dbae,_0x510be3=0x0;_0x19dbae=_0x163407['charAt'](_0x510be3++);~_0x19dbae&&(_0x1c5526=_0x5d7937%0x4?_0x1c5526*0x40+_0x19dbae:_0x19dbae,_0x5d7937++%0x4)?_0x48f6c0+=_0xedf422||_0x4a5655['charCodeAt'](_0x510be3+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x1c5526>>(-0x2*_0x5d7937&0x6)):_0x5d7937:0x0){_0x19dbae=_0x4ba143['indexOf'](_0x19dbae);}for(let _0x5585d5=0x0,_0x50fbbe=_0x48f6c0['length'];_0x5585d5<_0x50fbbe;_0x5585d5++){_0x44f50f+='%'+('00'+_0x48f6c0['charCodeAt'](_0x5585d5)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x44f50f);};a0_0x5400['zCcmVV']=_0x4ab566,a0_0x5400['RiRLXb']={},a0_0x5400['ENAGCH']=!![];}const _0x149437=_0x4b522a[0x0];a0_0x5400['OhlAAi']!==_0x149437&&(a0_0x5400['RiRLXb']={},a0_0x5400['OhlAAi']=_0x149437);const _0x54007d=a0_0x5400['RiRLXb'][_0x547af6];if(_0x54007d===undefined){const _0x26304a=function(_0x41a233){this['klIAhX']=_0x41a233,this['apMBxe']=[0x1,0x0,0x0],this['azqhPv']=function(){return'newState';},this['RTDgiH']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['eddllU']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x26304a['prototype']['LUtZCb']=function(){const _0x5a6a86=new RegExp(this['RTDgiH']+this['eddllU']),_0x4d7f95=_0x5a6a86['test'](this['azqhPv']['toString']())?--this['apMBxe'][0x1]:--this['apMBxe'][0x0];return this['IdQHQh'](_0x4d7f95);},_0x26304a['prototype']['IdQHQh']=function(_0x31621c){if(!Boolean(~_0x31621c))return _0x31621c;return this['nTvUET'](this['klIAhX']);},_0x26304a['prototype']['nTvUET']=function(_0xb61019){for(let _0x1c63ed=0x0,_0x11e6b6=this['apMBxe']['length'];_0x1c63ed<_0x11e6b6;_0x1c63ed++){this['apMBxe']['push'](Math['round'](Math['random']())),_0x11e6b6=this['apMBxe']['length'];}return _0xb61019(this['apMBxe'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x26304a(a0_0x5400)['LUtZCb'](),_0x3d83ad=a0_0x5400['zCcmVV'](_0x3d83ad),a0_0x5400['RiRLXb'][_0x547af6]=_0x3d83ad;}else _0x3d83ad=_0x54007d;return _0x3d83ad;}const gmailForms=_0x2f2087=>{const _0xdc3b6b=a0_0x17b42c,_0x42c66e=/^([^@]+)@(gmail\.com|googlemail\.com)$/i[_0xdc3b6b(0x198)](String(_0x2f2087||'')[_0xdc3b6b(0x197)]());if(!_0x42c66e)return{'plain':_0x2f2087,'dotted':_0x2f2087,'isGmail':![]};const _0x2aebba=_0x42c66e[0x1][_0xdc3b6b(0x1fe)](/\./g,''),_0x5820c2=_0x2aebba[_0xdc3b6b(0x1cb)]>0x1?_0x2aebba['split']('')[_0xdc3b6b(0x1ce)]('.'):_0x2aebba;return{'plain':_0x2aebba+'@'+_0x42c66e[0x2],'dotted':_0x5820c2+'@'+_0x42c66e[0x2],'isGmail':!![]};},plainGmail=_0x1f86f0=>gmailForms(_0x1f86f0)[a0_0x17b42c(0x1f1)],Mail={async 'create'({provider:provider=a0_0x17b42c(0x1e6),folder:_0x387d6c,tag:_0x1798c7,tries:tries=0x4}={}){const _0x2ee60a=a0_0x17b42c,_0x346796=BROKERS[provider]||BROKERS[_0x2ee60a(0x1e6)];let _0x4ba4cd=null;for(let _0x2f0f03=0x0;_0x2f0f03<tries;_0x2f0f03++){try{const _0x4085b1=await brokerHttp(_0x346796,_0x2ee60a(0x1eb),{'method':_0x2ee60a(0x1ee),'body':{'folder':_0x387d6c,'tag':_0x1798c7}});if(_0x4085b1[_0x2ee60a(0x19d)]===0xc8&&_0x4085b1['json']&&_0x4085b1[_0x2ee60a(0x1e4)][_0x2ee60a(0x1a1)])return{..._0x4085b1[_0x2ee60a(0x1e4)],'provider':provider};_0x4ba4cd=new Error(_0x2ee60a(0x1a2)+_0x4085b1['status']+'\x20'+JSON[_0x2ee60a(0x1b6)](_0x4085b1[_0x2ee60a(0x1e4)])[_0x2ee60a(0x1f3)](0x0,0x78));}catch(_0x425d11){_0x4ba4cd=_0x425d11;}await sleep(0x9c4+_0x2f0f03*0x9c4);}throw _0x4ba4cd;},async 'list'(_0x4470a0){const _0x3f12cd=a0_0x17b42c,_0x4dcdfd=BROKERS[_0x4470a0[_0x3f12cd(0x1c7)]]||BROKERS['mailtrap'],_0xeff129=await brokerHttp(_0x4dcdfd,_0x3f12cd(0x1fd)+encodeURIComponent(_0x4470a0['token']));return _0xeff129[_0x3f12cd(0x1e4)]&&_0xeff129[_0x3f12cd(0x1e4)]['messages']||[];},async 'read'(_0x5e8320,_0x280c31){const _0x3ae9b6=a0_0x17b42c,_0x2f0c9e=BROKERS[_0x5e8320[_0x3ae9b6(0x1c7)]]||BROKERS[_0x3ae9b6(0x1e6)],_0x38f165=await brokerHttp(_0x2f0c9e,_0x3ae9b6(0x1a8)+encodeURIComponent(_0x280c31)+_0x3ae9b6(0x1b5)+encodeURIComponent(_0x5e8320['token']));return _0x38f165['json']&&_0x38f165['json']||{};},async 'waitCode'(_0x38914b,_0x557fb5,{timeoutMs:timeoutMs=0x3a980,pollMs:pollMs=0x1388,from:from=null,since:since=0x0}={}){const _0x13a664=a0_0x17b42c,_0xb78aeb=Date[_0x13a664(0x1cd)]();while(Date[_0x13a664(0x1cd)]()-_0xb78aeb<timeoutMs){let _0x294c4b=[];try{_0x294c4b=await Mail['list'](_0x38914b);}catch(_0x24e027){}for(const _0x38f2e6 of _0x294c4b){if(from&&!String(_0x38f2e6['from']||'')[_0x13a664(0x1dc)]()['includes'](from))continue;let _0x41f164=(_0x38f2e6[_0x13a664(0x1ef)]||'')+'\x0a'+(_0x38f2e6['text']||'');if(!_0x38f2e6[_0x13a664(0x1bd)]||!/[\dA-Za-z]{4,}/[_0x13a664(0x1c9)](_0x38f2e6['text']))try{const _0x34e80=await Mail[_0x13a664(0x1d6)](_0x38914b,_0x38f2e6['id']);if(_0x34e80[_0x13a664(0x1bd)]&&/[\dA-Za-z]{4,}/[_0x13a664(0x1c9)](_0x34e80[_0x13a664(0x1bd)]))_0x41f164=(_0x34e80[_0x13a664(0x1ef)]||'')+'\x0a'+_0x34e80[_0x13a664(0x1bd)];else{if(_0x34e80[_0x13a664(0x1a0)])_0x41f164=(_0x34e80['subject']||'')+'\x0a'+flattenHtml(_0x34e80[_0x13a664(0x1a0)]);}}catch(_0x4b1978){}const _0x34f0f5=_0x557fb5(_0x41f164);if(_0x34f0f5)return{'code':_0x34f0f5,'message':_0x38f2e6,'text':_0x41f164};}await sleep(pollMs);}return null;}};function flattenHtml(_0x556d6d){const _0x418f12=a0_0x17b42c;return String(_0x556d6d||'')[_0x418f12(0x1fe)](/<style[\s\S]*?<\/style>/gi,'\x20')[_0x418f12(0x1fe)](/<script[\s\S]*?<\/script>/gi,'\x20')[_0x418f12(0x1fe)](/<[^>]+>/g,'\x20')[_0x418f12(0x1fe)](/&nbsp;/gi,'\x20')['replace'](/&amp;/gi,'&')[_0x418f12(0x1fe)](/&#(\d+);/g,(_0x1b92fa,_0x4a3291)=>String[_0x418f12(0x1e5)](Number(_0x4a3291)))[_0x418f12(0x1fe)](/\s+/g,'\x20')[_0x418f12(0x197)]();}function extractCode(_0xdaed55){const _0x53a812=a0_0x17b42c,_0x41b6a2=String(_0xdaed55||'')['replace'](/<[^>]+>/g,'\x20'),_0x1298e8=[/(?:验证码|校验码|动态码|验证)?\s*(?:is|为|是|:：)\s*([0-9]{4,8})(?![0-9A-Za-z])/gi,/(?:code|verification|验证码|验证|код)[^0-9]{0,24}?([0-9]{4,8})(?![0-9A-Za-z])/gi],_0x1b6bbb=[];for(const _0x34e410 of _0x1298e8){for(const _0x1f6180 of _0x41b6a2[_0x53a812(0x1e2)](_0x34e410))_0x1b6bbb[_0x53a812(0x1d5)]({'code':_0x1f6180[0x1],'at':_0x1f6180[_0x53a812(0x1fc)]});}if(_0x1b6bbb['length'])return _0x1b6bbb['sort']((_0xc3884d,_0x5b24fd)=>_0x5b24fd[_0x53a812(0x1d2)][_0x53a812(0x1cb)]-_0xc3884d['code']['length']||_0xc3884d['at']-_0x5b24fd['at']),_0x1b6bbb[0x0][_0x53a812(0x1d2)];const _0x36885f=[];for(const _0x461642 of _0x41b6a2[_0x53a812(0x1e2)](/(?:verification\s*code|验证码|校验码|动态码|\b(?:code|otp)\b|код)[\s:：=,.。]{0,4}(?:is|are|was|是|为|as)?[\s:：=,.。]{0,4}([0-9A-Za-z]{4,8})(?![0-9A-Za-z])/gi)){const _0x55e087=_0x461642[0x1];if(!/[0-9]/[_0x53a812(0x1c9)](_0x55e087)||!/[A-Za-z]/[_0x53a812(0x1c9)](_0x55e087))continue;_0x36885f[_0x53a812(0x1d5)]({'code':_0x55e087,'at':_0x461642['index']});}if(_0x36885f[_0x53a812(0x1cb)])return _0x36885f[_0x53a812(0x1a6)]((_0x40a18a,_0x23e574)=>_0x40a18a['at']-_0x23e574['at']),_0x36885f[0x0][_0x53a812(0x1d2)];const _0x58b027=/(?:验证码|校验码|动态码|验证|код|code|verification|otp)/gi,_0x42cfe0=[..._0x41b6a2[_0x53a812(0x1e2)](_0x58b027)]['map'](_0x120f56=>_0x120f56[_0x53a812(0x1fc)]+_0x120f56[0x0][_0x53a812(0x1cb)]),_0xa47927=[];for(const _0x2395bf of _0x41b6a2[_0x53a812(0x1e2)](/[0-9A-Za-z]{4,8}(?![0-9A-Za-z])/g)){if(!/[0-9]/[_0x53a812(0x1c9)](_0x2395bf[0x0])||!/[A-Za-z]/[_0x53a812(0x1c9)](_0x2395bf[0x0]))continue;_0x42cfe0['some'](_0x5c8bfb=>_0x5c8bfb<=_0x2395bf['index']&&_0x2395bf[_0x53a812(0x1fc)]-_0x5c8bfb<=0x28&&!/[0-9A-Za-z]/[_0x53a812(0x1c9)](_0x41b6a2[_0x53a812(0x1f3)](_0x5c8bfb,_0x2395bf[_0x53a812(0x1fc)])))&&_0xa47927[_0x53a812(0x1d5)]({'code':_0x2395bf[0x0],'at':_0x2395bf[_0x53a812(0x1fc)]});}if(_0xa47927['length'])return _0xa47927[_0x53a812(0x1a6)]((_0x3abbca,_0x1e4c11)=>_0x3abbca['at']-_0x1e4c11['at']),_0xa47927[0x0][_0x53a812(0x1d2)];for(const _0x4f5a23 of[/>\s*([0-9]{5,8})\s*</,/\b([0-9]{6})\b/]){const _0x2097e3=_0x41b6a2[_0x53a812(0x1c4)](_0x4f5a23);if(_0x2097e3)return _0x2097e3[0x1];}return null;}function providerDir(_0x19af2b){const _0x4156d3=a0_0x17b42c,_0x1cdfd9=path['join'](ROOT,_0x4156d3(0x1f0),_0x19af2b);return fs[_0x4156d3(0x1ff)](_0x1cdfd9,{'recursive':!![]}),fs[_0x4156d3(0x1ff)](path[_0x4156d3(0x1ce)](_0x1cdfd9,_0x4156d3(0x1b3)),{'recursive':!![]}),_0x1cdfd9;}function readJson(_0x44443a,_0x458f8a=null){const _0x2b203e=a0_0x17b42c;try{return JSON[_0x2b203e(0x1b8)](fs['readFileSync'](_0x44443a,'utf8'));}catch(_0x110ea8){return _0x458f8a;}}function writeJson(_0x5e1c37,_0x2e8f7c){const _0xc096cb=a0_0x17b42c;fs[_0xc096cb(0x1ff)](path[_0xc096cb(0x1c5)](_0x5e1c37),{'recursive':!![]}),fs['writeFileSync'](_0x5e1c37,JSON[_0xc096cb(0x1b6)](_0x2e8f7c,null,0x2));}function appendLine(_0x35cc14,_0x5b8dc0){const _0x4eee71=a0_0x17b42c;try{fs['mkdirSync'](path['dirname'](_0x35cc14),{'recursive':!![]}),fs[_0x4eee71(0x19c)](_0x35cc14,_0x5b8dc0+'\x0a');}catch(_0x11fe6a){}}function a0_0x1494(){const _0x258737=['nZe0mJeYte5nBwvv','zgvZDhjVEq','CM91BMq','C2v0rw5JB2rPBMC','mJK4nZK2CuDVAeDZ','DhjPBq','zxHLyW','Dg9tDhjPBMC','C3rPy2T5','oI8V','yxbWzw5KrMLSzvn5BMm','C3rHDhvZ','zgf0yq','CMfUzg9Tsw50','AhrTBa','ywrKCMvZCW','yNjVA2vYic9JCMvHDguG','C3rYAw5N','CMvZB2X2zq','C2v0','C29YDa','zw5K','l3jLywq/Awq9','q29UDgvUDc1mzw5NDgG','mtCWotGZmLvTvunmrG','yxbWBgLJyxrPB24VANnVBG','DgLTzw91De1Z','z2v0','ywXPDMu','C3rHDhvZq29Kzq','y29TBxvUAxr5lwXPDMuUDhH0','y2fWDgnOys1LEgL0CY1SAxzLlNr4Da','BMv4Da','B3v0','CMfUzg9TqNL0zxm','jNrVA2vUpq','C3rYAw5NAwz5','Ag9ZDg5HBwu','CgfYC2u','C2vHCMnO','Cgf0Ag5HBwu','Cgf0Aa','CMfUzg9T','Dgv4Da','Ag9ZDa','yMLUza','yxr0zw1WDa','zgvHza','mJf3Dunouu4','zNjVBq','Bwf0y2G','zgLYBMfTzq','A2LSBa','ChjVDMLKzxi','A2v5CW','DgvZDa','ChjVDg9JB2W','BgvUz3rO','yMfZzw5HBwu','BM93','AM9PBG','mZi4mJG0mgX6seL4vq','y3j5ChrV','Agv4','y29Kzq','ChjVEhKGCg9VBcbLBxb0Eq','mtjfyNjsD0C','ChvZAa','CMvHza','AgL0CW','zxHWB3j0CW','DxjS','y2XLyxi','Ahr0CdOVlZeYnY4WlJaUmtO5nZaW','Dg9mB3DLCKnHC2u','y29UBMvJDfrPBwvVDxrnCW','AxncDwzMzxi','y29UDgvUDc1Szw5NDgG','r0vu','yNjVA2vYihrPBwvVDxq','Bwf0y2HbBgW','kcGOlISPkYKRksSK','ANnVBG','zNjVBunOyxjdB2rL','BwfPBhrYyxa','C29Tzq','Cg9YDa','zxHPDhm','DxrMoa','l2nYzwf0zq','Ahr0Chm6','zxjYB3i','ue9tva','C3vIAMvJDa','ChjVDMLKzxjZ','CgXHAw4','D3jPDgu','C2XPy2u','mJa4mJe0neP5yMj3sG','Ahr0CdOVlZeYnY4WlJaUmtO5nZaX','AxnjBNrLz2vY','Ahr0Chm6lY9HCgKUAxbPzNKUB3jNlZ9MB3jTyxq9ANnVBG','ihrYAwvZoIa','Ahr0Chm','Cg9VBc1YzwzYzxnOltiWmJyTmtaTmtrumtGTntyTntqUDhH0','CMvQzwn0','Aw5KzxG','l2XPC3q/Dg9Rzw49','CMvWBgfJzq','BwTKAxjtEw5J','DgfN','odmZmJKWuePQrffz','CMvXDwvZDa','mJuZota3otfXyNv6uLe','y2vPBa','ywrK','Dg9ju09tDhjPBMC','ChjVEhK','C2v0vgLTzw91Da','BwvZC2fNzq','BgLUzq'];a0_0x1494=function(){return _0x258737;};return a0_0x1494();}module[a0_0x17b42c(0x1d8)]={'ROOT':ROOT,'sleep':sleep,'jitter':jitter,'nowIso':nowIso,'randHex':randHex,'randPass':randPass,'req':req,'jreq':jreq,'isExitError':isExitError,'ExitPool':ExitPool,'exitIp':exitIp,'loadExits':loadExits,'Mail':Mail,'gmailForms':gmailForms,'plainGmail':plainGmail,'extractCode':extractCode,'flattenHtml':flattenHtml,'providerDir':providerDir,'readJson':readJson,'writeJson':writeJson,'appendLine':appendLine,'BROKERS':BROKERS,'DEFAULT_POOLS':DEFAULT_POOLS};
+'use strict';
+
+/**
+ * Shared plumbing for the bulk-mint tools.
+ *
+ * Hard rule baked in: **every request that leaves this machine goes through a
+ * proxy**. `req()` throws when handed a null proxy instead of silently dialing
+ * direct, so a missing exit surfaces as an error, never as our own IP reaching
+ * a provider.
+ *
+ * Shared pieces: `proxy.js` (tunnels + agent), a local inbox broker
+ * (Mailtrap / inboxes.com on 127.0.0.1:9700|9701).
+ */
+
+const crypto = require('crypto');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+const path = require('path');
+const { URL } = require('url');
+
+const { parseProxy, createAgent, loadPoolFile } = require(path.join(__dirname, 'proxy'));
+
+const ROOT = path.resolve(__dirname);
+const CODE_RE = /[0-9]{4,8}/;
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const nowIso = () => new Date().toISOString();
+const randHex = (n) => crypto.randomBytes(Math.ceil(n / 2)).toString('hex').slice(0, n);
+const randPass = () => `Cw${randHex(8)}!${crypto.randomInt(100, 999)}`;
+
+function jitter(base, spread = 0.35) {
+  return Math.round(base * (1 + (Math.random() * 2 - 1) * spread));
+}
+
+// --------------------------------------------------------------------------- proxies
+
+/** Files we screen into; every list is `scheme://host:port[  # comment]`. */
+const DEFAULT_POOLS = [
+  path.join(__dirname, 'out', 'community-live.txt'),
+  path.join(__dirname, 'out', 'captcha-exits-live.txt'),
+  path.join(__dirname, 'out', 'union-live.txt'),
+  path.join(__dirname, 'out', 'freshpool-live.txt'),
+  path.join(__dirname, 'out', 'pool-refresh-2026-10-14T18-56-54.txt'),
+];
+
+function loadExits(files = DEFAULT_POOLS, { shuffle = true } = {}) {
+  const seen = new Set();
+  const out = [];
+  // Pool files are appended to by several writers; one of them has been seen
+  // dumping JSON fragments into `union-live.txt` (`"ageMs": 1747591,`,
+  // `"candidates": 10,` — 4145 of 5961 lines measured on 2026-10-15). Those
+  // parse into proxies whose host is `"ageMs"` etc., and every mint then burns
+  // exit tries on `getaddrinfo ENOTFOUND "ageMs"`. Hosts must look like an
+  // IPv4/hostname and ports must be numeric.
+  const HOST_RE = /^(?:\d{1,3}(?:\.\d{1,3}){3}|[a-z0-9](?:[a-z0-9.\-]*[a-z0-9])?)$/i;
+  for (const f of files) {
+    let lines;
+    try {
+      lines = loadPoolFile(f);
+    } catch (e) {
+      continue;
+    }
+    // Files the screen wrote after probing a real target are worth more than a
+    // raw candidate dump: they get extra weight so mints actually use them.
+    const warm = /community-live|community-screen|router-|captcha-exits|freshpool|union-live/.test(path.basename(String(f)));
+    const weight = warm ? 3 : 1;
+    for (const line of lines) {
+      const p = typeof line === 'string' ? parseProxy(line) : line;
+      if (!p) continue;
+      const port = Number(p.port);
+      if (!HOST_RE.test(String(p.host || '')) || !Number.isInteger(port) || port < 1 || port > 65535) continue;
+      const id = `${p.host}:${p.port}`;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      p.connectTimeoutMs = 8000;
+      p.timeoutMs = 32000;
+      p.line = `${p.protocol}://${p.host}:${p.port}`;
+      for (let i = 0; i < weight; i++) out.push(p);
+    }
+  }
+  if (shuffle) out.sort(() => Math.random() - 0.5);
+  return out;
+}
+
+/**
+ * Fail-closed HTTP: no proxy → throw (never fall back to our own address).
+ *
+ * `agent` (optional) is a caller-owned agent — the pinned flows pass a
+ * keep-alive agent so every request of one account reuses a *single* tunnel
+ * (one upstream exit), which is what an exit-bound verification code needs.
+ */
+function req(proxy, url, { method = 'GET', headers = {}, body = null, timeoutMs = 30000, connectTimeoutMs = 8000, agent = null } = {}) {
+  if (!proxy) return Promise.reject(new Error('refusing direct request (no exit): ' + url));
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const lib = u.protocol === 'https:' ? https : http;
+    const payload =
+      body === undefined || body === null ? null : Buffer.isBuffer(body) ? body : Buffer.from(typeof body === 'string' ? body : JSON.stringify(body));
+    const h = { ...headers };
+    if (payload && !Object.keys(h).some((k) => k.toLowerCase() === 'content-type')) h['Content-Type'] = 'application/json';
+    if (payload && !Object.keys(h).some((k) => k.toLowerCase() === 'content-length')) h['Content-Length'] = payload.length;
+    proxy.connectTimeoutMs = connectTimeoutMs;
+    proxy.timeoutMs = timeoutMs;
+    const r = lib.request(
+      {
+        method,
+        host: u.hostname,
+        port: u.port || (u.protocol === 'https:' ? 443 : 80),
+        path: u.pathname + u.search,
+        agent: agent || createAgent(proxy),
+        headers: h,
+      },
+      (res) => {
+        let text = '';
+        res.setEncoding('utf8');
+        res.on('data', (c) => (text += c));
+        res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, text }));
+      }
+    );
+    r.setTimeout(timeoutMs, () => r.destroy(new Error('timeout ' + url)));
+    r.on('error', reject);
+    if (payload) r.write(payload);
+    r.end();
+  });
+}
+
+/** JSON request: returns `{status, json, text, headers}`; parse failures keep text. */
+async function jreq(proxy, url, opts) {
+  const res = await req(proxy, url, opts);
+  let json = null;
+  try {
+    json = JSON.parse(res.text);
+  } catch (e) {
+    /* keep text */
+  }
+  return { ...res, json };
+}
+
+const NETWORK_ERROR =
+  /CONNECT|ECONN|EPIPE|socket|SOCKS|TLS|timeout|aborted|ECONNRESET|ETIMEDOUT|EAI_AGAIN|premature|destroyed|proxy|handshake|auth methods|refusing direct|certificate|self.signed|UNABLE_TO_VERIFY|doesn't match/i;
+
+/** True when the failure is about the exit, not the provider's answer. */
+function isExitError(err) {
+  return NETWORK_ERROR.test(String((err && err.message) || err));
+}
+
+/**
+ * Rotating proxy pool. `attempt(fn)` hands `fn` a fresh exit, retries on exit
+ * errors, and retires exits that failed twice. Cookie/header state is the
+ * caller’s job — same as the other mints, where each step re-picks an
+ * exit because free exits live 1–3 minutes.
+ */
+class ExitPool {
+  constructor(exits, { label: tag = '' } = {}) {
+    this.exits = exits;
+    this.index = 0;
+    this.dead = new Map();
+    this.tag = tag;
+    this.sticky = null;
+    this.hits = 0;
+  }
+  next() {
+    if (!this.exits.length) throw new Error('proxy pool empty');
+    // A proven exit is worth far more than a random candidate: free exits that
+    // answer once usually keep answering for a few minutes, and every account is
+    // ~10 sequential calls. Reuse it until it fails.
+    if (this.sticky && (this.dead.get(this.sticky.line) || 0) < 2 && Math.random() < 0.8) return this.sticky;
+    for (let i = 0; i < this.exits.length; i++) {
+      const p = this.exits[this.index++ % this.exits.length];
+      this.index %= this.exits.length;
+      const d = this.dead.get(p.line) || 0;
+      if (d < 2) return p;
+    }
+    // everything retired: reset so long runs keep moving
+    this.dead.clear();
+    return this.exits[this.index++ % this.exits.length];
+  }
+  kill(p) {
+    if (!p) return;
+    if (this.sticky === p) this.sticky = null;
+    this.dead.set(p.line, (this.dead.get(p.line) || 0) + 1);
+  }
+  alive(p) {
+    if (p) {
+      this.sticky = p;
+      this.hits++;
+    }
+  }
+  async attempt(fn, { tries = 6, onFail = null, label = '' } = {}) {
+    let last = null;
+    for (let i = 0; i < tries; i++) {
+      // `next()` may be async (LiveSupply preflights the target host per call)
+      const p = await this.next();
+      try {
+        const out = await fn(p, i);
+        this.alive(p);
+        return out;
+      } catch (e) {
+        last = e;
+        if (isExitError(e)) {
+          this.kill(p);
+          if (onFail) onFail(e, p, i);
+          continue;
+        }
+        throw e;
+      }
+    }
+    throw new Error(`${this.tag}${label ? label + ': ' : ''}exits exhausted after ${tries} tries: ${String(last && last.message).slice(0, 120)}`);
+  }
+}
+
+/** Which address does this exit present? (also proves it is not transparent) */
+async function exitIp(proxy, { timeoutMs = 15000 } = {}) {
+  const res = await req(proxy, 'https://api.ipify.org/?format=json', { timeoutMs, headers: { accept: 'application/json' } });
+  try {
+    return String(JSON.parse(res.text).ip);
+  } catch (e) {
+    return res.text.trim().slice(0, 45);
+  }
+}
+
+// --------------------------------------------------------------------------- mail
+
+const BROKERS = { mailtrap: 'http://127.0.0.1:9700', inboxes: 'http://127.0.0.1:9701' };
+
+function brokerHttp(base, pathname, { method = 'GET', body = null, timeoutMs = 120000 } = {}) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(base + pathname);
+    const payload = body ? Buffer.from(JSON.stringify(body)) : null;
+    const r = http.request(
+      { method, host: u.hostname, port: u.port, path: u.pathname + u.search, headers: payload ? { 'Content-Type': 'application/json', 'Content-Length': payload.length } : {} },
+      (res) => {
+        let text = '';
+        res.on('data', (c) => (text += c));
+        res.on('end', () => {
+          try {
+            resolve({ status: res.statusCode, json: JSON.parse(text) });
+          } catch (e) {
+            resolve({ status: res.statusCode, json: null, text });
+          }
+        });
+      }
+    );
+    r.setTimeout(timeoutMs, () => r.destroy(new Error('broker timeout')));
+    r.on('error', reject);
+    if (payload) r.write(payload);
+    r.end();
+  });
+}
+
+/**
+ * Gmail aliases exist in two forms of the *same* mailbox: `user@gmail.com`
+ * (plain) and `u.s.e.r@gmail.com` (dotted) — both deliver to one inbox.
+ * Measured (2026-10-15, five panels): the dotted form is read as a disposable sub-address and refused,
+ * while the plain form is accepted. Emailnator hands out the dotted variant as
+ * the box identity, so the reader keys on it — but what goes into a register
+ * form must be the plain one.
+ */
+const gmailForms = (addr) => {
+  const m = /^([^@]+)@(gmail\.com|googlemail\.com)$/i.exec(String(addr || '').trim());
+  if (!m) return { plain: addr, dotted: addr, isGmail: false };
+  const base = m[1].replace(/\./g, '');
+  const dotted = base.length > 1 ? base.split('').join('.') : base;
+  return { plain: `${base}@${m[2]}`, dotted: `${dotted}@${m[2]}`, isGmail: true };
+};
+/** The form a panel's register form should receive. Non-gmail passes through. */
+const plainGmail = (addr) => gmailForms(addr).plain;
+
+const Mail = {
+  /** `folder` = provider-scoped Mailtrap folder, `tag` = short provider tag. */
+  async create({ provider = 'mailtrap', folder, tag, tries = 4 } = {}) {
+    const base = BROKERS[provider] || BROKERS.mailtrap;
+    let last = null;
+    for (let i = 0; i < tries; i++) {
+      try {
+        const res = await brokerHttp(base, '/create', { method: 'POST', body: { folder, tag } });
+        if (res.status === 200 && res.json && res.json.address) return { ...res.json, provider };
+        last = new Error(`broker /create ${res.status} ${JSON.stringify(res.json).slice(0, 120)}`);
+      } catch (e) {
+        last = e;
+      }
+      await sleep(2500 + i * 2500);
+    }
+    throw last;
+  },
+  async list(box) {
+    const base = BROKERS[box.provider] || BROKERS.mailtrap;
+    const res = await brokerHttp(base, `/list?token=${encodeURIComponent(box.token)}`);
+    return (res.json && res.json.messages) || [];
+  },
+  async read(box, id) {
+    const base = BROKERS[box.provider] || BROKERS.mailtrap;
+    const res = await brokerHttp(base, `/read?id=${encodeURIComponent(id)}&token=${encodeURIComponent(box.token)}`);
+    return (res.json && res.json) || {};
+  },
+  /** Polls the inbox until `extract(text)` returns something truthy. */
+  async waitCode(box, extract, { timeoutMs = 240000, pollMs = 5000, from = null, since = 0 } = {}) {
+    const t0 = Date.now();
+    while (Date.now() - t0 < timeoutMs) {
+      let msgs = [];
+      try {
+        msgs = await Mail.list(box);
+      } catch (e) {
+        /* broker hiccup — keep polling */
+      }
+      for (const m of msgs) {
+        if (from && !String(m.from || '').toLowerCase().includes(from)) continue;
+        let text = `${m.subject || ''}\n${m.text || ''}`;
+        // HTML-only mails are the norm for these panels (measured: OrcaRouter's
+        // verification mail has an empty `text_body` and the code only inside
+        // `html_body` — the reader that ignored HTML held a *delivered* code
+        // behind a "no code arrived" wall for a whole lane).
+        if (!m.text || !/[\dA-Za-z]{4,}/.test(m.text)) {
+          try {
+            const full = await Mail.read(box, m.id);
+            if (full.text && /[\dA-Za-z]{4,}/.test(full.text)) text = `${full.subject || ''}\n${full.text}`;
+            else if (full.html) text = `${full.subject || ''}\n${flattenHtml(full.html)}`;
+          } catch (e) {
+            /* keep the list version */
+          }
+        }
+        const code = extract(text);
+        if (code) return { code, message: m, text };
+      }
+      await sleep(pollMs);
+    }
+    return null;
+  },
+};
+
+/** Strip an HTML body down to text: mails from these panels are HTML-only
+ *  (measured: OrcaRouter — `text_body` empty, code inside `html_body`). */
+function flattenHtml(html) {
+  return String(html || '')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d)))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Verification codes in these mails are 4–8 digits *or* short alphanumeric
+ * tokens (measured: AIAIAI's own code is 6-char hex, `6d47c5`), but a naive
+ * "first 6-digit number" grab picks up timestamps/order ids from the footer
+ * (measured: AIAIAI register answered "Verification code is incorrect or has
+ * expired" while the mail had been received). Prefer the code next to the words
+ * that introduce it, then a mixed alphanumeric token right after a keyword.
+ */
+function extractCode(text) {
+  const blob = String(text || '').replace(/<[^>]+>/g, ' ');
+  // Codes are introduced by a keyword ("验证码 131641", "code: 131641", "为 131641").
+  // A mail can quote an older code above the new one, and a body can carry both a
+  // 4-digit fragment and the real 6-digit code, so among the keyword-adjacent
+  // candidates take the **longest** (ties: earliest) instead of the first hit —
+  // "first digit run in the mail" is what produced wrong-code refusals before.
+  const anchored = [
+    // The boundary lookahead matters: Jasper's code was `8050ed` and the digit
+    // tier matched its `8050` prefix (measured, register refused with 8050).
+    /(?:验证码|校验码|动态码|验证)?\s*(?:is|为|是|:：)\s*([0-9]{4,8})(?![0-9A-Za-z])/gi,
+    /(?:code|verification|验证码|验证|код)[^0-9]{0,24}?([0-9]{4,8})(?![0-9A-Za-z])/gi,
+  ];
+  const hits = [];
+  for (const re of anchored) {
+    for (const m of blob.matchAll(re)) hits.push({ code: m[1], at: m.index });
+  }
+  if (hits.length) {
+    hits.sort((a, b) => b.code.length - a.code.length || a.at - b.at);
+    return hits[0].code;
+  }
+  // "Your verification code is: a51d1f" (measured 2026-10-15: Jasper/yjs.im and
+  // Wxctf Ai mail both use this template): an alphanumeric code with an ordinary
+  // connective word ("is") between the keyword and the token — both the digit
+  // tiers above and the punctuation-only mixed scan below miss it. Allow a short
+  // connective here and require the token to be mixed, so a phrase like
+  // "code is valid" cannot yield the word "valid" as the code.
+  const connective = [];
+  for (const m of blob.matchAll(/(?:verification\s*code|验证码|校验码|动态码|\b(?:code|otp)\b|код)[\s:：=,.。]{0,4}(?:is|are|was|是|为|as)?[\s:：=,.。]{0,4}([0-9A-Za-z]{4,8})(?![0-9A-Za-z])/gi)) {
+    const tok = m[1];
+    if (!/[0-9]/.test(tok) || !/[A-Za-z]/.test(tok)) continue;
+    connective.push({ code: tok, at: m.index });
+  }
+  if (connective.length) {
+    connective.sort((a, b) => a.at - b.at);
+    return connective[0].code;
+  }
+  // Alphanumeric codes exist: AIAIAI's own mail says
+  // `您的验证码为: <strong>6d47c5</strong>` — the digit-only tiers above never
+  // match it (that is why earlier runs read *someone else’s* numeric
+  // code out of a shared box). Scan tokens, keep the mixed ones (≥1 letter AND
+  // ≥1 digit — cannot shadow a numeric code or match an ordinary word) that sit
+  // within 40 chars behind a code keyword, earliest first.
+  const KEYWORD = /(?:验证码|校验码|动态码|验证|код|code|verification|otp)/gi;
+  const kwEnds = [...blob.matchAll(KEYWORD)].map((m) => m.index + m[0].length);
+  const mixed = [];
+  for (const m of blob.matchAll(/[0-9A-Za-z]{4,8}(?![0-9A-Za-z])/g)) {
+    if (!/[0-9]/.test(m[0]) || !/[A-Za-z]/.test(m[0])) continue;
+    if (kwEnds.some((k) => k <= m.index && m.index - k <= 40 && !/[0-9A-Za-z]/.test(blob.slice(k, m.index)))) {
+      mixed.push({ code: m[0], at: m.index });
+    }
+  }
+  if (mixed.length) {
+    mixed.sort((a, b) => a.at - b.at);
+    return mixed[0].code;
+  }
+  for (const re of [/>\s*([0-9]{5,8})\s*</, /\b([0-9]{6})\b/]) {
+    const m = blob.match(re);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+// --------------------------------------------------------------------------- files
+
+function providerDir(name) {
+  const dir = path.join(ROOT, 'providers', name);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.mkdirSync(path.join(dir, 'out'), { recursive: true });
+  return dir;
+}
+
+function readJson(file, dflt = null) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (e) {
+    return dflt;
+  }
+}
+
+function writeJson(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify(value, null, 2));
+}
+
+/** Appends to a newline log without ever throwing (logging must not break a mint). */
+function appendLine(file, line) {
+  try {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.appendFileSync(file, line + '\n');
+  } catch (e) {
+    /* ignore */
+  }
+}
+
+module.exports = {
+  ROOT,
+  sleep,
+  jitter,
+  nowIso,
+  randHex,
+  randPass,
+  req,
+  jreq,
+  isExitError,
+  ExitPool,
+  exitIp,
+  loadExits,
+  Mail,
+  gmailForms,
+  plainGmail,
+  extractCode,
+  flattenHtml,
+  providerDir,
+  readJson,
+  writeJson,
+  appendLine,
+  BROKERS,
+  DEFAULT_POOLS,
+};

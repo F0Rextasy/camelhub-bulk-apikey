@@ -1,2 +1,161 @@
 #!/usr/bin/env node
-const a0_0x5224c8=a0_0x439e;(function(_0x3865cf,_0x1555c5){const _0x60424a=a0_0x439e,_0x1ffec9=_0x3865cf();while(!![]){try{const _0x55708c=parseInt(_0x60424a(0x1d1))/0x1*(parseInt(_0x60424a(0x1e5))/0x2)+-parseInt(_0x60424a(0x1f5))/0x3+parseInt(_0x60424a(0x1cd))/0x4*(parseInt(_0x60424a(0x1f4))/0x5)+-parseInt(_0x60424a(0x20f))/0x6*(-parseInt(_0x60424a(0x1eb))/0x7)+-parseInt(_0x60424a(0x1d6))/0x8*(-parseInt(_0x60424a(0x1c5))/0x9)+-parseInt(_0x60424a(0x1bc))/0xa*(parseInt(_0x60424a(0x1d5))/0xb)+parseInt(_0x60424a(0x1f0))/0xc*(-parseInt(_0x60424a(0x1be))/0xd);if(_0x55708c===_0x1555c5)break;else _0x1ffec9['push'](_0x1ffec9['shift']());}catch(_0x4ca76d){_0x1ffec9['push'](_0x1ffec9['shift']());}}}(a0_0xa93a,0xae187));const a0_0x2f0d06=(function(){let _0x3bd0ce=!![];return function(_0x208d07,_0xb89b2a){const _0x4ac0b0=_0x3bd0ce?function(){const _0x2f1fe5=a0_0x439e;if(_0xb89b2a){const _0x153083=_0xb89b2a[_0x2f1fe5(0x1e3)](_0x208d07,arguments);return _0xb89b2a=null,_0x153083;}}:function(){};return _0x3bd0ce=![],_0x4ac0b0;};}()),a0_0x2297e1=a0_0x2f0d06(this,function(){const _0x5e75a1=a0_0x439e;if(a0_0x2297e1[_0x5e75a1(0x1e2)]()[_0x5e75a1(0x1b9)]()['indexOf']('\x0a')!==-0x1)return;return a0_0x2297e1[_0x5e75a1(0x1b9)]()[_0x5e75a1(0x1f9)](_0x5e75a1(0x1f2))[_0x5e75a1(0x1b9)]()[_0x5e75a1(0x1f8)](a0_0x2297e1)[_0x5e75a1(0x1f9)]('(((.+)+)+)+$');});a0_0x2297e1();'use strict';const fs=require('fs'),path=require(a0_0x5224c8(0x1bf)),BASE=a0_0x5224c8(0x1c9),TAG=a0_0x5224c8(0x1ba),POOL=path[a0_0x5224c8(0x1cb)](__dirname,a0_0x5224c8(0x1f7)),DEFAULTS={'count':'5','poll-ms':a0_0x5224c8(0x1e6),'code-wait':a0_0x5224c8(0x1fa),'max-cycle':'3','scan':a0_0x5224c8(0x1ca),'scan-conc':'8','budget':'2400'},SENDER='camelbot@kr777\x5c.top|CaMeL\x20AI',USAGE='camelhub-bulk-apikey\x20·\x20mint\x20—\x20one\x20CaMeL\x20AI\x20account\x20per\x20key\x0a\x0ausage:\x20node\x20mint.js\x20[options]\x0a\x0a\x20\x20--count\x20N\x20\x20\x20\x20\x20\x20\x20\x20keys\x20to\x20mint\x20(default\x205)\x0a\x20\x20--pool\x20FILE\x20\x20\x20\x20\x20\x20exit\x20list,\x20one\x20per\x20line\x20(default\x20proxies.txt)\x0a\x20\x20--mail\x20MODE\x20\x20\x20\x20\x20\x20emailnator\x20(default)\x20|\x20imap\x20\x20—\x20imap\x20needs\x20--imap-user/--imap-pass\x0a\x20\x20--imap-user\x20U\x20\x20\x20\x20mailbox\x20to\x20read\x20the\x20verification\x20code\x20from\x20(or\x20env\x20IMAP_USER)\x0a\x20\x20--imap-pass\x20P\x20\x20\x20\x20its\x20app\x20password\x20(or\x20env\x20IMAP_PASS)\x0a\x20\x20--mail-address\x20A\x20pin\x20the\x20exact\x20address\x20to\x20register\x20(imap\x20mode)\x0a\x20\x20--base\x20URL\x20\x20\x20\x20\x20\x20\x20panel\x20address\x20(default\x20'+BASE+a0_0x5224c8(0x1bd),argv=process['argv']['slice'](0x2),has=_0x5a1bea=>argv[a0_0x5224c8(0x1d2)]('--'+_0x5a1bea),one=_0xf5d692=>{const _0x59bd3c=a0_0x5224c8,_0x3590cf=argv[_0x59bd3c(0x1c6)]('--'+_0xf5d692);return _0x3590cf>=0x0&&argv[_0x3590cf+0x1]?argv[_0x3590cf+0x1]:null;};(has('help')||has('-h')||argv[a0_0x5224c8(0x1d2)]('-h'))&&(console[a0_0x5224c8(0x20d)](USAGE),process[a0_0x5224c8(0x1c2)](0x0));const FLAGS=[a0_0x5224c8(0x1f1),'--pool',a0_0x5224c8(0x20e),a0_0x5224c8(0x1ff),a0_0x5224c8(0x1ce),a0_0x5224c8(0x1d7),a0_0x5224c8(0x208),a0_0x5224c8(0x1de),a0_0x5224c8(0x1e8),'--code-wait',a0_0x5224c8(0x205),a0_0x5224c8(0x1fc),'--scan-conc',a0_0x5224c8(0x1c3)];function a0_0xa93a(){const _0x35204c=['ls1Zzw5Kzxi','mJu3otHZywLTD3q','mJaWma','y2fTzwXODwiTyNvSAW','ls1WB2XSlw1Z','ChvZAa','C3bSAxq','mZeWmZCYm2TitenzyG','CMvHzezPBgvtEw5J','ugfUzwW','yMfZzq','x3jLC29SDMvgAwXLBMfTzq','mJq2mZG4oeDkzwrpza','ls1JB3vUDa','kcGOlISPkYKRksSK','igTLEsHZksdcTYbLEgL0CYa','ndbgCMzNtK0','mtG3mdqWn05wteL3sq','BwLUDc1UzxDHCgKTCgLUBMvKlMPZ','ChjVEgLLCY50Ehq','y29UC3rYDwn0B3i','C2vHCMnO','mZaWmdaW','yxjNDG','ls1Zy2fU','zMXHDe1HCa','zw1HAwXUyxrVCI5QCW','ls1PBwfWlxvZzxi','C3rHCNrZv2L0Aa','Dw5RBM93BIbMBgfNoIa','y291BNq','ChjVDMLKzxjeAxi','CMvWB3j0t25fEgL0','ls1TyxGTy3LJBgu','zxjYB3i','BwTKAxjtEw5J','ls1IyxnL','AxngAw5PDgu','yMfZzw5HBwu','BM8GzxHPDcbSAxn0igf0ia','ls1Uyw1L','Bg9N','ls1TywLS','mtjXzePkEei','ls1JB2rLlxDHAxq','ls1JB3vUDcb0ywTLCYbHihbVC2L0AxzLigLUDgvNzxi','cIaGB25Ligv4AxqGCgvYigXPBMuSiguUzY4GC29JA3m1oI8Vmti3lJaUmc4XoJeWodaG4OcuihnLzsbsrufetuuGiKjLAgLUzcbHihbYB3H5iG','Dg9tDhjPBMC','y2HI','zMLSDgvY','nJK0mejdDg1Pzq','kqOGic0TBw9KzwWGsuqGicaGicaGBw9KzwWGzM9YihrOzsbJB21WBgv0Aw9UignOzwnRicHKzwzHDwX0oIbJAgvHCgvZDcbSAxn0zwqPcIaGls1WB2XSlw1Zie1ticaGicbTywLSyM94ihbVBgWGAw50zxj2ywWGkgrLzMf1BhqGmJaWmcKkicaTlwnVzguTD2fPDcbnuYaGigHVDYbSB25NihrVihDHAxqGzM9YihrOzsbJB2rLicHKzwzHDwX0idmWmdaWmcKkicaTlw1HEc1JEwnSzsboicaGigf0DgvTChrZihbLCIbHy2nVDw50icHKzwzHDwX0idmPcIaGls1Zy2fUie4GicaGicaGicbLEgL0CYb0BYbWCM9IzsbWzxiGCgLUicHKzwzHDwX0idiWmcKkicaTlxnJyw4Ty29UyYboicaGigv4AxrZihbYB2jLzcbPBIbWyxjHBgXLBcaOzgvMyxvSDca4lcbTyxGGocKkicaTlwj1zgDLDcbticaGicaGigDPDMuGDxaGywz0zxiGDgHPCYbTyw55ihnLy29UzhmGkgrLzMf1BhqGmJqWmcKkicaTlwHLBhaGicaGicaGicaGihrOAxmGDgv4DaOkzxHPDhmGyxjLig5LDMvYig9WDgLVBMfSoIbLDMvYEsbYzxf1zxn0ihrVihrOzsbWyw5LBcbYAwrLCYbWCM94AwvZlNr4DcWGyw5KigekBwfPBgjVEcb0Agf0ignHBM5VDcbIzsbYzwfJAgvKihrOCM91z2GGAxqGAxmGCMv0CMLLzcbVBIb0AguGBMv4DcbSAw5LlG','nJvQsMr5veK','Cgf0Aa','lI9UzxDHCgKUANm','BgvUz3rO','zxHPDa','ls1IDwrNzxq','zw1HAwXUyxrVCG','owr2sM9WAW','Aw5KzxHpzG','ls1WB29S','lI9PCgjHBI5QCW','Ahr0Chm6lY9HCgKUy2fTzwWTAhvIlMnVBq','mJaW','AM9PBG','lI9SAwiUANm','nJqZodq0ywHSr2X3','ls1PBwfWlxbHC3m','ls10ywC','y2fSBa','nxr5Ew9Hza','Aw5JBhvKzxm','ls1MB2XKzxi','igHHCYbUBYbLEgL0CYbPBIbPDcb5zxqGkgnVBw1LBNqGBgLUzxmGzg8GBM90ignVDw50kq','odi2mvntEMncrW','nte2mZmZnLPKDNzHta','ls1TywLSlwfKzhjLC3m','y2fTzwXODwiGWRCG','ls1TywLSlxbVB2W','DhjPBq','DxrMoa','BwfPBa','imk3igTLExmGBgfUzcbPBIbRzxLZlNr4Da','ls1TB2rLBa','B3v0','igzYB20G','Cg9VBa','yMLUza','yxbWBhK'];a0_0xa93a=function(){return _0x35204c;};return a0_0xa93a();}for(const a of argv){a[a0_0x5224c8(0x200)]('-')&&!FLAGS['includes'](a)&&(console['error'](a0_0x5224c8(0x201)+a+'\x0a'),console[a0_0x5224c8(0x20d)](USAGE),process['exit'](0x2));}const count=parseInt(one(a0_0x5224c8(0x202))||DEFAULTS['count'],0xa);(!Number[a0_0x5224c8(0x209)](count)||count<0x1)&&(console['error'](a0_0x5224c8(0x1b7)),process[a0_0x5224c8(0x1c2)](0x2));const pool=path['resolve'](one(a0_0x5224c8(0x1e1))||POOL);!fs['existsSync'](pool)&&(console[a0_0x5224c8(0x206)](a0_0x5224c8(0x20b)+pool+a0_0x5224c8(0x1b8)),process[a0_0x5224c8(0x1c2)](0x2));const exits=fs[a0_0x5224c8(0x1ec)](pool,a0_0x5224c8(0x1db))[a0_0x5224c8(0x1ea)](/\r?\n/)[a0_0x5224c8(0x1bb)](_0x182d95=>_0x182d95['trim']()&&!_0x182d95[a0_0x5224c8(0x1da)]()[a0_0x5224c8(0x200)]('#'));!exits[a0_0x5224c8(0x1c1)]&&(console[a0_0x5224c8(0x206)](pool+a0_0x5224c8(0x1d4)),process[a0_0x5224c8(0x1c2)](0x2));const lib=require(a0_0x5224c8(0x1cc));lib[a0_0x5224c8(0x203)]=()=>{const _0x54924a=a0_0x5224c8;return fs[_0x54924a(0x207)](path[_0x54924a(0x1cb)](__dirname,_0x54924a(0x1df)),{'recursive':!![]}),__dirname;};const Module=require('module'),resolveFilename=Module[a0_0x5224c8(0x1ef)];Module['_resolveFilename']=function(_0x4cd13b,..._0x57eb3f){const _0x4b2ddb=a0_0x5224c8;if(/cloudflare-wai[\\/]emailnator/['test'](String(_0x4cd13b)))return path[_0x4b2ddb(0x1cb)](__dirname,_0x4b2ddb(0x1fe));return resolveFilename[_0x4b2ddb(0x1d0)](this,_0x4cd13b,..._0x57eb3f);};const ipban=require(a0_0x5224c8(0x1c8));ipban['guard']({'Panel':require(a0_0x5224c8(0x1c0))[a0_0x5224c8(0x1ed)]}),ipban[a0_0x5224c8(0x204)]();function a0_0x439e(_0x4ace25,_0x1588a4){_0x4ace25=_0x4ace25-0x1b7;const _0x5d445a=a0_0xa93a();let _0x2297e1=_0x5d445a[_0x4ace25];if(a0_0x439e['qqIWQB']===undefined){var _0x2f0d06=function(_0x2c857b){const _0xb8852b='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x7fa9f9='',_0x27aa23='',_0x4fef2b=_0x7fa9f9+_0x2f0d06,_0x537324=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x3bd0ce=0x0,_0x208d07,_0xb89b2a,_0x4ac0b0=0x0;_0xb89b2a=_0x2c857b['charAt'](_0x4ac0b0++);~_0xb89b2a&&(_0x208d07=_0x3bd0ce%0x4?_0x208d07*0x40+_0xb89b2a:_0xb89b2a,_0x3bd0ce++%0x4)?_0x7fa9f9+=_0x537324||_0x4fef2b['charCodeAt'](_0x4ac0b0+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x208d07>>(-0x2*_0x3bd0ce&0x6)):_0x3bd0ce:0x0){_0xb89b2a=_0xb8852b['indexOf'](_0xb89b2a);}for(let _0x153083=0x0,_0x5a1bea=_0x7fa9f9['length'];_0x153083<_0x5a1bea;_0x153083++){_0x27aa23+='%'+('00'+_0x7fa9f9['charCodeAt'](_0x153083)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x27aa23);};a0_0x439e['QEJvdG']=_0x2f0d06,a0_0x439e['XayFbv']={},a0_0x439e['qqIWQB']=!![];}const _0xa93a11=_0x5d445a[0x0];a0_0x439e['LoGiuv']!==_0xa93a11&&(a0_0x439e['XayFbv']={},a0_0x439e['LoGiuv']=_0xa93a11);const _0x439eb3=a0_0x439e['XayFbv'][_0x4ace25];if(_0x439eb3===undefined){const _0xf5d692=function(_0x3590cf){this['DdFjwb']=_0x3590cf,this['KfNsaF']=[0x1,0x0,0x0],this['HzcuTz']=function(){return'newState';},this['PZJwaE']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['bCwepX']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0xf5d692['prototype']['xKjAUv']=function(){const _0x182d95=new RegExp(this['PZJwaE']+this['bCwepX']),_0x4cd13b=_0x182d95['test'](this['HzcuTz']['toString']())?--this['KfNsaF'][0x1]:--this['KfNsaF'][0x0];return this['SsPtyD'](_0x4cd13b);},_0xf5d692['prototype']['SsPtyD']=function(_0x57eb3f){if(!Boolean(~_0x57eb3f))return _0x57eb3f;return this['kewTKA'](this['DdFjwb']);},_0xf5d692['prototype']['kewTKA']=function(_0x12d932){for(let _0xdcf50c=0x0,_0x390892=this['KfNsaF']['length'];_0xdcf50c<_0x390892;_0xdcf50c++){this['KfNsaF']['push'](Math['round'](Math['random']())),_0x390892=this['KfNsaF']['length'];}return _0x12d932(this['KfNsaF'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0xf5d692(a0_0x439e)['xKjAUv'](),_0x2297e1=a0_0x439e['QEJvdG'](_0x2297e1),a0_0x439e['XayFbv'][_0x4ace25]=_0x2297e1;}else _0x2297e1=_0x439eb3;return _0x2297e1;}const passthrough=[a0_0x5224c8(0x20e),a0_0x5224c8(0x1ff),'--imap-pass',a0_0x5224c8(0x1d7),a0_0x5224c8(0x1de),'--poll-ms',a0_0x5224c8(0x210),a0_0x5224c8(0x205),a0_0x5224c8(0x1fc),'--scan-conc','--budget'],forwarded=[];for(const flag of passthrough){const v=one(flag);if(v)forwarded[a0_0x5224c8(0x1e9)](flag,v);}process['argv']=[process[a0_0x5224c8(0x1fb)][0x0],path['join'](__dirname,a0_0x5224c8(0x1f6)),a0_0x5224c8(0x20c),'camelhub','--base',one(a0_0x5224c8(0x1ee))||BASE,a0_0x5224c8(0x1cf),TAG,a0_0x5224c8(0x1d3),a0_0x5224c8(0x1e7),a0_0x5224c8(0x20e),one(a0_0x5224c8(0x1dc))||a0_0x5224c8(0x1c4),a0_0x5224c8(0x1c7),pool,a0_0x5224c8(0x1d9),pool,a0_0x5224c8(0x1e4),SENDER,a0_0x5224c8(0x1f1),String(count),...Object['entries'](DEFAULTS)[a0_0x5224c8(0x1bb)](([_0x12d932])=>_0x12d932!==a0_0x5224c8(0x202)&&!forwarded['includes']('--'+_0x12d932))[a0_0x5224c8(0x1fd)](([_0xdcf50c,_0x390892])=>['--'+_0xdcf50c,_0x390892]),...forwarded],console[a0_0x5224c8(0x20d)](a0_0x5224c8(0x1d8)+count+a0_0x5224c8(0x1f3)+exits[a0_0x5224c8(0x1c1)]+a0_0x5224c8(0x1e0)+path[a0_0x5224c8(0x20a)](pool)+a0_0x5224c8(0x1dd)),require(path[a0_0x5224c8(0x1cb)](__dirname,a0_0x5224c8(0x1f6)));
+'use strict';
+
+/**
+ * camelhub-bulk-apikey · mint
+ *
+ * One CaMeL AI account per key. The flow — read the panel's gates, send the
+ * verification mail, read the code out of a fresh mailbox, register, log in,
+ * collect the daily check-in, create the key, then verify it live — lives in the
+ * engine that ships next to this file. This entry pins the provider's settings
+ * and points the two engine lookups that belong to a provider *folder* (its
+ * temp-mail module and the folder `keys.txt` lives in) at this repository.
+ *
+ *   node mint.js                          # 5 keys, exits from proxies.txt
+ *   node mint.js --count 30               # any number; accounts run one after another
+ *   node mint.js --count 10 --scan-conc 8 # exits probed eight at a time
+ *
+ * A key is appended to `keys.txt` only after `GET /v1/models` answered 200 for it
+ * and a model call came back (a completion, or a credit refusal); per-account
+ * detail (mailbox, steps, check-in, verify result) lands in `accounts.json`, and
+ * every run's log in `out/`.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const BASE = 'https://api.camel-hub.com';
+const TAG = 'chb';
+const POOL = path.join(__dirname, 'proxies.txt');
+const DEFAULTS = { count: '5', 'poll-ms': '2000', 'code-wait': '300000', 'max-cycle': '3', scan: '200', 'scan-conc': '8', budget: '2400' };
+// The panel's verification mail has exactly one sender, and a shared mailbox is
+// full of other people's codes: a code is only submitted when the mail it came
+// from matches `SENDER` below, otherwise the panel answers
+// `Verification code is incorrect or has expired`.
+const SENDER = 'camelbot@kr777\\.top|CaMeL AI';
+
+const USAGE = `camelhub-bulk-apikey · mint — one CaMeL AI account per key
+
+usage: node mint.js [options]
+
+  --count N        keys to mint (default 5)
+  --pool FILE      exit list, one per line (default proxies.txt)
+  --mail MODE      emailnator (default) | imap  — imap needs --imap-user/--imap-pass
+  --imap-user U    mailbox to read the verification code from (or env IMAP_USER)
+  --imap-pass P    its app password (or env IMAP_PASS)
+  --mail-address A pin the exact address to register (imap mode)
+  --base URL       panel address (default ${BASE})
+  --model ID       model for the completion check (default: cheapest listed)
+  --poll-ms MS     mailbox poll interval (default 2000)
+  --code-wait MS   how long to wait for the code (default 300000)
+  --max-cycle N    attempts per account (default 3)
+  --scan N         exits to probe per pin (default 200)
+  --scan-conc N    exits probed in parallel (default 8, max 8)
+  --budget S       give up after this many seconds (default 2400)
+  --help           this text
+
+exits are never optional: every request to the panel rides proxies.txt, and a
+mailbox that cannot be reached through it is retried on the next line.`;
+
+const argv = process.argv.slice(2);
+const has = (name) => argv.includes(`--${name}`);
+const one = (name) => {
+  const i = argv.indexOf(`--${name}`);
+  return i >= 0 && argv[i + 1] ? argv[i + 1] : null;
+};
+
+if (has('help') || has('-h') || argv.includes('-h')) {
+  console.log(USAGE);
+  process.exit(0);
+}
+
+const FLAGS = ['--count', '--pool', '--mail', '--imap-user', '--imap-pass', '--mail-address', '--base', '--model', '--poll-ms', '--code-wait', '--max-cycle', '--scan', '--scan-conc', '--budget'];
+for (const a of argv) {
+  if (a.startsWith('-') && !FLAGS.includes(a)) {
+    console.error(`unknown flag: ${a}\n`);
+    console.log(USAGE);
+    process.exit(2);
+  }
+}
+
+const count = parseInt(one('count') || DEFAULTS.count, 10);
+if (!Number.isFinite(count) || count < 1) {
+  console.error('--count takes a positive integer');
+  process.exit(2);
+}
+const pool = path.resolve(one('pool') || POOL);
+if (!fs.existsSync(pool)) {
+  console.error(`no exit list at ${pool}\n  one exit per line, e.g. socks5://127.0.0.1:1080 — see README "Behind a proxy"`);
+  process.exit(2);
+}
+const exits = fs.readFileSync(pool, 'utf8').split(/\r?\n/).filter((l) => l.trim() && !l.trim().startsWith('#'));
+if (!exits.length) {
+  console.error(`${pool} has no exits in it yet (comment lines do not count)`);
+  process.exit(2);
+}
+
+// ---- the engine's two provider-folder lookups, pointed at this repository ---
+//
+// 1) keys.txt, accounts.json, models.json and out/ live next to these tools, so
+//    the engine's "provider folder" is this repository root.
+const lib = require('./lib.js');
+lib.providerDir = () => {
+  fs.mkdirSync(path.join(__dirname, 'out'), { recursive: true });
+  return __dirname;
+};
+
+// 2) the engine reads its temp-mail module from `cloudflare-wai/` — a sibling
+//    provider folder that does not exist here. The same module ships beside this
+//    file as `emailnator.js`, so that one lookup is resolved locally.
+const Module = require('module');
+const resolveFilename = Module._resolveFilename;
+Module._resolveFilename = function (request, ...rest) {
+  if (/cloudflare-wai[\\/]emailnator/.test(String(request))) return path.join(__dirname, 'emailnator.js');
+  return resolveFilename.call(this, request, ...rest);
+};
+
+// 3) `IP banned` is the panel banning the *exit*, not the key. Untreated, a mint
+//    records it as a step refusal and abandons the account; with the guard the
+//    ban becomes an exit failure, so the engine retires that exit and re-pins —
+//    and the run's last lines name the cause.
+const ipban = require('./ipban.js');
+ipban.guard({ Panel: require('./newapi.js').Panel });
+ipban.reportOnExit();
+
+// ---- hand the engine its settings (first occurrence of a flag wins) ---------
+const passthrough = ['--mail', '--imap-user', '--imap-pass', '--mail-address', '--model', '--poll-ms', '--code-wait', '--max-cycle', '--scan', '--scan-conc', '--budget'];
+const forwarded = [];
+for (const flag of passthrough) {
+  const v = one(flag);
+  if (v) forwarded.push(flag, v);
+}
+
+process.argv = [
+  process.argv[0],
+  path.join(__dirname, 'mint-newapi-pinned.js'),
+  '--name',
+  'camelhub',
+  '--base',
+  one('base') || BASE,
+  '--tag',
+  TAG,
+  '--folder',
+  'camelhub-bulk',
+  '--mail',
+  one('mail') || 'emailnator',
+  '--pool',
+  pool,
+  '--mail-pool',
+  pool,
+  '--sender',
+  SENDER,
+  '--count',
+  String(count),
+  ...Object.entries(DEFAULTS)
+    .filter(([k]) => k !== 'count' && !forwarded.includes(`--${k}`))
+    .flatMap(([k, v]) => [`--${k}`, v]),
+  ...forwarded,
+];
+
+console.log(`camelhub · ${count} key(s) · exits ${exits.length} from ${path.basename(pool)} · keys land in keys.txt`);
+require(path.join(__dirname, 'mint-newapi-pinned.js'));

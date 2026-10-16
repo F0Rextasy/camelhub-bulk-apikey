@@ -1,1 +1,79 @@
-const a0_0x508a13=a0_0x4a5f;(function(_0x2eb076,_0x5310c8){const _0x4ee632=a0_0x4a5f,_0x42e11a=_0x2eb076();while(!![]){try{const _0x2c57cb=parseInt(_0x4ee632(0xc6))/0x1+-parseInt(_0x4ee632(0xbc))/0x2*(parseInt(_0x4ee632(0xcf))/0x3)+parseInt(_0x4ee632(0xa6))/0x4*(parseInt(_0x4ee632(0xa8))/0x5)+parseInt(_0x4ee632(0xae))/0x6+parseInt(_0x4ee632(0xc9))/0x7+parseInt(_0x4ee632(0xb1))/0x8*(parseInt(_0x4ee632(0xac))/0x9)+parseInt(_0x4ee632(0xbb))/0xa*(-parseInt(_0x4ee632(0xc0))/0xb);if(_0x2c57cb===_0x5310c8)break;else _0x42e11a['push'](_0x42e11a['shift']());}catch(_0x534a27){_0x42e11a['push'](_0x42e11a['shift']());}}}(a0_0x322f,0x3a98e));const a0_0x2d0050=(function(){let _0x13fbe4=!![];return function(_0x58e2e8,_0x38fd7c){const _0x7dc7c8=_0x13fbe4?function(){const _0x5851e2=a0_0x4a5f;if(_0x38fd7c){const _0x26ff2c=_0x38fd7c[_0x5851e2(0xbe)](_0x58e2e8,arguments);return _0x38fd7c=null,_0x26ff2c;}}:function(){};return _0x13fbe4=![],_0x7dc7c8;};}()),a0_0x952ac0=a0_0x2d0050(this,function(){const _0x1c16f4=a0_0x4a5f;if(a0_0x952ac0[_0x1c16f4(0xb7)]()[_0x1c16f4(0xd1)]()['indexOf']('\x0a')!==-0x1)return;return a0_0x952ac0[_0x1c16f4(0xd1)]()[_0x1c16f4(0xc2)](_0x1c16f4(0xbd))['toString']()[_0x1c16f4(0xd0)](a0_0x952ac0)[_0x1c16f4(0xc2)](_0x1c16f4(0xbd));});a0_0x952ac0();function a0_0x322f(){const _0x33def8=['BgvUz3rO','l2fWAs9TzxnZywDLlwXPC3q','l2fWAs9TzxnZywDLlW','CgfYC2u','C2v0vgLTzw91Da','yMLUza','l2fWAs9Nzw5LCMf0zs1LBwfPBa','BwvZC2fNzxm','zNjVBq','mtbdy1beuNO','ntbAyKjvv0m','kcGOlISPkYKRksSK','yxbWBhK','ue9tva','oduZnJG5mujmtMroBq','DxrMoa','C2vHCMnO','zw5K','zw1HAwXUyxrVCIbNzw5LCMf0ztOG','zxHWB3j0CW','mJaYnZGWyKrvrerr','D3jPDgu','C2XPy2u','mZiXnJu5ogfhuuvPuW','Cgf0Ag5HBwu','zxjYB3i','zw1HAwW','zw1HAwXUyxrVCIbSAxn0oIa','yxbWBgLJyxrPB24VANnVBG','ntCYntjHC29ey0G','y29UC3rYDwn0B3i','Dg9tDhjPBMC','DxjS','C2v0rw5JB2rPBMC','nZq2mfjNu01NCq','C3rYAw5N','mta2mhrvu2XpuG','C3rHDhvZ','CMvWBgfJzq','CMvXDwvZDa','ndiXnZq5CgHgvKXK','C3bSAxq','mJmZmtK2mevpzK9MDq','ANnVBG','DgLTzw91Da','ogHuwuPsqq'];a0_0x322f=function(){return _0x33def8;};return a0_0x322f();}'use strict';const https=require('https'),{URL}=require(a0_0x508a13(0xa4)),{parseProxy,createAgent}=require('./proxy.js'),UA='Mozilla/5.0\x20(Windows\x20NT\x2010.0;\x20Win64;\x20x64)\x20AppleWebKit/537.36\x20(KHTML,\x20like\x20Gecko)\x20Chrome/141.0.0.0\x20Safari/537.36',BASE='https://www.emailnator.com',HEADERS={'origin':BASE,'referer':BASE+'/','User-Agent':UA,'Accept':a0_0x508a13(0xce)};function request(_0x128140,{method:method='GET',headers:headers={},body:_0x526157,proxy:proxy=null,timeoutMs:timeoutMs=0x7530}={}){const _0x5f1a6e=a0_0x508a13,_0xf7b2ca=typeof proxy===_0x5f1a6e(0xa7)?parseProxy(proxy):proxy;return new Promise((_0x51db72,_0x3b25af)=>{const _0x2715c4=_0x5f1a6e,_0x2fa031=new URL(_0x128140),_0x3ea45e=_0x526157===undefined?null:Buffer[_0x2715c4(0xba)](typeof _0x526157===_0x2715c4(0xa7)?_0x526157:JSON['stringify'](_0x526157)),_0x478fb1=https[_0x2715c4(0xab)]({'method':method,'host':_0x2fa031['hostname'],'port':0x1bb,'path':_0x2fa031[_0x2715c4(0xca)]+_0x2fa031[_0x2715c4(0xc2)],'agent':_0xf7b2ca?createAgent(_0xf7b2ca):undefined,'headers':{...HEADERS,..._0x3ea45e?{'Content-Type':_0x2715c4(0xce),'Content-Length':_0x3ea45e[_0x2715c4(0xb2)]}:{},...headers}},_0x4a2018=>{const _0x5cf887=_0x2715c4;let _0x5d3bef='';_0x4a2018[_0x5cf887(0xa5)](_0x5cf887(0xc1)),_0x4a2018['on']('data',_0x4574dc=>_0x5d3bef+=_0x4574dc),_0x4a2018['on'](_0x5cf887(0xc3),()=>{const _0x1fd7fa=_0x5cf887;let _0x57c75e=null;try{_0x57c75e=JSON[_0x1fd7fa(0xb5)](_0x5d3bef);}catch(_0x1304da){}_0x51db72({'status':_0x4a2018['statusCode'],'json':_0x57c75e,'text':_0x5d3bef});});});_0x478fb1[_0x2715c4(0xb6)](timeoutMs,()=>_0x478fb1['destroy'](new Error(_0x2715c4(0xb0)))),_0x478fb1['on'](_0x2715c4(0xcb),_0x3b25af);if(_0x3ea45e)_0x478fb1[_0x2715c4(0xc7)](_0x3ea45e);_0x478fb1[_0x2715c4(0xc3)]();});}const asProxy=_0x13362b=>typeof _0x13362b===a0_0x508a13(0xa7)?parseProxy(_0x13362b):_0x13362b;async function newAddress(_0x19da42){const _0x11ff01=a0_0x508a13,_0x594a42=await request(BASE+_0x11ff01(0xb8),{'method':'POST','body':{'ids':[0x3]},'proxy':asProxy(_0x19da42)}),_0x30d885=_0x594a42[_0x11ff01(0xaf)]&&_0x594a42[_0x11ff01(0xaf)][_0x11ff01(0xcc)];if(!_0x30d885||!/@gmail\.com$/i['test'](_0x30d885))throw new Error(_0x11ff01(0xc4)+_0x594a42[_0x11ff01(0xa9)]+'\x20'+String(_0x594a42['text'])[_0x11ff01(0xc8)](0x0,0x8c));const [_0x5a6ba0,_0x2d0b18]=_0x30d885[_0x11ff01(0xad)]('@');return{'dotted':_0x30d885,'plain':_0x5a6ba0[_0x11ff01(0xaa)](/\./g,'')+'@'+_0x2d0b18};}async function listMessages(_0x9f7b0d,_0x4d63fc,{limit:limit=0x14}={}){const _0x53c4aa=a0_0x508a13,_0x4145ce=await request(BASE+_0x53c4aa(0xb3),{'method':_0x53c4aa(0xbf),'body':{'email':_0x9f7b0d,'limit':limit},'proxy':asProxy(_0x4d63fc)});if(!_0x4145ce['json'])throw new Error(_0x53c4aa(0xcd)+_0x4145ce[_0x53c4aa(0xa9)]+'\x20'+String(_0x4145ce['text'])[_0x53c4aa(0xc8)](0x0,0x8c));return _0x4145ce[_0x53c4aa(0xaf)][_0x53c4aa(0xb9)]||[];}function a0_0x4a5f(_0x3d7413,_0x8d5714){_0x3d7413=_0x3d7413-0xa4;const _0x125c85=a0_0x322f();let _0x952ac0=_0x125c85[_0x3d7413];if(a0_0x4a5f['DeqfXp']===undefined){var _0x2d0050=function(_0x3bbeb2){const _0x157a02='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x593d62='',_0x9267ac='',_0x1f8c26=_0x593d62+_0x2d0050,_0x3793bd=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x13fbe4=0x0,_0x58e2e8,_0x38fd7c,_0x7dc7c8=0x0;_0x38fd7c=_0x3bbeb2['charAt'](_0x7dc7c8++);~_0x38fd7c&&(_0x58e2e8=_0x13fbe4%0x4?_0x58e2e8*0x40+_0x38fd7c:_0x38fd7c,_0x13fbe4++%0x4)?_0x593d62+=_0x3793bd||_0x1f8c26['charCodeAt'](_0x7dc7c8+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x58e2e8>>(-0x2*_0x13fbe4&0x6)):_0x13fbe4:0x0){_0x38fd7c=_0x157a02['indexOf'](_0x38fd7c);}for(let _0x26ff2c=0x0,_0x128140=_0x593d62['length'];_0x26ff2c<_0x128140;_0x26ff2c++){_0x9267ac+='%'+('00'+_0x593d62['charCodeAt'](_0x26ff2c)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x9267ac);};a0_0x4a5f['hdLXvi']=_0x2d0050,a0_0x4a5f['bVWlPw']={},a0_0x4a5f['DeqfXp']=!![];}const _0x322fc5=_0x125c85[0x0];a0_0x4a5f['FPuUlo']!==_0x322fc5&&(a0_0x4a5f['bVWlPw']={},a0_0x4a5f['FPuUlo']=_0x322fc5);const _0x4a5f48=a0_0x4a5f['bVWlPw'][_0x3d7413];if(_0x4a5f48===undefined){const _0x526157=function(_0xf7b2ca){this['tCWqEO']=_0xf7b2ca,this['OcxrDF']=[0x1,0x0,0x0],this['XfAgUK']=function(){return'newState';},this['cqLWUy']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['Fgtrto']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x526157['prototype']['LncVJi']=function(){const _0x51db72=new RegExp(this['cqLWUy']+this['Fgtrto']),_0x3b25af=_0x51db72['test'](this['XfAgUK']['toString']())?--this['OcxrDF'][0x1]:--this['OcxrDF'][0x0];return this['LhZZLF'](_0x3b25af);},_0x526157['prototype']['LhZZLF']=function(_0x2fa031){if(!Boolean(~_0x2fa031))return _0x2fa031;return this['ssPsfM'](this['tCWqEO']);},_0x526157['prototype']['ssPsfM']=function(_0x3ea45e){for(let _0x478fb1=0x0,_0x4a2018=this['OcxrDF']['length'];_0x478fb1<_0x4a2018;_0x478fb1++){this['OcxrDF']['push'](Math['round'](Math['random']())),_0x4a2018=this['OcxrDF']['length'];}return _0x3ea45e(this['OcxrDF'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x526157(a0_0x4a5f)['LncVJi'](),_0x952ac0=a0_0x4a5f['hdLXvi'](_0x952ac0),a0_0x4a5f['bVWlPw'][_0x3d7413]=_0x952ac0;}else _0x952ac0=_0x4a5f48;return _0x952ac0;}async function readMessage(_0x5d9e9f,_0x5d49e3){const _0xed573a=a0_0x508a13,_0x3b61c1=await request(BASE+_0xed573a(0xb4)+encodeURIComponent(_0x5d9e9f),{'proxy':asProxy(_0x5d49e3)});return _0x3b61c1[_0xed573a(0xaf)]||{};}module[a0_0x508a13(0xc5)]={'newAddress':newAddress,'listMessages':listMessages,'readMessage':readMessage,'request':request};
+'use strict';
+/**
+ * camelhub · Emailnator inbox helper (self-contained copy for the published repo)
+ *
+ * Emailnator hands out real @gmail.com mailboxes from a shared public pool. The
+ * panel accepts gmail in its dot-free plain form and refuses address aliases
+ * (measured: dotted gmail → `邮箱地址别名限制`), so `plain` is the form that is
+ * registered — and the form Emailnator's list/read calls take anyway.
+ *
+ * Emailnator is a third-party mailbox service, not the provider being signed up:
+ * when the exits are down it is still fine to read it directly, so there is no
+ * provider-side leak here either way.
+ */
+const https = require('https');
+const { URL } = require('url');
+const { parseProxy, createAgent } = require('./proxy.js');
+
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36';
+const BASE = 'https://www.emailnator.com';
+const HEADERS = { origin: BASE, referer: `${BASE}/`, 'User-Agent': UA, Accept: 'application/json' };
+
+function request(url, { method = 'GET', headers = {}, body, proxy = null, timeoutMs = 30000 } = {}) {
+  const px = typeof proxy === 'string' ? parseProxy(proxy) : proxy;
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const payload = body === undefined ? null : Buffer.from(typeof body === 'string' ? body : JSON.stringify(body));
+    const req = https.request(
+      {
+        method,
+        host: u.hostname,
+        port: 443,
+        path: u.pathname + u.search,
+        agent: px ? createAgent(px) : undefined,
+        headers: { ...HEADERS, ...(payload ? { 'Content-Type': 'application/json', 'Content-Length': payload.length } : {}), ...headers },
+      },
+      (res) => {
+        let text = '';
+        res.setEncoding('utf8');
+        res.on('data', (c) => (text += c));
+        res.on('end', () => {
+          let json = null;
+          try {
+            json = JSON.parse(text);
+          } catch (e) {}
+          resolve({ status: res.statusCode, json, text });
+        });
+      }
+    );
+    req.setTimeout(timeoutMs, () => req.destroy(new Error('timeout')));
+    req.on('error', reject);
+    if (payload) req.write(payload);
+    req.end();
+  });
+}
+
+const asProxy = (p) => (typeof p === 'string' ? parseProxy(p) : p);
+
+/** Generate a fresh gmail address; `plain` is the dot-free registration form. */
+async function newAddress(proxy) {
+  const res = await request(`${BASE}/api/generate-email`, { method: 'POST', body: { ids: [3] }, proxy: asProxy(proxy) });
+  const dotted = res.json && res.json.email;
+  if (!dotted || !/@gmail\.com$/i.test(dotted)) throw new Error(`emailnator generate: ${res.status} ${String(res.text).slice(0, 140)}`);
+  const [local, domain] = dotted.split('@');
+  return { dotted, plain: `${local.replace(/\./g, '')}@${domain}` };
+}
+
+/** The most recent messages on an address (Emailnator takes the plain form). */
+async function listMessages(plain, proxy, { limit = 20 } = {}) {
+  const res = await request(`${BASE}/api/message-list`, { method: 'POST', body: { email: plain, limit }, proxy: asProxy(proxy) });
+  if (!res.json) throw new Error(`emailnator list: ${res.status} ${String(res.text).slice(0, 140)}`);
+  return res.json.messages || [];
+}
+
+async function readMessage(id, proxy) {
+  const res = await request(`${BASE}/api/message/${encodeURIComponent(id)}`, { proxy: asProxy(proxy) });
+  return res.json || {};
+}
+
+module.exports = { newAddress, listMessages, readMessage, request };

@@ -1,2 +1,414 @@
 #!/usr/bin/env node
-const a0_0x3eb80f=a0_0x6af4;(function(_0x19ec3f,_0x2a3797){const _0x2e540c=a0_0x6af4,_0x3b9339=_0x19ec3f();while(!![]){try{const _0x38620d=parseInt(_0x2e540c(0x1ee))/0x1*(parseInt(_0x2e540c(0x173))/0x2)+-parseInt(_0x2e540c(0x192))/0x3+parseInt(_0x2e540c(0x19e))/0x4*(-parseInt(_0x2e540c(0x1d5))/0x5)+-parseInt(_0x2e540c(0x1af))/0x6+-parseInt(_0x2e540c(0x185))/0x7+-parseInt(_0x2e540c(0x206))/0x8+-parseInt(_0x2e540c(0x1e9))/0x9*(-parseInt(_0x2e540c(0x17b))/0xa);if(_0x38620d===_0x2a3797)break;else _0x3b9339['push'](_0x3b9339['shift']());}catch(_0x1f4203){_0x3b9339['push'](_0x3b9339['shift']());}}}(a0_0x19d6,0xce09a));const a0_0x3aa38f=(function(){let _0x2e13a3=!![];return function(_0x1f68a1,_0x2eb939){const _0x4b762f=_0x2e13a3?function(){const _0x5e715e=a0_0x6af4;if(_0x2eb939){const _0x425c60=_0x2eb939[_0x5e715e(0x188)](_0x1f68a1,arguments);return _0x2eb939=null,_0x425c60;}}:function(){};return _0x2e13a3=![],_0x4b762f;};}()),a0_0x4693f0=a0_0x3aa38f(this,function(){const _0x5e88d5=a0_0x6af4;if(a0_0x4693f0[_0x5e88d5(0x1e7)]()[_0x5e88d5(0x1b4)]()[_0x5e88d5(0x1a6)]('\x0a')!==-0x1)return;return a0_0x4693f0[_0x5e88d5(0x1b4)]()[_0x5e88d5(0x193)](_0x5e88d5(0x1e4))[_0x5e88d5(0x1b4)]()[_0x5e88d5(0x204)](a0_0x4693f0)['search'](_0x5e88d5(0x1e4));});a0_0x4693f0();'use strict';const fs=require('fs'),path=require(a0_0x3eb80f(0x1b1)),{ExitPool,readJson,writeJson,appendLine,nowIso,req,isExitError}=require('./lib.js'),{Panel}=require('./newapi.js'),{collectCandidates,screenFor}=require(a0_0x3eb80f(0x200)),ipban=require(a0_0x3eb80f(0x1be));function a0_0x19d6(){const _0x2bdee5=['BM8GDxnHyMXLigv4AxqGzM9Yia','C3rHDhvZ','DMvYAwz5','BwTKAxjtEw5J','icaJihzLCMLMAwvKia','ksdIGjqGBM8GA2v5ihDHCYbTzwfZDxjLzcWG','DgfRzq','y2fTzwXODwi','ngfsC294tW','4OcMigv4AxqGzMfPBgvKig1Pzc1JAgvJAYaO','ihzLCMLMEsbLCNjVCJOG','ChvZAa','qMvHCMvYihnJCMvLBMLUzY1WCM9Izq','Dgv4Da','D2fUDa','Dw5RBM93BIbMBgfNoIa','mtbYu3rSuMm','yxv0AgvUDgLJ','Cg9VBa','ihrYAwvKimk3ihDHBNqG','4OcMigv4AxqGzMfPBgvKicG','y2f0y2G','BM8GzxHPDhmGBgvMDa','zgLLza','ywnJB3vUDf9Iyw5Uzwq','BwfW','mtaWodK0otjys210vMG','ihbYB3zLBIK','y2HHDa','yxbWBhK','C3rHy2S','iokgKIa','4OcMigv4AxqGyMfUBMvKigj5ihrOzsbWyw5LBdOG','igjHBM5LzcbIEsb0AguGCgfUzwW','l3yXl21VzgvSCW','yw5ZD2vYzwq','rKfuquWG','igfJy291BNqOCYKGyMfUBMvKigj5ihrOzsbWyw5LBcaOyxv0Ac51C2vYx2jHBM5LzcK','BgLUzq','mZaWndy5nw1yB05fza','C2vHCMnO','4OcMig1VzgvSCZ0YmdaGy2HHDd0','A2v5x3jLzNvZzwq','BI9H','C2HPzNq','ihnWzw5KywjSzq','C2nYzwvUzwqT','BM90zq','4OcMihvUBwvHC3vYzwq6igv2zxj5ignHBMrPzgf0zsbLEgL0ihDHCYbIyw5UzwqGyNKGDgHLihbHBMvS','icdINjyGyMfUBMvKigj5ihrOzsbWyw5LBdOG','yMfU','neXRwMHXDa','yxjNDG','B3v0','ignOyxqG','ls1RzxK','Axbcyw5Uzwq','BM8Gy2fUzgLKyxrLigv4AxqGBgvMDcaOyMfUBMvKig9YigrLywqP','ywXS','Aw5KzxHpzG','BwLUDev4Axq','ls1TyxGTDg9Rzw5Z','igTLEsHZksbMB3iGy2fTzwXODwiGka','ksdIGjqGDgHLigTLEsb3yxmGBM90ig1Lyxn1CMvK','WRCGC2nYzwvUzwqGzxHPDhmG4OAsig91Dc9Zy3jLzw5Lzc0','zMLSDgvY','icHLEgL0ia','ANnVBG','ntuWmJu4mNHJsuvtCW','igv4AxqOCYKGyxjLigjHBM5LzcbIEsb0AguGCgfUzwWGkgzPBhrLCMvKigjLzM9YzsbHBNKGA2v5ignHBgWPoIa','Cgf0Aa','yM9KEq','DxrMoa','Dg9tDhjPBMC','A2v5','Bg9N','4OcMigv4AxqGyMfUBMvKigj5ihrOzsbWyw5LBcbTAwqTy2HLy2S6ia','ihvUBwvHC3vYzwq6ia','igTLEsHZksbSzwz0ihvUDg91y2HLza','igf1DgHLBNrPyYWGBM8Gy2HHBM5LBcbHBNn3zxjLza','AM9PBG','ihbYB3zLBIbVzIa','iokaLcb0CNLPBMCGDgHLig5LEhqGzxHPDa','lI9PCgjHBI5QCW','C2TPCa','ChjVEgLLCY50Ehq','icH0Agf0igTLEsbPCYbUB3qGAw4GywnJB3vUDhmUANnVBIK','iokaLcbVBMuGCgvYigXPBMuSiguUzY4GC29JA3m1oI8Vmti3lJaUmc4XoJeWoda','yxbWzw5KrMLSzvn5BMm','ls1TB2rLBa','yMfZzq','Bwf4lxrVA2vUCW','igv4AxqOCYKGzgLKig5VDcbHBNn3zxi','z3vHCMq','AgfZ','CxvLDwu','DhjPBq','zMLUza','igTLEsHZksbYzwz1C2vK','yxbWBgLJyxrPB24VANnVBG','lNr4DcaOkW','BgvUz3rO','Axncyw4','Bw9KzwXZ','C29Tzq','A2v5CY50Ehq','ndeXmJy5nvj2sLbvsa','C3bSAxq','CxvVDge','DMvYAwz5ia','ig9Mia','imk3ia','DgvZDa','ywrK','Aw5JBhvKzxm','cIaGB25Ligv4AxqGCgvYigXPBMuSiguUzY4GC29JA3m1oI8Vmti3lJaUmc4XoJeWodaG4OcuihnLzsbsrufetuuGiKjLAgLUzcbHihbYB3H5iG','ls1IyxnL','Aw5KzxG','ksdIGjqGDhj5Aw5NihrOzsbUzxH0igv4Axq','zxHPDf9Iyw5Uzwq','DMvYzgLJDa','kcGOlISPkYKRksSK','C3rHCNrZv2L0Aa','zxHPC3rZu3LUyW','yMLUza','ls1HBgW','ndi5nJCZmJnHDMPSEwe','zxHPDa','Ahr0Chm6lY9HCgKUy2fTzwWTAhvIlMnVBq','yxrnAw50','C29YDa','nte1mJuYvwPTCwHp','zxjYB3i','DhjPzwrfEgL0CW','ksdcTYbLEgL0CYa','zg9UztOGy2fTzwXODwiG4Ocuia','igTLExmGyw5ZD2vYzwqGl3yXl21VzgvSCYaYmda','4OcMic92ms9TB2rLBhmG','4OcMihvUBwvHC3vYzwq6ig5Vigv4AxqGyw5ZD2vYzwqG4Ocuia','ChjVDMvU','AgvSCa','BwvZC2fNzq','ls13yw50','igv4AxqOCYKGyMfUBMvKigj5ihrOzsbWyw5LBa','ihWG','Bw9KzwW','BwLU','DMvYAwz5sw5KzxbLBMrLBNq','BM8Gy2fUzgLKyxrLigv4AxqGyw5ZD2vYzwqGka','lI94D2f2zs1SAwiUANm','BM8GzxHPDhmGCgfYC2vKigzYB20G','BM8GA2v5CYb0BYb2zxjPzNKGzM9YignHBwvSAhvI','C2XPy2u','y29UC3rYDwn0B3i','igv4AxqOCYKGyMfUBMvKigj5ihrOzsbWyw5LBcbHBMqGCMv0AxjLza','nJiYntmXmNLdD1nQAq'];a0_0x19d6=function(){return _0x2bdee5;};return a0_0x19d6();}ipban[a0_0x3eb80f(0x1c8)]({'Panel':Panel});const BASE=a0_0x3eb80f(0x1eb),HOST=new URL(BASE)['host'],POOL=path[a0_0x3eb80f(0x1bb)](__dirname,a0_0x3eb80f(0x1c0)),ACCOUNTS=path[a0_0x3eb80f(0x1bb)](__dirname,'accounts.json'),KEYS=path[a0_0x3eb80f(0x1bb)](__dirname,a0_0x3eb80f(0x1d4)),MODELS_FILE=path['join'](__dirname,'models.json'),OUT=path[a0_0x3eb80f(0x1bb)](__dirname,a0_0x3eb80f(0x1a0)),USAGE='camelhub-bulk-apikey\x20·\x20verify\x20—\x20re-check\x20keys\x20already\x20on\x20disk\x0a\x0ausage:\x20node\x20verify.js\x20[options]\x0a\x0a\x20\x20--key\x20K\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20verify\x20one\x20key\x20instead\x20of\x20every\x20key\x20on\x20disk\x0a\x20\x20--all\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20also\x20re-check\x20keys\x20whose\x20last\x20run\x20said\x20they\x20work\x0a\x20\x20--model\x20ID[,ID]\x20\x20model(s)\x20for\x20the\x20completion\x20check\x20(default:\x20cheapest\x20listed)\x0a\x20\x20--max-tokens\x20N\x20\x20\x20tokens\x20to\x20ask\x20for\x20(default\x208)\x0a\x20\x20--want\x20N\x20\x20\x20\x20\x20\x20\x20\x20\x20independent\x20exits\x20to\x20prove\x20before\x20checking\x20keys\x20(default\x203)\x0a\x20\x20--pool\x20FILE\x20\x20\x20\x20\x20\x20exit\x20list,\x20one\x20per\x20line\x20(default\x20proxies.txt)\x0a\x20\x20--base\x20URL\x20\x20\x20\x20\x20\x20\x20panel\x20address\x20(default\x20'+BASE+')\x0a\x20\x20--help\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20this\x20text\x0a\x0aEvery\x20call\x20rides\x20an\x20exit\x20from\x20proxies.txt;\x20the\x20exit\x20that\x20verified\x20a\x20key\x20is\x0arecorded\x20next\x20to\x20the\x20exit\x20that\x20minted\x20it,\x20so\x20\x22the\x20key\x20works\x22\x20is\x20never\x20confused\x0awith\x20\x22this\x20session\x20works\x22.\x20An\x20exit\x20the\x20panel\x20has\x20banned\x20is\x20retired\x20and\x20the\x20run\x0acontinues\x20on\x20the\x20next\x20one\x20—\x20it\x20is\x20never\x20recorded\x20as\x20a\x20key\x20verdict.',argv=process[a0_0x3eb80f(0x19f)][a0_0x3eb80f(0x203)](0x2),has=_0x335808=>argv[a0_0x3eb80f(0x1dd)]('--'+_0x335808),one=_0x460482=>{const _0xd7bd7e=a0_0x3eb80f,_0xb6b42e=argv[_0xd7bd7e(0x1a6)]('--'+_0x460482);return _0xb6b42e>=0x0&&argv[_0xb6b42e+0x1]?argv[_0xb6b42e+0x1]:null;};function a0_0x6af4(_0x4c2d8a,_0x2995de){_0x4c2d8a=_0x4c2d8a-0x16b;const _0x1b674c=a0_0x19d6();let _0x4693f0=_0x1b674c[_0x4c2d8a];if(a0_0x6af4['KxJrsi']===undefined){var _0x3aa38f=function(_0x251038){const _0x1f8e84='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x1a1378='',_0xe5f10e='',_0x3b6c8c=_0x1a1378+_0x3aa38f,_0x3d797f=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x2e13a3=0x0,_0x1f68a1,_0x2eb939,_0x4b762f=0x0;_0x2eb939=_0x251038['charAt'](_0x4b762f++);~_0x2eb939&&(_0x1f68a1=_0x2e13a3%0x4?_0x1f68a1*0x40+_0x2eb939:_0x2eb939,_0x2e13a3++%0x4)?_0x1a1378+=_0x3d797f||_0x3b6c8c['charCodeAt'](_0x4b762f+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x1f68a1>>(-0x2*_0x2e13a3&0x6)):_0x2e13a3:0x0){_0x2eb939=_0x1f8e84['indexOf'](_0x2eb939);}for(let _0x425c60=0x0,_0x335808=_0x1a1378['length'];_0x425c60<_0x335808;_0x425c60++){_0xe5f10e+='%'+('00'+_0x1a1378['charCodeAt'](_0x425c60)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0xe5f10e);};a0_0x6af4['UnLQfR']=_0x3aa38f,a0_0x6af4['KELgUK']={},a0_0x6af4['KxJrsi']=!![];}const _0x19d66b=_0x1b674c[0x0];a0_0x6af4['kFnqwq']!==_0x19d66b&&(a0_0x6af4['KELgUK']={},a0_0x6af4['kFnqwq']=_0x19d66b);const _0x6af40d=a0_0x6af4['KELgUK'][_0x4c2d8a];if(_0x6af40d===undefined){const _0x460482=function(_0xb6b42e){this['uPYROa']=_0xb6b42e,this['octvUT']=[0x1,0x0,0x0],this['vuYECf']=function(){return'newState';},this['xabYKz']='\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a',this['PXDBkK']='\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d';};_0x460482['prototype']['rlGdrV']=function(){const _0x192d27=new RegExp(this['xabYKz']+this['PXDBkK']),_0x40b20a=_0x192d27['test'](this['vuYECf']['toString']())?--this['octvUT'][0x1]:--this['octvUT'][0x0];return this['zDsAOm'](_0x40b20a);},_0x460482['prototype']['zDsAOm']=function(_0x47f1b1){if(!Boolean(~_0x47f1b1))return _0x47f1b1;return this['vklwbL'](this['uPYROa']);},_0x460482['prototype']['vklwbL']=function(_0x4adb54){for(let _0x2cb6e8=0x0,_0x5bc3c7=this['octvUT']['length'];_0x2cb6e8<_0x5bc3c7;_0x2cb6e8++){this['octvUT']['push'](Math['round'](Math['random']())),_0x5bc3c7=this['octvUT']['length'];}return _0x4adb54(this['octvUT'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x460482(a0_0x6af4)['rlGdrV'](),_0x4693f0=a0_0x6af4['UnLQfR'](_0x4693f0),a0_0x6af4['KELgUK'][_0x4c2d8a]=_0x4693f0;}else _0x4693f0=_0x6af40d;return _0x4693f0;}(has(a0_0x3eb80f(0x1f7))||has('-h')||argv['includes']('-h'))&&(console[a0_0x3eb80f(0x1b6)](USAGE),process[a0_0x3eb80f(0x1ea)](0x0));const FLAGS=[a0_0x3eb80f(0x1a2),a0_0x3eb80f(0x1e8),a0_0x3eb80f(0x1c4),a0_0x3eb80f(0x1a8),a0_0x3eb80f(0x1f9),'--pool',a0_0x3eb80f(0x1df)];for(const a of argv){a[a0_0x3eb80f(0x1e5)]('-')&&!FLAGS[a0_0x3eb80f(0x1dd)](a)&&(console[a0_0x3eb80f(0x1ef)](a0_0x3eb80f(0x17a)+a+'\x0a'),console[a0_0x3eb80f(0x1b6)](USAGE),process[a0_0x3eb80f(0x1ea)](0x2));}const pool=path['resolve'](one(a0_0x3eb80f(0x17d))||POOL);!fs[a0_0x3eb80f(0x1e6)](pool)&&(console[a0_0x3eb80f(0x1ef)]('no\x20exit\x20list\x20at\x20'+pool+a0_0x3eb80f(0x1de)),process['exit'](0x2));const BASE_URL=one(a0_0x3eb80f(0x1c5))||BASE,ONLY_KEY=one(a0_0x3eb80f(0x1b5))||'',ALL=has(a0_0x3eb80f(0x1a5)),MODELS=(one(a0_0x3eb80f(0x1fc))||'')[a0_0x3eb80f(0x1d6)](',')['map'](_0x192d27=>_0x192d27[a0_0x3eb80f(0x1cb)]())[a0_0x3eb80f(0x1ac)](Boolean),MAX_TOKENS=parseInt(one(a0_0x3eb80f(0x1c6))||'8',0xa),WANT=parseInt(one(a0_0x3eb80f(0x179))||'3',0xa),MAX_EXITS=Math['max'](WANT,0x4),log=(..._0x40b20a)=>console[a0_0x3eb80f(0x1b6)]('['+nowIso()+']\x20'+_0x40b20a['join']('\x20')),CHATTY=/embed|rerank|reranker|whisper|tts|image|audio|video|vision|bge/i;function rankCheapest(_0x47f1b1){const _0x528d92=a0_0x3eb80f,_0x4adb54=_0x2cb6e8=>{const _0x2f85c8=a0_0x6af4;let _0x5bc3c7=0x5;if(/flash|nano|mini|small|lite|turbo|haiku|8b|7b|4b|1b/i[_0x2f85c8(0x1db)](_0x2cb6e8))_0x5bc3c7-=0x3;if(/free/i[_0x2f85c8(0x1db)](_0x2cb6e8))_0x5bc3c7-=0x2;if(/pro|opus|ultra|max|72b|70b|235b|405b|550b/i['test'](_0x2cb6e8))_0x5bc3c7+=0x3;if(/embed|rerank|whisper|tts|image|audio|video|vision/i[_0x2f85c8(0x1db)](_0x2cb6e8))_0x5bc3c7+=0x4;return _0x5bc3c7;};return[..._0x47f1b1][_0x528d92(0x1ed)]((_0x2c24fc,_0x5844be)=>_0x4adb54(_0x2c24fc)-_0x4adb54(_0x5844be));}const looksQuota=_0x574b2c=>/insufficient|quota|额度|余额|balance|余额不足/i['test'](String(_0x574b2c||'')),looksAccountBanned=_0x54ad05=>/user_banned|user banned|账号封禁|账号已被封禁|account.*banned/i[a0_0x3eb80f(0x1db)](String(_0x54ad05||''));function classify(_0xf02ef8,_0x3be48b,_0x427038){const _0x1df2a1=a0_0x3eb80f;if(_0xf02ef8[_0x1df2a1(0x16c)]===0xc8){if(_0x3be48b&&_0x3be48b[_0x1df2a1(0x16c)]===0xc8)return'ok';if(_0x427038)return'authentic';if(_0x3be48b&&looksQuota(_0x3be48b[_0x1df2a1(0x178)]))return _0x1df2a1(0x1d7);return _0x1df2a1(0x17c);}if(looksAccountBanned(_0xf02ef8[_0x1df2a1(0x178)]))return _0x1df2a1(0x183);return _0x1df2a1(0x195);}class ExitCursor{constructor(_0x59582b,{avoid:avoid=[],banned:banned=[]}={}){const _0x2e241d=a0_0x3eb80f;this[_0x2e241d(0x1ca)]=_0x59582b[_0x2e241d(0x203)](),this[_0x2e241d(0x1bf)]=new Set([...avoid,...banned]['filter'](Boolean)),this[_0x2e241d(0x1f6)]=[];}['take'](){const _0x186a94=a0_0x3eb80f;while(this[_0x186a94(0x1ca)][_0x186a94(0x1d0)]){const _0x37f6b2=this['queue'][_0x186a94(0x197)]();if(!_0x37f6b2||this[_0x186a94(0x1bf)][_0x186a94(0x1c9)](_0x37f6b2[_0x186a94(0x191)]))continue;return _0x37f6b2;}return this[_0x186a94(0x1f6)][_0x186a94(0x1cc)](_0x259372=>!this[_0x186a94(0x1bf)]['has'](_0x259372[_0x186a94(0x191)]))||null;}['ban'](_0x123987){const _0x218e08=a0_0x3eb80f;if(_0x123987)this['skip'][_0x218e08(0x1dc)](_0x123987);this['proven']=this[_0x218e08(0x1f6)][_0x218e08(0x1ac)](_0x589d3a=>_0x589d3a[_0x218e08(0x191)]!==_0x123987);}[a0_0x3eb80f(0x182)](_0x567c6f){const _0x40e7e8=a0_0x3eb80f;this['proven']=this[_0x40e7e8(0x1f6)]['filter'](_0x5056ac=>_0x5056ac['line']!==_0x567c6f);}['answered'](_0xb47f04){const _0x59c057=a0_0x3eb80f;if(_0xb47f04&&!this[_0x59c057(0x1f6)][_0x59c057(0x1d3)](_0xb92866=>_0xb92866[_0x59c057(0x191)]===_0xb47f04[_0x59c057(0x191)]))this['proven'][_0x59c057(0x176)](_0xb47f04);}}function panelOn(_0x418d17){const _0x19c533=a0_0x3eb80f;return new Panel(BASE_URL,new ExitPool([_0x418d17],{'label':_0x19c533(0x172)}),{'label':_0x19c533(0x172),'log':()=>{}});}const bannedAtScreen=[];async function reachable(_0x4ab464){const _0x4f0a94=a0_0x3eb80f,_0x5d3c0d=await req(_0x4ab464,BASE_URL+_0x4f0a94(0x18d),{'timeoutMs':0x4e20,'connectTimeoutMs':0x1770,'headers':{'authorization':_0x4f0a94(0x177),'accept':_0x4f0a94(0x1ce)}});if(ipban[_0x4f0a94(0x1d1)](_0x5d3c0d)){if(!bannedAtScreen[_0x4f0a94(0x1dd)](_0x4ab464[_0x4f0a94(0x191)]))bannedAtScreen[_0x4f0a94(0x176)](_0x4ab464[_0x4f0a94(0x191)]);return log(_0x4f0a94(0x19c)+_0x4ab464[_0x4f0a94(0x191)]),![];}return _0x5d3c0d['status']<0x1f4;}async function measure(_0x48aa53,_0x45e0a7,{bannedThisRun:_0x17059e,deadExits:_0x4cc301}){const _0x233f8b=a0_0x3eb80f,_0x528687={'at':nowIso(),'key':_0x48aa53['key'],'mintExit':null,'exit':null,'models':null,'chat':null,'verdict':null,'triedExits':[],'note':null},_0x4eea71=_0x48aa53[_0x233f8b(0x16d)]&&_0x48aa53[_0x233f8b(0x16d)][_0x233f8b(0x1a7)]||_0x48aa53['verifyIndependent']&&_0x48aa53[_0x233f8b(0x1fe)]['mintExit']||'';_0x528687[_0x233f8b(0x1a7)]=_0x4eea71||null;if(_0x4eea71)_0x45e0a7[_0x233f8b(0x19d)](_0x4eea71);let _0x4e6bd7=![],_0x293571=null,_0x335015=_0x45e0a7['take']();while(_0x335015){_0x528687[_0x233f8b(0x1f0)][_0x233f8b(0x176)](_0x335015[_0x233f8b(0x191)]);let _0x37cd6b;try{_0x37cd6b=await panelOn(_0x335015)['models'](_0x48aa53[_0x233f8b(0x1b5)],{'tries':0x1,'timeoutMs':0x7530});}catch(_0x45609e){_0x45609e[_0x233f8b(0x1a3)]?(log('#'+_0x48aa53[_0x233f8b(0x1e0)]+'\x20'+_0x48aa53['key'][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x18b)+_0x335015[_0x233f8b(0x191)]+_0x233f8b(0x1bd)),_0x17059e[_0x233f8b(0x176)](_0x335015[_0x233f8b(0x191)]),_0x4e6bd7=!![],_0x45e0a7['ban'](_0x335015['line'])):(log('#'+_0x48aa53['index']+'\x20'+_0x48aa53[_0x233f8b(0x1b5)][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x17f)+String(_0x45609e[_0x233f8b(0x1f8)])[_0x233f8b(0x203)](0x0,0x50)+')\x20—\x20trying\x20the\x20next\x20exit'),_0x4cc301[_0x233f8b(0x176)](_0x335015[_0x233f8b(0x191)]),_0x45e0a7[_0x233f8b(0x182)](_0x335015[_0x233f8b(0x191)]),_0x293571=_0x45609e);_0x335015=_0x45e0a7[_0x233f8b(0x171)]();continue;}if(_0x37cd6b[_0x233f8b(0x16c)]!==0xc8)return _0x45e0a7[_0x233f8b(0x18e)](_0x335015),_0x528687[_0x233f8b(0x1ea)]=_0x335015[_0x233f8b(0x191)],_0x528687[_0x233f8b(0x1d2)]={'status':_0x37cd6b[_0x233f8b(0x16c)],'body':String(_0x37cd6b[_0x233f8b(0x178)]||'')['slice'](0x0,0x12c),'exit':_0x335015['line']},_0x528687['verdict']=classify(_0x37cd6b,null,![]),log('#'+_0x48aa53['index']+'\x20'+_0x48aa53[_0x233f8b(0x1b5)][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x1f4)+_0x37cd6b[_0x233f8b(0x16c)]+'\x20·\x20'+_0x528687['models']['body'][_0x233f8b(0x203)](0x0,0x8c)),_0x528687;const _0x53c885=_0x37cd6b[_0x233f8b(0x1ae)]&&Array['isArray'](_0x37cd6b['json']['data'])?_0x37cd6b['json']['data']['map'](_0x1124e3=>_0x1124e3['id']||_0x1124e3):[];_0x45e0a7[_0x233f8b(0x18e)](_0x335015),_0x528687[_0x233f8b(0x1ea)]=_0x335015[_0x233f8b(0x191)],_0x528687[_0x233f8b(0x1d2)]={'status':0xc8,'count':_0x53c885['length']||null,'exit':_0x335015['line']};if(_0x53c885[_0x233f8b(0x1d0)])writeJson(MODELS_FILE,{'at':nowIso(),'base':BASE_URL,'models':_0x53c885});let _0x44128c=MODELS[_0x233f8b(0x203)]();if(!_0x44128c[_0x233f8b(0x1d0)])_0x44128c=rankCheapest(_0x53c885[_0x233f8b(0x1ac)](_0x41a699=>!CHATTY[_0x233f8b(0x1db)](_0x41a699)))[_0x233f8b(0x203)](0x0,0x5);let _0x326e0c=![];for(const _0x297445 of _0x44128c){let _0x5339dd=null;for(;;){try{_0x5339dd=await panelOn(_0x335015)['chat'](_0x48aa53[_0x233f8b(0x1b5)],_0x297445,{'tries':0x1,'timeoutMs':0x15f90,'maxTokens':MAX_TOKENS});break;}catch(_0x32e75c){if(_0x32e75c[_0x233f8b(0x1a3)])log('#'+_0x48aa53[_0x233f8b(0x1e0)]+'\x20'+_0x48aa53[_0x233f8b(0x1b5)][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x1b7)+_0x335015[_0x233f8b(0x191)]+_0x233f8b(0x1bd)),_0x17059e[_0x233f8b(0x176)](_0x335015[_0x233f8b(0x191)]),_0x4e6bd7=!![],_0x45e0a7[_0x233f8b(0x19d)](_0x335015[_0x233f8b(0x191)]);else{if(isExitError(_0x32e75c))log('#'+_0x48aa53[_0x233f8b(0x1e0)]+'\x20'+_0x48aa53['key'][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x174)+String(_0x32e75c[_0x233f8b(0x1f8)])[_0x233f8b(0x203)](0x0,0x3c)+_0x233f8b(0x1e1)),_0x4cc301['push'](_0x335015[_0x233f8b(0x191)]),_0x45e0a7[_0x233f8b(0x182)](_0x335015[_0x233f8b(0x191)]);else{_0x5339dd={'status':0x0,'text':String(_0x32e75c[_0x233f8b(0x1f8)])[_0x233f8b(0x203)](0x0,0xc8),'exit':_0x335015['line']};break;}}const _0x22ed0f=_0x45e0a7['take']();if(!_0x22ed0f){_0x326e0c=!![],_0x5339dd={'status':0x193,'text':_0x233f8b(0x1a4),'exit':_0x335015[_0x233f8b(0x191)]};break;}_0x528687[_0x233f8b(0x1f0)][_0x233f8b(0x176)](_0x22ed0f[_0x233f8b(0x191)]),_0x335015=_0x22ed0f;}}_0x528687[_0x233f8b(0x187)]={'model':_0x297445,'status':_0x5339dd[_0x233f8b(0x16c)],'text':String(_0x5339dd[_0x233f8b(0x178)]||'')[_0x233f8b(0x203)](0x0,0x12c),'exit':_0x5339dd[_0x233f8b(0x1ea)]},log('#'+_0x48aa53['index']+_0x233f8b(0x1a1)+_0x297445+_0x233f8b(0x18a)+_0x5339dd['status']+'\x20'+String(_0x5339dd[_0x233f8b(0x178)]||'')[_0x233f8b(0x203)](0x0,0x8c));if(_0x5339dd[_0x233f8b(0x16c)]===0xc8)break;if(looksQuota(_0x5339dd[_0x233f8b(0x178)]))break;if(_0x326e0c)break;}_0x528687[_0x233f8b(0x1ea)]=_0x335015[_0x233f8b(0x191)],_0x528687['verdict']=classify({'status':0xc8},_0x528687[_0x233f8b(0x187)],_0x326e0c);if(_0x528687[_0x233f8b(0x1e3)]==='ok'){if(!fs[_0x233f8b(0x1e6)](KEYS)||!fs['readFileSync'](KEYS,'utf8')[_0x233f8b(0x1dd)](_0x48aa53['key']))appendLine(KEYS,_0x48aa53['key']);}return log('#'+_0x48aa53[_0x233f8b(0x1e0)]+'\x20'+_0x48aa53['key'][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x194)+(_0x528687[_0x233f8b(0x187)]?_0x528687[_0x233f8b(0x187)][_0x233f8b(0x16c)]:_0x233f8b(0x196))+_0x233f8b(0x18a)+_0x528687['verdict']+_0x233f8b(0x1ad)+_0x335015['line']+(_0x4eea71?',\x20mint\x20exit\x20'+_0x4eea71:'')+')'),_0x528687;}return _0x4e6bd7?(_0x528687[_0x233f8b(0x1e3)]=_0x233f8b(0x1e2),_0x528687[_0x233f8b(0x19a)]='the\x20panel\x20banned\x20every\x20candidate\x20exit\x20—\x20the\x20key\x20was\x20not\x20measured',log('#'+_0x48aa53[_0x233f8b(0x1e0)]+'\x20'+_0x48aa53[_0x233f8b(0x1b5)][_0x233f8b(0x203)](0x0,0xa)+_0x233f8b(0x19b))):(_0x528687[_0x233f8b(0x1e3)]=_0x233f8b(0x1ef),_0x528687[_0x233f8b(0x19a)]=_0x233f8b(0x1ff)+String(_0x293571&&_0x293571['message']||_0x233f8b(0x181))[_0x233f8b(0x203)](0x0,0xa0)+_0x233f8b(0x1aa),log('#'+_0x48aa53['index']+'\x20'+_0x48aa53[_0x233f8b(0x1b5)]['slice'](0x0,0xa)+_0x233f8b(0x1f5)+String(_0x293571&&_0x293571[_0x233f8b(0x1f8)]||_0x233f8b(0x181))['slice'](0x0,0x64))),_0x528687;}(async()=>{const _0x623316=a0_0x3eb80f,_0x13b1d3=readJson(ACCOUNTS,[]);let _0x53a6ef=_0x13b1d3[_0x623316(0x1ac)](_0x4330c8=>_0x4330c8[_0x623316(0x1b5)]);if(ONLY_KEY)_0x53a6ef=_0x53a6ef[_0x623316(0x1ac)](_0x42cb80=>_0x42cb80['key']===ONLY_KEY);if(!ALL&&!ONLY_KEY)_0x53a6ef=_0x53a6ef[_0x623316(0x1ac)](_0x4adb15=>!(_0x4adb15[_0x623316(0x1fe)]&&_0x4adb15[_0x623316(0x1fe)][_0x623316(0x1e3)]==='ok'));if(!_0x53a6ef[_0x623316(0x1d0)]){log(_0x623316(0x202)+(ONLY_KEY?_0x623316(0x1c1):''));return;}const {candidates:_0x16be18}=await collectCandidates({'host':HOST,'extra':[pool],'noPool':!![],'log':_0x113979=>log('·\x20'+_0x113979)});if(!_0x16be18[_0x623316(0x1d0)]){log(_0x623316(0x201)+path['basename'](pool)+_0x623316(0x1c2));return;}const {exits:_0x37e734,good:_0x399828,tried:_0x91776f}=await screenFor(BASE_URL,_0x16be18,{'want':WANT,'conc':Math[_0x623316(0x1fd)](0x4,WANT),'budgetMs':0x3a980,'check':reachable,'log':_0x14ad9c=>log('·\x20'+_0x14ad9c)});if(!_0x399828[_0x623316(0x1d0)]){log(_0x623316(0x16b)+HOST+'\x20('+_0x91776f+'\x20tried'+(bannedAtScreen['length']?',\x20'+bannedAtScreen[_0x623316(0x1d0)]+_0x623316(0x18c):'')+_0x623316(0x170)+_0x53a6ef[_0x623316(0x1d0)]+_0x623316(0x1b9));return;}if(bannedAtScreen[_0x623316(0x1d0)])log('·\x20'+bannedAtScreen[_0x623316(0x1d0)]+_0x623316(0x1b0)+bannedAtScreen[_0x623316(0x1bb)](',\x20'));try{fs[_0x623316(0x16e)](OUT,{'recursive':!![]});const _0x2edd4c=path[_0x623316(0x1bb)](OUT,_0x623316(0x199)+HOST+'.txt'),_0x3f355a=new Set();if(fs[_0x623316(0x1e6)](_0x2edd4c)){for(const _0x402c39 of fs['readFileSync'](_0x2edd4c,_0x623316(0x1b3))[_0x623316(0x1d6)]('\x0a'))if(_0x402c39['trim']())_0x3f355a[_0x623316(0x1dc)](_0x402c39[_0x623316(0x1d6)]('#')[0x0][_0x623316(0x1cb)]());}const _0x277f42=_0x399828[_0x623316(0x1ac)](_0xc1f645=>!_0x3f355a['has'](_0xc1f645[_0x623316(0x191)]));if(_0x277f42[_0x623316(0x1d0)])fs[_0x623316(0x1c3)](_0x2edd4c,_0x277f42[_0x623316(0x184)](_0x215961=>_0x215961[_0x623316(0x191)]+_0x623316(0x16f)+nowIso())['join']('\x0a')+'\x0a');log(_0x623316(0x1ab)+HOST+_0x623316(0x1cf)+_0x277f42[_0x623316(0x1d0)]+_0x623316(0x1d9)+_0x399828[_0x623316(0x1d0)]+_0x623316(0x186));}catch(_0x37bb9e){log('·\x20screened\x20list\x20write\x20failed:\x20'+String(_0x37bb9e['message'])[_0x623316(0x203)](0x0,0x78));}log(_0x623316(0x1d8)+_0x53a6ef[_0x623316(0x1d0)]+_0x623316(0x1a9)+BASE_URL+_0x623316(0x1f1)+_0x399828[_0x623316(0x1d0)]+_0x623316(0x1bc)+_0x91776f+_0x623316(0x17e)+WANT);const _0x5d8d84=new ExitCursor(_0x37e734,{}),_0x56f0f7=[],_0x1f522d=[],_0x323121=[];for(const _0x54e248 of _0x53a6ef){try{_0x323121[_0x623316(0x176)](await measure(_0x54e248,_0x5d8d84,{'bannedThisRun':_0x56f0f7,'deadExits':_0x1f522d}));}catch(_0x1e92cd){_0x323121[_0x623316(0x176)]({'key':_0x54e248['key'],'verdict':'error','note':String(_0x1e92cd['message'])[_0x623316(0x203)](0x0,0xc8)}),log('#'+_0x54e248[_0x623316(0x1e0)]+_0x623316(0x175)+String(_0x1e92cd[_0x623316(0x1f8)])[_0x623316(0x203)](0x0,0xa0));}_0x54e248[_0x623316(0x1fe)]=_0x323121[_0x323121[_0x623316(0x1d0)]-0x1];const _0x26f332=_0x54e248[_0x623316(0x1fe)],_0x21488a=_0x26f332[_0x623316(0x1e3)]===_0x623316(0x183)||_0x26f332[_0x623316(0x1e3)]===_0x623316(0x195),_0x1b39b6=_0x54e248[_0x623316(0x16d)]&&!_0x54e248['verify'][_0x623316(0x1ec)]?{..._0x54e248[_0x623316(0x16d)]}:_0x54e248[_0x623316(0x16d)]&&_0x54e248[_0x623316(0x16d)][_0x623316(0x1ec)]||null;_0x54e248[_0x623316(0x16d)]={'status':_0x21488a?_0x26f332[_0x623316(0x1e3)]:_0x26f332[_0x623316(0x1d2)]&&_0x26f332['models'][_0x623316(0x16c)]||_0x26f332[_0x623316(0x1e3)],'verdict':_0x26f332[_0x623316(0x1e3)],'exit':_0x26f332[_0x623316(0x1ea)]||_0x26f332[_0x623316(0x1d2)]&&_0x26f332[_0x623316(0x1d2)][_0x623316(0x1ea)]||null,'at':_0x26f332['at'],..._0x26f332[_0x623316(0x1d2)]&&_0x26f332[_0x623316(0x1d2)][_0x623316(0x1b2)]?{'body':_0x26f332[_0x623316(0x1d2)]['body']}:{},..._0x26f332[_0x623316(0x187)]?{'chat':{'model':_0x26f332[_0x623316(0x187)]['model'],'status':_0x26f332['chat'][_0x623316(0x16c)],'exit':_0x26f332[_0x623316(0x187)][_0x623316(0x1ea)]}}:{},..._0x1b39b6?{'atMint':_0x1b39b6}:{}};}writeJson(ACCOUNTS,_0x13b1d3);const _0x545e6a=_0x323121['filter'](_0x16f936=>_0x16f936[_0x623316(0x1d2)]&&_0x16f936[_0x623316(0x1d2)][_0x623316(0x16c)]===0xc8)[_0x623316(0x1d0)],_0x316f14=_0x323121[_0x623316(0x1ac)](_0x136593=>_0x136593[_0x623316(0x1e3)]==='ok')[_0x623316(0x1d0)],_0x217b5d=_0x323121[_0x623316(0x1ac)](_0x437a35=>_0x437a35[_0x623316(0x1e3)]===_0x623316(0x17c))['length'],_0x1be0fc=_0x323121[_0x623316(0x1ac)](_0x3ee2e1=>_0x3ee2e1[_0x623316(0x1e3)]===_0x623316(0x1d7))[_0x623316(0x1d0)],_0x324a47=_0x323121[_0x623316(0x1ac)](_0x29fc7c=>_0x29fc7c[_0x623316(0x1e3)]==='account_banned')[_0x623316(0x1d0)],_0x1320ac=_0x323121[_0x623316(0x1ac)](_0x3495db=>_0x3495db[_0x623316(0x1e3)]===_0x623316(0x195))[_0x623316(0x1d0)],_0x285a25=_0x323121['filter'](_0x4d1a68=>_0x4d1a68[_0x623316(0x1e3)]===_0x623316(0x1e2))['length'],_0x19f1f1=_0x323121[_0x623316(0x1ac)](_0x4fc9fb=>_0x4fc9fb[_0x623316(0x1e3)]===_0x623316(0x1ef))[_0x623316(0x1d0)],_0x5004aa=[...new Set([...bannedAtScreen,..._0x56f0f7])],_0x43a5e4=[_0x545e6a+'/'+_0x323121[_0x623316(0x1d0)]+_0x623316(0x1f3)];if(_0x316f14)_0x43a5e4['push'](_0x316f14+_0x623316(0x198));if(_0x217b5d)_0x43a5e4[_0x623316(0x176)](_0x217b5d+_0x623316(0x1ba));if(_0x1be0fc)_0x43a5e4[_0x623316(0x176)](_0x1be0fc+'\x20out\x20of\x20credit');if(_0x324a47)_0x43a5e4[_0x623316(0x176)](_0x324a47+_0x623316(0x190));if(_0x1320ac)_0x43a5e4[_0x623316(0x176)](_0x1320ac+_0x623316(0x1cd));const _0x40b465=_0x285a25+_0x19f1f1;if(_0x285a25)_0x43a5e4[_0x623316(0x176)](_0x285a25+_0x623316(0x1b8)+_0x5004aa['length']+_0x623316(0x1fa));if(_0x19f1f1)_0x43a5e4['push'](_0x19f1f1+'\x20unmeasured:\x20'+new Set(_0x1f522d)['size']+_0x623316(0x1c7));if(!_0x40b465&&_0x5004aa[_0x623316(0x1d0)])_0x43a5e4[_0x623316(0x176)](_0x5004aa[_0x623316(0x1d0)]+_0x623316(0x205));const _0x1fe959=_0x40b465?'\x20—\x20re-run\x20to\x20measure\x20them\x20(an\x20exit\x20problem\x20is\x20not\x20a\x20key\x20verdict)':'';log(_0x623316(0x1f2)+_0x43a5e4['join'](_0x623316(0x1da))+_0x1fe959);})()[a0_0x3eb80f(0x180)](_0x138bba=>{const _0x48a5a7=a0_0x3eb80f;log(_0x48a5a7(0x18f)+(_0x138bba&&_0x138bba[_0x48a5a7(0x189)]?_0x138bba[_0x48a5a7(0x189)][_0x48a5a7(0x1d6)]('\x0a')[_0x48a5a7(0x203)](0x0,0x3)[_0x48a5a7(0x1bb)](_0x48a5a7(0x1fb)):_0x138bba)),process['exit'](0x1);});
+'use strict';
+
+/**
+ * camelhub-bulk-apikey · verify
+ *
+ * Re-checks keys that are already on disk, on an exit that is *not* the one that
+ * minted them (a same-exit pass can be session state rather than key validity):
+ *
+ *   ① `GET /v1/models` with the key answers 200 (authentic), and
+ *   ② one real completion on a cheap listed model answers 200 (spendable) —
+ *      this panel has model channels that are down (`404 当前模型暂时不可用`), so the
+ *      tool walks the cheapest few ids before it calls a key unspendable.
+ *
+ * Three verdicts stay apart, because they mean different things:
+ *
+ *   ok            models 200 and a completion 200 — the key works
+ *   quota         models 200, completion refused for credit (`insufficient…`)
+ *   key_refused   the panel answered the key itself (401/403/404 with a body)
+ *   exit_banned   the panel **banned the exit** (`IP banned`) — the key was never
+ *                 measured; the run retires that exit and continues on the next
+ *
+ *   node verify.js                 # every key on disk that is not already ok
+ *   node verify.js --key <key>     # one key
+ *   node verify.js --all           # also re-check keys whose last run said ok
+ *   node verify.js --model claude-haiku-4-5
+ *
+ * Verdicts are written to `accounts.json` (`verifyIndependent`), a fresh model
+ * list to `models.json`, the exits that proved reachable to
+ * `out/screened-<host>.txt`, and a key is appended to `keys.txt` only when it is
+ * `ok` — `GET /v1/models` 200 *and* a completion 200.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const { ExitPool, readJson, writeJson, appendLine, nowIso, req, isExitError } = require('./lib.js');
+const { Panel } = require('./newapi.js');
+const { collectCandidates, screenFor } = require('./xwave-lib.js');
+const ipban = require('./ipban.js');
+
+// A ban that appears *after* screening (the panel blocks an exit mid-run) must take
+// the exit path too: this makes a ban response throw like a transport failure, so
+// every call site below retires that exit and moves on.
+ipban.guard({ Panel });
+
+const BASE = 'https://api.camel-hub.com';
+const HOST = new URL(BASE).host;
+const POOL = path.join(__dirname, 'proxies.txt');
+const ACCOUNTS = path.join(__dirname, 'accounts.json');
+const KEYS = path.join(__dirname, 'keys.txt');
+const MODELS_FILE = path.join(__dirname, 'models.json');
+const OUT = path.join(__dirname, 'out');
+
+const USAGE = `camelhub-bulk-apikey · verify — re-check keys already on disk
+
+usage: node verify.js [options]
+
+  --key K          verify one key instead of every key on disk
+  --all            also re-check keys whose last run said they work
+  --model ID[,ID]  model(s) for the completion check (default: cheapest listed)
+  --max-tokens N   tokens to ask for (default 8)
+  --want N         independent exits to prove before checking keys (default 3)
+  --pool FILE      exit list, one per line (default proxies.txt)
+  --base URL       panel address (default ${BASE})
+  --help           this text
+
+Every call rides an exit from proxies.txt; the exit that verified a key is
+recorded next to the exit that minted it, so "the key works" is never confused
+with "this session works". An exit the panel has banned is retired and the run
+continues on the next one — it is never recorded as a key verdict.`;
+
+const argv = process.argv.slice(2);
+const has = (name) => argv.includes(`--${name}`);
+const one = (name) => {
+  const i = argv.indexOf(`--${name}`);
+  return i >= 0 && argv[i + 1] ? argv[i + 1] : null;
+};
+
+if (has('help') || has('-h') || argv.includes('-h')) {
+  console.log(USAGE);
+  process.exit(0);
+}
+
+const FLAGS = ['--key', '--all', '--model', '--max-tokens', '--want', '--pool', '--base'];
+for (const a of argv) {
+  if (a.startsWith('-') && !FLAGS.includes(a)) {
+    console.error(`unknown flag: ${a}\n`);
+    console.log(USAGE);
+    process.exit(2);
+  }
+}
+
+const pool = path.resolve(one('pool') || POOL);
+if (!fs.existsSync(pool)) {
+  console.error(`no exit list at ${pool}\n  one exit per line, e.g. socks5://127.0.0.1:1080 — see README "Behind a proxy"`);
+  process.exit(2);
+}
+
+const BASE_URL = one('base') || BASE;
+const ONLY_KEY = one('key') || '';
+const ALL = has('all');
+const MODELS = (one('model') || '').split(',').map((s) => s.trim()).filter(Boolean);
+const MAX_TOKENS = parseInt(one('max-tokens') || '8', 10);
+const WANT = parseInt(one('want') || '3', 10);
+const MAX_EXITS = Math.max(WANT, 4); // every key may burn this many exits before the run calls it unmeasured
+
+const log = (...a) => console.log(`[${nowIso()}] ${a.join(' ')}`);
+const CHATTY = /embed|rerank|reranker|whisper|tts|image|audio|video|vision|bge/i;
+
+/** Cheap-model ranking — the same heuristic the mint uses. */
+function rankCheapest(ids) {
+  const rank = (id) => {
+    let s = 5;
+    if (/flash|nano|mini|small|lite|turbo|haiku|8b|7b|4b|1b/i.test(id)) s -= 3;
+    if (/free/i.test(id)) s -= 2;
+    if (/pro|opus|ultra|max|72b|70b|235b|405b|550b/i.test(id)) s += 3;
+    if (/embed|rerank|whisper|tts|image|audio|video|vision/i.test(id)) s += 4;
+    return s;
+  };
+  return [...ids].sort((a, b) => rank(a) - rank(b));
+}
+
+const looksQuota = (text) => /insufficient|quota|额度|余额|balance|余额不足/i.test(String(text || ''));
+const looksAccountBanned = (text) => /user_banned|user banned|账号封禁|账号已被封禁|account.*banned/i.test(String(text || ''));
+
+/** What the panel answered for a key, never for the exit. */
+function classify(models, chat, bannedMidChat) {
+  if (models.status === 200) {
+    if (chat && chat.status === 200) return 'ok';
+    if (bannedMidChat) return 'authentic';
+    if (chat && looksQuota(chat.text)) return 'quota';
+    return 'authentic';
+  }
+  if (looksAccountBanned(models.text)) return 'account_banned';
+  return 'key_refused';
+}
+
+/** A cursor over the screened exits, skipping the mint exit and every banned line. */
+class ExitCursor {
+  constructor(pool, { avoid = [], banned = [] } = {}) {
+    this.queue = pool.slice();
+    this.skip = new Set([...avoid, ...banned].filter(Boolean));
+    this.proven = []; // exits that answered a panel answer for some key — worth more than an untried candidate
+  }
+  take() {
+    while (this.queue.length) {
+      const p = this.queue.shift();
+      if (!p || this.skip.has(p.line)) continue;
+      return p;
+    }
+    // Untried candidates are gone: an exit that already answered may carry the
+    // next key, so a small pool does not leave keys unmeasured. Banned or failed
+    // exits remove themselves from `proven`, so this cannot loop on a bad one.
+    return this.proven.find((p) => !this.skip.has(p.line)) || null;
+  }
+  ban(line) {
+    if (line) this.skip.add(line);
+    this.proven = this.proven.filter((p) => p.line !== line);
+  }
+  died(line) {
+    this.proven = this.proven.filter((p) => p.line !== line);
+  }
+  answered(pin) {
+    if (pin && !this.proven.some((p) => p.line === pin.line)) this.proven.push(pin);
+  }
+}
+
+function panelOn(pin) {
+  return new Panel(BASE_URL, new ExitPool([pin], { label: 'camelhub' }), { label: 'camelhub', log: () => {} });
+}
+
+/**
+ * Screening probe. `/api/status` answers 200 *through an exit the panel has
+ * banned* (measured: two ports of the same banned IP), so bans are only visible
+ * on a gated route: a junk bearer on `/v1/models` answers `401 invalid_api_key`
+ * from a healthy exit and `403 IP banned` from a blocked one. Banning at
+ * screening time costs nothing and keeps a banned exit from ever being spent on
+ * a key.
+ */
+const bannedAtScreen = [];
+async function reachable(p) {
+  const res = await req(p, `${BASE_URL}/v1/models`, {
+    timeoutMs: 20000,
+    connectTimeoutMs: 6000,
+    headers: { authorization: 'Bearer screening-probe', accept: 'application/json' },
+  });
+  if (ipban.isBan(res)) {
+    if (!bannedAtScreen.includes(p.line)) bannedAtScreen.push(p.line);
+    log(`  ✖ banned by the panel: ${p.line}`);
+    return false;
+  }
+  return res.status < 500;
+}
+
+/**
+ * Measure one key. Every *exit* failure — a panel ban, a dead exit, a timeout —
+ * retires that candidate and the key is tried on the next one, because neither
+ * says anything about the key. Only a panel answer *about the key* becomes a key
+ * verdict; a key that never got one comes back `exit_banned` / `error`
+ * (unmeasured) instead of reading as broken.
+ */
+async function measure(rec, cursor, { bannedThisRun, deadExits }) {
+  const out = { at: nowIso(), key: rec.key, mintExit: null, exit: null, models: null, chat: null, verdict: null, triedExits: [], note: null };
+  const mintExit = (rec.verify && rec.verify.mintExit) || (rec.verifyIndependent && rec.verifyIndependent.mintExit) || '';
+  out.mintExit = mintExit || null;
+  if (mintExit) cursor.ban(mintExit);
+
+  let bannedHere = false;
+  let lastError = null;
+  let pin = cursor.take();
+  while (pin) {
+    out.triedExits.push(pin.line);
+    let models;
+    try {
+      models = await panelOn(pin).models(rec.key, { tries: 1, timeoutMs: 30000 });
+    } catch (e) {
+      if (e.ipBanned) {
+        log(`#${rec.index} ${rec.key.slice(0, 10)}… exit banned by the panel: ${pin.line} — trying the next exit`);
+        bannedThisRun.push(pin.line);
+        bannedHere = true;
+        cursor.ban(pin.line);
+      } else {
+        log(`#${rec.index} ${rec.key.slice(0, 10)}… exit failed (${String(e.message).slice(0, 80)}) — trying the next exit`);
+        deadExits.push(pin.line);
+        cursor.died(pin.line);
+        lastError = e;
+      }
+      pin = cursor.take();
+      continue;
+    }
+
+    if (models.status !== 200) {
+      // The panel answered the key itself: that is a key verdict, not an exit one.
+      cursor.answered(pin);
+      out.exit = pin.line;
+      out.models = { status: models.status, body: String(models.text || '').slice(0, 300), exit: pin.line };
+      out.verdict = classify(models, null, false);
+      log(`#${rec.index} ${rec.key.slice(0, 10)}… /v1/models ${models.status} · ${out.models.body.slice(0, 140)}`);
+      return out;
+    }
+
+    // ---- authentic: this exit answered the key. Now make it spend.
+    const ids = models.json && Array.isArray(models.json.data) ? models.json.data.map((m) => m.id || m) : [];
+    cursor.answered(pin);
+    out.exit = pin.line;
+    out.models = { status: 200, count: ids.length || null, exit: pin.line };
+    if (ids.length) writeJson(MODELS_FILE, { at: nowIso(), base: BASE_URL, models: ids });
+
+    let tryList = MODELS.slice();
+    if (!tryList.length) tryList = rankCheapest(ids.filter((id) => !CHATTY.test(id))).slice(0, 5);
+
+    let bannedMidChat = false;
+    for (const id of tryList) {
+      let res = null;
+      for (;;) {
+        try {
+          res = await panelOn(pin).chat(rec.key, id, { tries: 1, timeoutMs: 90000, maxTokens: MAX_TOKENS });
+          break;
+        } catch (e) {
+          if (e.ipBanned) {
+            log(`#${rec.index} ${rec.key.slice(0, 10)}… exit banned by the panel mid-check: ${pin.line} — trying the next exit`);
+            bannedThisRun.push(pin.line);
+            bannedHere = true;
+            cursor.ban(pin.line);
+          } else if (isExitError(e)) {
+            log(`#${rec.index} ${rec.key.slice(0, 10)}… exit failed mid-check (${String(e.message).slice(0, 60)}) — trying the next exit`);
+            deadExits.push(pin.line);
+            cursor.died(pin.line);
+          } else {
+            res = { status: 0, text: String(e.message).slice(0, 200), exit: pin.line };
+            break;
+          }
+          const next = cursor.take();
+          if (!next) {
+            bannedMidChat = true;
+            res = { status: 403, text: 'no candidate exit left (banned or dead)', exit: pin.line };
+            break;
+          }
+          out.triedExits.push(next.line);
+          pin = next;
+        }
+      }
+      out.chat = { model: id, status: res.status, text: String(res.text || '').slice(0, 300), exit: res.exit };
+      log(`#${rec.index} chat ${id} → ${res.status} ${String(res.text || '').slice(0, 140)}`);
+      if (res.status === 200) break;
+      if (looksQuota(res.text)) break;
+      if (bannedMidChat) break;
+    }
+
+    out.exit = pin.line;
+    out.verdict = classify({ status: 200 }, out.chat, bannedMidChat);
+    if (out.verdict === 'ok') {
+      if (!fs.existsSync(KEYS) || !fs.readFileSync(KEYS, 'utf8').includes(rec.key)) appendLine(KEYS, rec.key);
+    }
+    log(
+      `#${rec.index} ${rec.key.slice(0, 10)}… models=200 chat=${out.chat ? out.chat.status : 'n/a'} → ${out.verdict} (exit ${pin.line}${mintExit ? `, mint exit ${mintExit}` : ''})`
+    );
+    return out;
+  }
+
+  // no candidate exit could answer the key
+  if (bannedHere) {
+    out.verdict = 'exit_banned';
+    out.note = 'the panel banned every candidate exit — the key was not measured';
+    log(`#${rec.index} ${rec.key.slice(0, 10)}… unmeasured: every candidate exit was banned by the panel`);
+  } else {
+    out.verdict = 'error';
+    out.note = `no candidate exit answered (${String((lastError && lastError.message) || 'no exits left').slice(0, 160)}) — the key was not measured`;
+    log(`#${rec.index} ${rec.key.slice(0, 10)}… unmeasured: no exit answered — ${String((lastError && lastError.message) || 'no exits left').slice(0, 100)}`);
+  }
+  return out;
+}
+
+(async () => {
+  const accounts = readJson(ACCOUNTS, []);
+  let todo = accounts.filter((r) => r.key);
+  if (ONLY_KEY) todo = todo.filter((r) => r.key === ONLY_KEY);
+  if (!ALL && !ONLY_KEY) todo = todo.filter((r) => !(r.verifyIndependent && r.verifyIndependent.verdict === 'ok'));
+  if (!todo.length) {
+    log('no keys to verify for camelhub' + (ONLY_KEY ? ' (that key is not in accounts.json)' : ''));
+    return;
+  }
+
+  // ---- exits: the user's pool, screened for this host, proven list first
+  const { candidates } = await collectCandidates({ host: HOST, extra: [pool], noPool: true, log: (m) => log('· ' + m) });
+  if (!candidates.length) {
+    log(`no exits parsed from ${path.basename(pool)} — one per line, e.g. socks5://127.0.0.1:1080`);
+    return;
+  }
+  const { exits, good, tried } = await screenFor(BASE_URL, candidates, {
+    want: WANT,
+    conc: Math.min(4, WANT),
+    budgetMs: 240000,
+    check: reachable,
+    log: (m) => log('· ' + m),
+  });
+  if (!good.length) {
+    log(`no usable exit for ${HOST} (${tried} tried${bannedAtScreen.length ? `, ${bannedAtScreen.length} banned by the panel` : ''}) — no key was measured, ${todo.length} key(s) left untouched`);
+    return;
+  }
+  if (bannedAtScreen.length) log(`· ${bannedAtScreen.length} exit(s) are banned by the panel (filtered before any key call): ${bannedAtScreen.join(', ')}`);
+  try {
+    fs.mkdirSync(OUT, { recursive: true });
+    const file = path.join(OUT, `screened-${HOST}.txt`);
+    const known = new Set();
+    if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) known.add(l.split('#')[0].trim());
+    const fresh = good.filter((p) => !known.has(p.line));
+    if (fresh.length) fs.appendFileSync(file, fresh.map((p) => `${p.line}  # verified ${nowIso()}`).join('\n') + '\n');
+    log(`· screened exits → out/screened-${HOST}.txt (+${fresh.length} of ${good.length} proven)`);
+  } catch (e) {
+    log(`· screened list write failed: ${String(e.message).slice(0, 120)}`);
+  }
+
+  log(`verify ${todo.length} key(s) for camelhub (${BASE_URL}) · exits ${good.length} proven of ${tried} tried · want ${WANT}`);
+
+  const cursor = new ExitCursor(exits, {});
+  const bannedThisRun = [];
+  const deadExits = [];
+  const results = [];
+  for (const rec of todo) {
+    try {
+      results.push(await measure(rec, cursor, { bannedThisRun, deadExits }));
+    } catch (e) {
+      results.push({ key: rec.key, verdict: 'error', note: String(e.message).slice(0, 200) });
+      log(`#${rec.index} verify error: ${String(e.message).slice(0, 160)}`);
+    }
+    rec.verifyIndependent = results[results.length - 1];
+    // The current verdict also lands where the exit verdicts already live, so a
+    // reader of `accounts.json` sees one shape: `verify.status` (the HTTP status
+    // when a key authenticated, otherwise the verdict — `account_banned`,
+    // `key_refused`), `verify.verdict`, `verify.exit` (the exit that observed it)
+    // and `verify.at`. The mint-time measurement is kept, not overwritten: it
+    // moves to `verify.atMint`.
+    const r = rec.verifyIndependent;
+    const refused = r.verdict === 'account_banned' || r.verdict === 'key_refused';
+    const prev = rec.verify && !rec.verify.atMint ? { ...rec.verify } : (rec.verify && rec.verify.atMint) || null;
+    rec.verify = {
+      status: refused ? r.verdict : (r.models && r.models.status) || r.verdict,
+      verdict: r.verdict,
+      exit: r.exit || (r.models && r.models.exit) || null,
+      at: r.at,
+      ...(r.models && r.models.body ? { body: r.models.body } : {}),
+      ...(r.chat ? { chat: { model: r.chat.model, status: r.chat.status, exit: r.chat.exit } } : {}),
+      ...(prev ? { atMint: prev } : {}),
+    };
+  }
+  writeJson(ACCOUNTS, accounts);
+
+  const ok = results.filter((r) => r.models && r.models.status === 200).length;
+  const spendable = results.filter((r) => r.verdict === 'ok').length;
+  const authentic = results.filter((r) => r.verdict === 'authentic').length;
+  const quota = results.filter((r) => r.verdict === 'quota').length;
+  const accountBanned = results.filter((r) => r.verdict === 'account_banned').length;
+  const refused = results.filter((r) => r.verdict === 'key_refused').length;
+  const bannedUnmeasured = results.filter((r) => r.verdict === 'exit_banned').length;
+  const deadUnmeasured = results.filter((r) => r.verdict === 'error').length;
+  const banned = [...new Set([...bannedAtScreen, ...bannedThisRun])];
+  const parts = [`${ok}/${results.length} keys answered /v1/models 200`];
+  if (spendable) parts.push(`${spendable} spendable`);
+  if (authentic) parts.push(`${authentic} authentic, no channel answered`);
+  if (quota) parts.push(`${quota} out of credit`);
+  if (accountBanned) parts.push(`${accountBanned} account(s) banned by the panel (auth.user_banned)`);
+  if (refused) parts.push(`${refused} key(s) refused`);
+  const unmeasured = bannedUnmeasured + deadUnmeasured;
+  if (bannedUnmeasured) parts.push(`${bannedUnmeasured} unmeasured: ${banned.length} exit(s) banned by the panel`);
+  if (deadUnmeasured) parts.push(`${deadUnmeasured} unmeasured: ${new Set(deadExits).size} exit(s) did not answer`);
+  if (!unmeasured && banned.length) parts.push(`${banned.length} exit(s) banned by the panel and retired`);
+  const tail = unmeasured ? ' — re-run to measure them (an exit problem is not a key verdict)' : '';
+  log(`done: camelhub — ${parts.join(' · ')}${tail}`);
+})().catch((e) => {
+  log(`FATAL ${e && e.stack ? e.stack.split('\n').slice(0, 3).join(' | ') : e}`);
+  process.exit(1);
+});

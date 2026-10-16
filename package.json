@@ -43,6 +43,7 @@
     "verify-key.js",
     "verify.js",
     "xwave-lib.js",
+    "connect-9router.js",
     "README.md",
     "LICENSE"
   ]
