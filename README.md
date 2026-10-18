@@ -24,6 +24,12 @@
 
 </div>
 
+<div align="center">
+
+**English** · [Türkçe](README.tr.md) · [中文](README.cn.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [Português](README.pt.md)
+
+</div>
+
 ---
 
 ## 🎁 Free tier — how much you get
@@ -58,13 +64,11 @@ deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
 ```
 
-| Call | Status | Body |
-| --- | --- | --- |
-| `claude-haiku-4-5` | **200** | `{"id":"<chat-id>","object":"chat.completion",…}` |
-| `ERNIE-Lite-8K` | **404** | `当前模型暂时不可用` (channel down) |
-| `claude-3-haiku-20240307` | **404** | `当前模型暂时不可用` (channel down) |
+|Model|✓|
+|---|---|
+|`claude-haiku-4-5`|✓|
 
-Both 404s came from the same key that answered 200 for `claude-haiku-4-5` seconds later, so a down channel is a property of the model, not of your key. `verify` walks the cheapest listed ids for that reason, and `--model <id>` pins the one you care about.
+A listed channel can answer `404 当前模型暂时不可用` even when your key is fine, so only the id the verifier actually got a completion from is ticked; `--model <id>` pins the one you care about.
 
 ```bash
 curl https://api.camel-hub.com/v1/models -H "Authorization: Bearer <one of your keys>"
@@ -125,9 +129,6 @@ Measured **2026-10-15**: **4 accounts → 4 keys, one key per account**. Every k
 
 | Model | Live (models) | Real chat call | Measured |
 | --- | --- | --- | --- |
-| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:57 |
-| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:55 |
-| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:56 |
 | `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` · re-checked 12:05 · ✔ **live** | 2026-10-15 11:08 |
 
 `GET /v1/models` 200 proves a key is *authentic*; a completion 200 carrying a chat-completion body proves the account behind it can *spend*. `verify.js` (and every mint) records the exact status, body and observing exit of both calls per key in `accounts.json` — `verify` holds the current verdict, `verify.atMint` the measurement taken when the key was minted.
