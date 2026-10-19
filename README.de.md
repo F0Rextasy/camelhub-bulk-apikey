@@ -30,7 +30,6 @@
 
 </div>
 
-
 ---
 
 ## 🎁 Gratis-Tarif — wie viel du bekommst

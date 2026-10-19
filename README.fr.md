@@ -30,7 +30,6 @@
 
 </div>
 
-
 ---
 
 ## 🎁 Offre gratuite — ce que vous obtenez

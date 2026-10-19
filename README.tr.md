@@ -30,7 +30,6 @@
 
 </div>
 
-
 ---
 
 ## 🎁 Ücretsiz katman — ne kadar alıyorsunuz

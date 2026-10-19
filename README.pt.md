@@ -30,7 +30,6 @@
 
 </div>
 
-
 ---
 
 ## 🎁 Camada gratuita — quanto você recebe
