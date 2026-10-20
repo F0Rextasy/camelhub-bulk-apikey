@@ -30,8 +30,8 @@ function help() {
   console.log('\noptions: every task takes its own flags — ask it directly:');
   console.log('  node src/mint.js --help');
   console.log('  --preset turbo|balanced|safe  run shape for the task (5/4/2 workers, 3/6/8 s apart)');
-  console.log('\nproxy pool:');
-  console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported');
+  console.log('\nproxy pool (optional — recommended at scale: per-IP limits, bans):');
+  console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported; with no pool the run goes direct');
   console.log('\nno options? run the interactive launcher:  node src/launcher.js');
 }
 

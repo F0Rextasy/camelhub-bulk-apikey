@@ -3,10 +3,10 @@
 /**
  * Shared plumbing for the bulk-mint tools.
  *
- * Hard rule baked in: **every request that leaves this machine goes through a
- * proxy**. `req()` throws when handed a null proxy instead of silently dialing
- * direct, so a missing exit surfaces as an error, never as our own IP reaching
- * a provider.
+ * The proxy pool is **optional**: with a pool file every request that leaves
+ * this machine goes through one of its exits, and `req()` never silently swaps
+ * a dead exit for the machine's own address. With no pool at all the callers
+ * fall back to DIRECT_EXIT — an explicit "no proxy" that `req()` dials direct.
  *
  * Shared pieces: `proxy.js` (tunnels + agent), a local inbox broker
  * (Mailtrap / inboxes.com on 127.0.0.1:9700|9701).
@@ -20,6 +20,14 @@ const path = require('path');
 const { URL } = require('url');
 
 const { parseProxy, createAgent, loadPoolFile } = require(path.join(__dirname, 'proxy'));
+
+/**
+ * The direct-mode pseudo-exit: `req()`/`ExitPool`/`PinHunter` all speak
+ * `proxy.line`, so this sentinel flows through them unchanged and simply turns
+ * the tunnel off (a pool is recommended at scale — per-IP limits, bans).
+ */
+const DIRECT_EXIT = Object.freeze({ line: 'direct', direct: true, protocol: 'direct', host: 'direct', port: 0 });
+const isDirect = (p) => !p || p.direct === true;
 
 const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const CODE_RE = /[0-9]{4,8}/;
@@ -84,14 +92,11 @@ function loadExits(files = DEFAULT_POOLS, { shuffle = true } = {}) {
 }
 
 /**
- * Fail-closed HTTP: no proxy → throw (never fall back to our own address).
- *
- * `agent` (optional) is a caller-owned agent — the pinned flows pass a
- * keep-alive agent so every request of one account reuses a *single* tunnel
- * (one upstream exit), which is what an exit-bound verification code needs.
+ * A proxy is optional: with no exit (or with DIRECT_EXIT) the request goes out
+ * directly. When a pool *is* configured, a dead exit still fails its attempt
+ * instead of silently falling back to our own address.
  */
 function req(proxy, url, { method = 'GET', headers = {}, body = null, timeoutMs = 30000, connectTimeoutMs = 8000, agent = null } = {}) {
-  if (!proxy) return Promise.reject(new Error('refusing direct request (no exit): ' + url));
   return new Promise((resolve, reject) => {
     const u = new URL(url);
     const lib = u.protocol === 'https:' ? https : http;
@@ -100,15 +105,17 @@ function req(proxy, url, { method = 'GET', headers = {}, body = null, timeoutMs 
     const h = { ...headers };
     if (payload && !Object.keys(h).some((k) => k.toLowerCase() === 'content-type')) h['Content-Type'] = 'application/json';
     if (payload && !Object.keys(h).some((k) => k.toLowerCase() === 'content-length')) h['Content-Length'] = payload.length;
-    proxy.connectTimeoutMs = connectTimeoutMs;
-    proxy.timeoutMs = timeoutMs;
+    if (!isDirect(proxy)) {
+      proxy.connectTimeoutMs = connectTimeoutMs;
+      proxy.timeoutMs = timeoutMs;
+    }
     const r = lib.request(
       {
         method,
         host: u.hostname,
         port: u.port || (u.protocol === 'https:' ? 443 : 80),
         path: u.pathname + u.search,
-        agent: agent || createAgent(proxy),
+        agent: agent || (isDirect(proxy) ? undefined : createAgent(proxy)),
         headers: h,
       },
       (res) => {
@@ -454,6 +461,8 @@ module.exports = {
   randHex,
   randPass,
   req,
+  DIRECT_EXIT,
+  isDirect,
   jreq,
   isExitError,
   ExitPool,

@@ -34,7 +34,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { ExitPool, readJson, writeJson, appendLine, nowIso, req, isExitError } = require('./lib.js');
+const { ExitPool, readJson, writeJson, appendLine, nowIso, req, isExitError, isDirect } = require('./lib.js');
 const { Panel } = require('./newapi.js');
 const { collectCandidates, screenFor } = require('./xwave-lib.js');
 const ipban = require('./ipban.js');
@@ -93,10 +93,9 @@ for (const a of argv) {
 }
 
 const pool = path.resolve(one('pool') || POOL);
-if (!fs.existsSync(pool)) {
-  console.error(`no exit list at ${pool}\n  one exit per line, e.g. socks5://127.0.0.1:1080 — see README "Behind a proxy"`);
-  process.exit(2);
-}
+// The pool is OPTIONAL: a missing/empty list means the run screens the direct
+// route instead (recommended at scale — per-IP limits, bans — but not required).
+if (!fs.existsSync(pool)) console.log(`no proxy list at ${path.basename(pool)} — running WITHOUT a proxy (direct)`);
 
 const BASE_URL = one('base') || BASE;
 const ONLY_KEY = one('key') || '';
@@ -346,8 +345,7 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
     const file = path.join(OUT, `screened-${HOST}.txt`);
     const known = new Set();
     if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) known.add(l.split('#')[0].trim());
-    const fresh = good.filter((p) => !known.has(p.line));
-    if (fresh.length) fs.appendFileSync(file, fresh.map((p) => `${p.line}  # verified ${nowIso()}`).join('\n') + '\n');
+    const fresh = good.filter((p) => !isDirect(p) && !known.has(p.line));
     log(`· screened exits → out/screened-${HOST}.txt (+${fresh.length} of ${good.length} proven)`);
   } catch (e) {
     log(`· screened list write failed: ${String(e.message).slice(0, 120)}`);

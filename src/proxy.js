@@ -115,7 +115,7 @@ function browserUrl(proxy) {
 }
 
 function label(proxy) {
-  if (!proxy) return '(direct)';
+  if (!proxy || proxy.direct === true) return '(direct)';
   const auth = proxy.username ? `${encodeURIComponent(proxy.username)}:***@` : '';
   return `${proxy.protocol}://${auth}${proxy.host}:${proxy.port}`;
 }

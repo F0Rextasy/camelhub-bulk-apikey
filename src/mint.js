@@ -58,8 +58,9 @@ usage: node src/mint.js [options]
   --gap S          seconds between account starts inside a worker
   --help           this text
 
-exits are never optional: every request to the panel rides proxies.txt, and a
-mailbox that cannot be reached through it is retried on the next line.`;
+the proxy pool is OPTIONAL: with exits in proxies.txt every request to the panel
+rides one of them and mailbox traffic is retried on the next line; with no pool
+at all the whole run goes out direct (a pool is recommended at scale).`;
 
 const argv = process.argv.slice(2);
 const has = (name) => argv.includes(`--${name}`);
@@ -89,15 +90,12 @@ if (!Number.isFinite(count) || count < 1) {
   process.exit(2);
 }
 const pool = path.resolve(one('pool') || POOL);
-if (!fs.existsSync(pool)) {
-  console.error(`no exit list at ${pool}\n  one exit per line, e.g. socks5://127.0.0.1:1080 — see README "Behind a proxy"`);
-  process.exit(2);
-}
-const exits = fs.readFileSync(pool, 'utf8').split(/\r?\n/).filter((l) => l.trim() && !l.trim().startsWith('#'));
-if (!exits.length) {
-  console.error(`${pool} has no exits in it yet (comment lines do not count)`);
-  process.exit(2);
-}
+// The pool is OPTIONAL: no exit list (or an empty one) means the engine runs
+// WITHOUT a proxy (direct) — recommended at scale, but never required.
+const poolMissing = !fs.existsSync(pool);
+if (poolMissing) console.log(`no proxy list at ${path.basename(pool)} — running WITHOUT a proxy (direct)`);
+const exits = poolMissing ? [] : fs.readFileSync(pool, 'utf8').split(/\r?\n/).filter((l) => l.trim() && !l.trim().startsWith('#'));
+if (!exits.length && !poolMissing) console.log(`${path.basename(pool)} has no usable exits — running WITHOUT a proxy (direct)`);
 
 // ---- the engine's two provider-folder lookups, pointed at this repository ---
 //

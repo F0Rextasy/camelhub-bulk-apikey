@@ -100,8 +100,8 @@ The panel runs several API hosts; `https://api.camel-hub.com` is the one this ba
 # clone this repository (or download the ZIP), then:
 cd camelhub-bulk-apikey
 
-# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
-printf 'socks5://127.0.0.1:1080\n' > proxies.txt
+# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port) — optional
+printf 'socks5://127.0.0.1:1080\n' > proxies.txt   # optional — without it the tool runs direct
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
@@ -178,8 +178,9 @@ node src/cli.js 9router
 
 ## 🛰️ Behind a proxy
 
-* Exits come from `proxies.txt` (one line per exit, `scheme://host:port`, `user:pass@` supported, `#` comments ignored). The same pool feeds the panel calls, the key verification and the mailbox reads; the tools never dial the provider directly.
-* **Screening is the work.** Each account pins the first exit that proves `GET /api/status` against the panel host, and verification pins a *different* proven exit — an exit that dies mid-run retires itself and the account continues on the next one.
+* Exits come from `proxies.txt` (one line per exit, `scheme://host:port`, `user:pass@` supported, `#` comments ignored). The same pool feeds the panel calls, the key verification and the mailbox reads.
+* **Optional — recommended at scale (per-IP limits, bans).** The tool works without a proxy too: with no exit list (or an empty one) the CLI prints `running WITHOUT a proxy (direct)` and every request leaves from your own line — sign-up, key minting and verification are unchanged.
+* **Screening is the work.** Each account pins the first exit that proves `GET /api/status` against the panel host (with no pool the pinned "exit" is the direct route), and verification pins a *different* proven exit — an exit that dies mid-run retires itself and the account continues on the next one.
 * A banned exit answers `403 IP banned`; it is filtered before a key is spent on it and retired when it happens later.
 * The mailbox ([Emailnator](https://www.emailnator.com)) is a third-party temp-mail service rather than the panel; its API is read through your exits as well.
 

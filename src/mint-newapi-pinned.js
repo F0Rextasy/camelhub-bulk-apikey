@@ -35,7 +35,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { loadExits, ExitPool, providerDir, readJson, writeJson, appendLine, sleep, randHex, randPass, nowIso, extractCode, req, isExitError } = require('./lib');
+const { loadExits, ExitPool, providerDir, readJson, writeJson, appendLine, sleep, randHex, randPass, nowIso, extractCode, req, isExitError, DIRECT_EXIT, isDirect } = require('./lib');
 const { Panel, gates, UA } = require('./newapi');
 const { createAgent } = require(path.join(__dirname, 'proxy'));
 const { presetArgv, resolvePreset } = require('./preset');
@@ -204,7 +204,7 @@ class PinnedSupply {
 function pinnedPanel(pin) {
   const supply = new PinnedSupply(pin);
   const panel = new Panel(BASE, supply, { label: NAME, log });
-  panel.agent = createAgent(pin, { keepAlive: true, maxSockets: 1 });
+  panel.agent = isDirect(pin) ? undefined : createAgent(pin, { keepAlive: true, maxSockets: 1 });
   panel.supply = supply;
   return panel;
 }
@@ -302,9 +302,9 @@ class PinHunter {
 
 // --------------------------------------------------------------------------- mail
 
-/** Proxy-pool bound Emailnator calls: a missing pool is an error, never direct. */
+/** Pool-bound Emailnator calls; with no pool they fall back to the direct exit. */
 function mailExit(pool) {
-  if (!pool) throw new Error('mail: refusing direct request (no proxy pool)');
+  if (!pool) return DIRECT_EXIT;
   return pool.next();
 }
 
@@ -316,11 +316,11 @@ async function mailList(plain, pool, { tries = MAIL_TRIES } = {}) {
       // Recycled Emailnator boxes can carry dozens of stale messages (bounces,
       // other people's signups); a 20-message window can hide the new mail.
       const messages = await emailnator.listMessages(plain, p, { limit: 50 });
-      pool.alive(p);
+      if (pool) pool.alive(p);
       return messages;
     } catch (e) {
       last = e;
-      pool.kill(p);
+      if (pool) pool.kill(p);
     }
   }
   throw new Error(`mail list: ${String(last && last.message).slice(0, 140)}`);
@@ -332,11 +332,11 @@ async function mailRead(id, pool, { tries = MAIL_TRIES } = {}) {
     const p = mailExit(pool);
     try {
       const full = await emailnator.readMessage(id, p);
-      pool.alive(p);
+      if (pool) pool.alive(p);
       return full;
     } catch (e) {
       last = e;
-      pool.kill(p);
+      if (pool) pool.kill(p);
     }
   }
   throw new Error(`mail read: ${String(last && last.message).slice(0, 140)}`);
@@ -349,11 +349,11 @@ async function mailNew(pool, { tries = 4 } = {}) {
     const p = mailExit(pool);
     try {
       const box = await emailnator.newAddress(p);
-      pool.alive(p);
+      if (pool) pool.alive(p);
       return { ...box, exit: p.line, provider: 'emailnator' };
     } catch (e) {
       last = e;
-      pool.kill(p);
+      if (pool) pool.kill(p);
     }
   }
   throw new Error(`mail generate: ${String(last && last.message).slice(0, 160)}`);
@@ -648,6 +648,10 @@ async function probeRegister(panel, email) {
   }
   priority.unshift(...poolLines);
   const cold = loadExits(undefined, { shuffle: true });
+  // No pool at all = DIRECT mode: seed the hunter with the direct pseudo-exit so
+  // the gates probe and the account pin ride this machine's own line. A pool is
+  // still recommended at scale (per-IP limits, bans) — it is just optional.
+  if (!priority.length && !cold.length) priority.push(DIRECT_EXIT);
   const hunter = new PinHunter(priority, cold);
   const poolMail = await fetchPool({ target: 'www.emailnator.com', limit: 20 });
   const mailExits = [];
@@ -661,7 +665,7 @@ async function probeRegister(panel, email) {
       }
     } catch (e) {}
   }
-  const mailPool = new ExitPool(mailExits, { label: `${NAME}-mail` });
+  const mailPool = new ExitPool(mailExits.length ? mailExits : [DIRECT_EXIT], { label: `${NAME}-mail` });
 
   // IMAP path: the box is a real mailbox (readable bodies). The connection still
   // rides an exit — mailbox traffic is not provider traffic, but the same rule
@@ -966,7 +970,7 @@ async function probeRegister(panel, email) {
             hunter.claim(got2.pin, owner);
             panel.supply.pin = got2.pin;
             panel.supply.dead = false;
-            panel.agent = createAgent(got2.pin, { keepAlive: true, maxSockets: 1 });
+            panel.agent = isDirect(got2.pin) ? undefined : createAgent(got2.pin, { keepAlive: true, maxSockets: 1 });
             log(`  re-pin for ${why}: ${got2.pin.line}`);
             return got2.pin;
           };

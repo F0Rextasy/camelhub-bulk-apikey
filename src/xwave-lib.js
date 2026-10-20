@@ -13,7 +13,7 @@
 
 const http = require('http');
 const path = require('path');
-const { loadExits, req } = require('./lib');
+const { loadExits, req, DIRECT_EXIT } = require('./lib');
 const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const { parseProxy } = require(path.join(__dirname, 'proxy'));
 
@@ -84,7 +84,9 @@ async function collectCandidates({ host, pool = 'http://127.0.0.1:8791', poolLim
   for (const l of lines) push(head, parseProxy(l));
   for (const p of loadExits([...lists, ...extra], { shuffle: true })) push(tail, p);
   head.sort(() => Math.random() - 0.5);
-  return { candidates: [...head, ...tail], poolCount: head.length };
+  // No pool at all (empty local lists and no loopback pool answer) = DIRECT
+  // mode: offer the direct pseudo-exit so screening still finds a way out.
+  if (!head.length && !tail.length) return { candidates: [DIRECT_EXIT], poolCount: 0 };
 }
 
 /**

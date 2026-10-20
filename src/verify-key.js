@@ -27,7 +27,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { ExitPool, readJson, writeJson, appendLine, nowIso, sleep } = require('./lib');
+const { ExitPool, readJson, writeJson, appendLine, nowIso, sleep, isDirect } = require('./lib');
 const { Panel } = require('./newapi');
 const { collectCandidates, screenFor } = require('./xwave-lib');
 
@@ -104,7 +104,7 @@ async function exitPool(avoid = []) {
     try {
       const seen = new Set();
       if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) seen.add(l.split('#')[0].trim());
-      const fresh = good.filter((p) => !seen.has(p.line));
+      const fresh = good.filter((p) => !isDirect(p) && !seen.has(p.line));
       if (fresh.length) {
         fs.appendFileSync(file, fresh.map((p) => `${p.line}  # verified ${nowIso()}`).join('\n') + '\n');
         log(`· screened list → ${path.relative(process.cwd(), file)} (+${fresh.length})`);
