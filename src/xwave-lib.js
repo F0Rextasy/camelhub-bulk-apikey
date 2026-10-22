@@ -13,7 +13,8 @@
 
 const http = require('http');
 const path = require('path');
-const { loadExits, req, DIRECT_EXIT } = require('./lib');
+const fs = require('fs');
+const { loadExits, req, DIRECT_EXIT, isDirect, poolFilesWithLines } = require('./lib');
 const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const { parseProxy } = require(path.join(__dirname, 'proxy'));
 
@@ -84,9 +85,24 @@ async function collectCandidates({ host, pool = 'http://127.0.0.1:8791', poolLim
   for (const l of lines) push(head, parseProxy(l));
   for (const p of loadExits([...lists, ...extra], { shuffle: true })) push(tail, p);
   head.sort(() => Math.random() - 0.5);
-  // No pool at all (empty local lists and no loopback pool answer) = DIRECT
-  // mode: offer the direct pseudo-exit so screening still finds a way out.
-  if (!head.length && !tail.length) return { candidates: [DIRECT_EXIT], poolCount: 0 };
+  // "No pool at all" (nothing configured) means DIRECT mode: offer the direct
+  // pseudo-exit so screening still finds a way out. A pool file that *is*
+  // configured but yields no usable line is something else — going direct there
+  // would send every key from this machine's own address (README: "a call with
+  // no exit left raises instead of dialing out directly").
+  if (!head.length && !tail.length) {
+    const withLines = poolFilesWithLines([...lists, ...extra]);
+    if (withLines.length) {
+      throw new Error(
+        `the exit list ${withLines.join(', ')} has candidate line(s) but no usable exit — a line must be scheme://host:port[#comment] (socks4 lines are dropped by the pool reader); refusing to run from this machine's own address`
+      );
+    }
+    return { candidates: [DIRECT_EXIT], poolCount: 0 };
+  }
+  // The normal path: pool-proven candidates first, the local lists behind them.
+  // Without this return the function answered `undefined` for every pool that
+  // actually had an exit, and both callers died on their own destructuring line.
+  return { candidates: [...head, ...tail], poolCount: head.length };
 }
 
 /**
@@ -129,6 +145,44 @@ async function screenFor(base, candidates, { want = 6, conc = 4, budgetMs = 2400
   return { exits: [...good, ...rest], good, tried };
 }
 
+/**
+ * The canonical screened list for a host: `out/pool/screened-<host>.txt`, which
+ * the tools read back. The host is a `host[:port]`, and a colon is not a legal
+ * filename character on Windows — `--base http://127.0.0.1:3000` (a local fork)
+ * used to write an NTFS alternate stream nobody could read back.
+ */
+function screenedFile(host) {
+  const tag = String(host).replace(/[^A-Za-z0-9._-]+/g, '_');
+  return path.join(ROOT, 'out', 'pool', `screened-${tag}.txt`);
+}
+
+/**
+ * Appends the exits that answered to that list, keeping the lines that are
+ * already there. Returns the number of lines added.
+ *
+ * `verify.js` used to log this write without doing it; `verify-key.js` did it
+ * inline. One function, one path, so the log line cannot lie again.
+ */
+function saveScreened(host, good, { log = () => {} } = {}) {
+  const target = screenedFile(host);
+  try {
+    const seen = new Set();
+    if (fs.existsSync(target)) for (const l of fs.readFileSync(target, 'utf8').split('\n')) if (l.trim()) seen.add(l.split('#')[0].trim());
+    const fresh = good.filter((p) => !isDirect(p) && !seen.has(p.line));
+    if (!fresh.length) {
+      log(`· screened exits → ${path.relative(process.cwd(), target)} (no new line of ${good.length} proven)`);
+      return 0;
+    }
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.appendFileSync(target, fresh.map((p) => `${p.line}  # verified ${new Date().toISOString()}`).join('\n') + '\n', { mode: 0o600 });
+    log(`· screened exits → ${path.relative(process.cwd(), target)} (+${fresh.length} of ${good.length} proven)`);
+    return fresh.length;
+  } catch (e) {
+    log(`· screened list write failed: ${String(e.message).slice(0, 100)}`);
+    return 0;
+  }
+}
+
 /** Accepts a mix of proxy lines and parsed proxies; returns parsed proxies only. */
 function toProxies(list) {
   const out = [];
@@ -144,4 +198,4 @@ function toProxies(list) {
   return out;
 }
 
-module.exports = { collectCandidates, screenFor, poolGet, toProxies, DEFAULT_LISTS, O };
+module.exports = { collectCandidates, screenFor, poolGet, toProxies, saveScreened, screenedFile, DEFAULT_LISTS, O };

@@ -34,9 +34,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const { ExitPool, readJson, writeJson, appendLine, nowIso, req, isExitError, isDirect } = require('./lib.js');
+const { ExitPool, readJson, writeJson, appendLine, nowIso, req, isExitError } = require('./lib.js');
 const { Panel } = require('./newapi.js');
-const { collectCandidates, screenFor } = require('./xwave-lib.js');
+const { collectCandidates, screenFor, saveScreened } = require('./xwave-lib.js');
 const ipban = require('./ipban.js');
 
 // A ban that appears *after* screening (the panel blocks an exit mid-run) must take
@@ -45,13 +45,11 @@ const ipban = require('./ipban.js');
 ipban.guard({ Panel });
 
 const BASE = 'https://api.camel-hub.com';
-const HOST = new URL(BASE).host;
 const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const POOL = path.join(ROOT, 'proxies.txt');
 const ACCOUNTS = path.join(ROOT, 'accounts.json');
 const KEYS = path.join(ROOT, 'keys.txt');
 const MODELS_FILE = path.join(__dirname, 'models.json'); // the shipped catalogue sits beside the code
-const OUT = path.join(ROOT, 'out');
 
 const USAGE = `camelhub-bulk-apikey · verify — re-check keys already on disk
 
@@ -98,12 +96,12 @@ const pool = path.resolve(one('pool') || POOL);
 if (!fs.existsSync(pool)) console.log(`no proxy list at ${path.basename(pool)} — running WITHOUT a proxy (direct)`);
 
 const BASE_URL = one('base') || BASE;
+const HOST = new URL(BASE_URL).host; // the screened list is named for the panel actually used
 const ONLY_KEY = one('key') || '';
 const ALL = has('all');
 const MODELS = (one('model') || '').split(',').map((s) => s.trim()).filter(Boolean);
 const MAX_TOKENS = parseInt(one('max-tokens') || '8', 10);
 const WANT = parseInt(one('want') || '3', 10);
-const MAX_EXITS = Math.max(WANT, 4); // every key may burn this many exits before the run calls it unmeasured
 
 const log = (...a) => console.log(`[${nowIso()}] ${a.join(' ')}`);
 const CHATTY = /embed|rerank|reranker|whisper|tts|image|audio|video|vision|bge/i;
@@ -133,6 +131,10 @@ function classify(models, chat, bannedMidChat) {
     return 'authentic';
   }
   if (looksAccountBanned(models.text)) return 'account_banned';
+  // A 5xx or a 429 is the panel (or its gateway/limiter) failing, not an answer
+  // about the key: stamping those `key_refused` would tell the operator that good
+  // keys are broken. `error` is this file's own word for "not measured".
+  if (models.status >= 500 || models.status === 429) return 'error';
   return 'key_refused';
 }
 
@@ -236,6 +238,7 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
       out.exit = pin.line;
       out.models = { status: models.status, body: String(models.text || '').slice(0, 300), exit: pin.line };
       out.verdict = classify(models, null, false);
+      if (out.verdict === 'error') out.note = `the panel answered ${models.status} for this key — an exit/panel failure, not a key verdict`;
       log(`#${rec.index} ${rec.key.slice(0, 10)}… /v1/models ${models.status} · ${out.models.body.slice(0, 140)}`);
       return out;
     }
@@ -326,6 +329,7 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
   const { candidates } = await collectCandidates({ host: HOST, extra: [pool], noPool: true, log: (m) => log('· ' + m) });
   if (!candidates.length) {
     log(`no exits parsed from ${path.basename(pool)} — one per line, e.g. socks5://127.0.0.1:1080`);
+    process.exitCode = 1;
     return;
   }
   const { exits, good, tried } = await screenFor(BASE_URL, candidates, {
@@ -337,19 +341,12 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
   });
   if (!good.length) {
     log(`no usable exit for ${HOST} (${tried} tried${bannedAtScreen.length ? `, ${bannedAtScreen.length} banned by the panel` : ''}) — no key was measured, ${todo.length} key(s) left untouched`);
+    process.exitCode = 1; // an empty run must not read as a clean one
     return;
   }
   if (bannedAtScreen.length) log(`· ${bannedAtScreen.length} exit(s) are banned by the panel (filtered before any key call): ${bannedAtScreen.join(', ')}`);
-  try {
-    fs.mkdirSync(OUT, { recursive: true });
-    const file = path.join(OUT, `screened-${HOST}.txt`);
-    const known = new Set();
-    if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) known.add(l.split('#')[0].trim());
-    const fresh = good.filter((p) => !isDirect(p) && !known.has(p.line));
-    log(`· screened exits → out/screened-${HOST}.txt (+${fresh.length} of ${good.length} proven)`);
-  } catch (e) {
-    log(`· screened list write failed: ${String(e.message).slice(0, 120)}`);
-  }
+  // Write what the log claims, into the list the rest of the toolkit reads.
+  saveScreened(HOST, good, { log: (m) => log(m) });
 
   log(`verify ${todo.length} key(s) for camelhub (${BASE_URL}) · exits ${good.length} proven of ${tried} tried · want ${WANT}`);
 

@@ -33,6 +33,8 @@ const DEFAULT_TIMEOUT_MS = 35000;
 // full handshake budget starve the CPE for the whole batch (measured: 651
 // sockets in SYN_SENT, mostly our own screens, while ICMP was clean).
 const DEFAULT_CONNECT_TIMEOUT_MS = 8000;
+/** A proxy's CONNECT reply is a few hundred bytes: cap the reader, not the RAM. */
+const MAX_CONNECT_HEADER_BYTES = 16384;
 
 /** Accepted line shapes:
  *    host:port
@@ -216,7 +218,15 @@ function connectHttpProxy(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS })
     const onData = (chunk) => {
       buffer = Buffer.concat([buffer, chunk]);
       const end = buffer.indexOf('\r\n\r\n');
-      if (end === -1) return;
+      if (end === -1) {
+        // A proxy that streams bytes instead of a reply (a captive portal, a
+        // hijacking middlebox) would otherwise allocate whatever the link
+        // carries until the handshake timer fires (measured: +115 MiB in 3 s).
+        if (buffer.length > MAX_CONNECT_HEADER_BYTES) {
+          return fail(new Error(`proxy CONNECT header too large (> ${MAX_CONNECT_HEADER_BYTES} bytes) via ${label(proxy)}`));
+        }
+        return;
+      }
       socket.removeListener('data', onData);
       clearTimeout(timer);
       const head = buffer.slice(0, end).toString('latin1');
@@ -264,7 +274,10 @@ function connectSocks5(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS }) {
       reject(err);
     };
     const timer = setTimeout(() => fail(new Error(`SOCKS5 timeout (${label(proxy)})`)), timeoutMs);
-    socket.on('error', (e) => fail(new Error(`SOCKS5 connect failed (${label(proxy)}): ${e.message}`)));
+    socket.on('error', (e) => {
+      clearTimeout(timer);
+      fail(new Error(`SOCKS5 connect failed (${label(proxy)}): ${e.message}`));
+    });
     socket.setNoDelay(true);
 
     let stage = 'method';
@@ -272,6 +285,9 @@ function connectSocks5(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS }) {
 
     const onData = (chunk) => {
       buffer = Buffer.concat([buffer, chunk]);
+      // Same cap as the CONNECT path: a "proxy" that streams instead of answering
+      // must not be able to grow this buffer for the whole handshake budget.
+      if (buffer.length > MAX_CONNECT_HEADER_BYTES) return fail(new Error(`SOCKS5 reply too large (> ${MAX_CONNECT_HEADER_BYTES} bytes) (${label(proxy)})`));
       if (stage === 'method') {
         if (buffer.length < 2) return;
         const method = buffer[1];
@@ -300,6 +316,10 @@ function connectSocks5(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS }) {
       if (buffer.length < 4) return;
       const rep = buffer[1];
       const atyp = buffer[3];
+      // The domain form carries its length in byte 4: read it only once it is
+      // there, or `need` is NaN, `buffer.length < NaN` is false, and a reply that
+      // was split after its 4-byte head is accepted as a finished handshake.
+      if (atyp !== 0x01 && atyp !== 0x04 && buffer.length < 5) return;
       const need = atyp === 0x01 ? 10 : atyp === 0x04 ? 22 : 7 + buffer[4];
       if (buffer.length < need) return;
       if (rep !== 0x00) {
@@ -310,6 +330,9 @@ function connectSocks5(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS }) {
       const rest = buffer.slice(need);
       if (settled) return;
       settled = true;
+      // Hand the socket over clean: the handshake reader must stop reading, or
+      // it keeps buffering the tunnel's own bytes as if they were a reply.
+      socket.removeListener('data', onData);
       if (rest.length) socket.unshift(rest);
       resolve(socket);
     };
@@ -345,21 +368,27 @@ function connectSocks4(proxy, { host, port, timeoutMs = DEFAULT_TIMEOUT_MS }) {
       reject(err);
     };
     const timer = setTimeout(() => fail(new Error(`SOCKS4 timeout (${label(proxy)})`)), timeoutMs);
-    socket.on('error', (e) => fail(new Error(`SOCKS4 connect failed (${label(proxy)}): ${e.message}`)));
+    socket.on('error', (e) => {
+      clearTimeout(timer);
+      fail(new Error(`SOCKS4 connect failed (${label(proxy)}): ${e.message}`));
+    });
     socket.setNoDelay(true);
 
     let buffer = Buffer.alloc(0);
-    socket.on('data', (chunk) => {
+    const onData = (chunk) => {
       buffer = Buffer.concat([buffer, chunk]);
+      if (buffer.length > MAX_CONNECT_HEADER_BYTES) return fail(new Error(`SOCKS4 reply too large (> ${MAX_CONNECT_HEADER_BYTES} bytes) (${label(proxy)})`));
       if (buffer.length < 8) return;
       clearTimeout(timer);
       if (buffer[1] !== 0x5a) return fail(new Error(`SOCKS4 error code ${buffer[1]} (${label(proxy)})`));
       const rest = buffer.slice(8);
       if (settled) return;
       settled = true;
+      socket.removeListener('data', onData);
       if (rest.length) socket.unshift(rest);
       resolve(socket);
-    });
+    };
+    socket.on('data', onData);
 
     socket.on('connect', () => {
       const user = Buffer.from(proxy.username || '');
@@ -407,7 +436,6 @@ class ProxyAgent extends https.Agent {
     openTunnel(this.proxy, { host, port, timeoutMs: connectMs })
       .then((socket) => {
         tunnel = socket;
-        if (options.secureEndpoint === false) return socket;
         const tlsSocket = tls.connect({
           socket,
           servername: options.servername || host,
@@ -423,8 +451,35 @@ class ProxyAgent extends https.Agent {
   }
 }
 
+/**
+ * `http.Agent` for plain-http targets (`--base http://127.0.0.1:3000`, a local
+ * fork, a docs mirror). Node refuses an `https.Agent` for an `http:` request
+ * before any I/O ("Protocol http: not supported"), and this side needs no TLS
+ * layer: the tunnel itself is the connection the origin-form request rides in.
+ */
+class ProxyHttpAgent extends http.Agent {
+  constructor(proxy, options = {}) {
+    super({ keepAlive: false, ...options });
+    this.proxy = proxy;
+  }
+
+  createConnection(options, callback) {
+    const host = options.host;
+    const port = Number(options.port) || 80;
+    openTunnel(this.proxy, { host, port, timeoutMs: this.proxy.connectTimeoutMs || DEFAULT_CONNECT_TIMEOUT_MS }).then(
+      (socket) => callback(null, socket),
+      (err) => callback(err)
+    );
+  }
+}
+
 function createAgent(proxy, options) {
   return new ProxyAgent(proxy, options);
+}
+
+/** The agent that matches the target scheme — see ProxyHttpAgent. */
+function createHttpAgent(proxy, options) {
+  return new ProxyHttpAgent(proxy, options);
 }
 
 /**
@@ -456,7 +511,7 @@ function fetchText(proxy, url, { timeoutMs = 15000, headers = {}, method = 'GET'
         host: u.hostname,
         port: u.port || (u.protocol === 'https:' ? 443 : 80),
         path: u.pathname + u.search,
-        agent: proxy ? createAgent(proxy) : undefined,
+        agent: proxy ? (u.protocol === 'https:' ? createAgent(proxy) : createHttpAgent(proxy)) : undefined,
         headers: finalHeaders,
       },
       (res) => {
@@ -583,6 +638,7 @@ module.exports = {
   label,
   openTunnel,
   createAgent,
+  createHttpAgent,
   fetchText,
   proxyForIndex,
   probe,

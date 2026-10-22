@@ -27,9 +27,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const { ExitPool, readJson, writeJson, appendLine, nowIso, sleep, isDirect } = require('./lib');
+const { ExitPool, readJson, writeJson, appendLine, nowIso, sleep } = require('./lib');
 const { Panel } = require('./newapi');
-const { collectCandidates, screenFor } = require('./xwave-lib');
+const { collectCandidates, screenFor, saveScreened, screenedFile } = require('./xwave-lib');
+
+// Same rule as verify.js: `403 IP banned` is the panel refusing the *exit*, not
+// the key. Without this the ban lands in `verifyIndependent.models.status` as a
+// 403 and reads like a key verdict.
+const ipban = require('./ipban');
+ipban.guard({ Panel });
 
 const argv = process.argv.slice(2);
 const one = (name, dflt) => {
@@ -91,7 +97,7 @@ function rankCheapest(ids) {
  * pushed to the back so the *independent* exit is the one that gets pinned.
  */
 async function exitPool(avoid = []) {
-  const extra = POOLS.length ? POOLS : [path.join(DIR, 'out', 'pool', `screened-${HOST}.txt`)];
+  const extra = POOLS.length ? POOLS : [screenedFile(HOST)];
   const { candidates } = await collectCandidates({ host: HOST, extra, log: (m) => log('· ' + m) });
   const avoidSet = new Set(avoid.filter(Boolean));
   const ordered = [...candidates.filter((p) => !avoidSet.has(p.line)), ...candidates.filter((p) => avoidSet.has(p.line))];
@@ -99,20 +105,7 @@ async function exitPool(avoid = []) {
   // Write the exits that answered to the canonical screened list: one screening
   // then serves every later mint for this host (an early lesson — a mint’s own
   // screen is the expensive half, and the next run re-pays for it otherwise).
-  if (good.length) {
-    const file = path.join(DIR, 'out', 'pool', `screened-${HOST}.txt`);
-    try {
-      const seen = new Set();
-      if (fs.existsSync(file)) for (const l of fs.readFileSync(file, 'utf8').split('\n')) if (l.trim()) seen.add(l.split('#')[0].trim());
-      const fresh = good.filter((p) => !isDirect(p) && !seen.has(p.line));
-      if (fresh.length) {
-        fs.appendFileSync(file, fresh.map((p) => `${p.line}  # verified ${nowIso()}`).join('\n') + '\n');
-        log(`· screened list → ${path.relative(process.cwd(), file)} (+${fresh.length})`);
-      }
-    } catch (e) {
-      log(`· screened list write failed: ${String(e.message).slice(0, 80)}`);
-    }
-  }
+  if (good.length) saveScreened(HOST, good, { log: (m) => log(m) });
   return { pool: new ExitPool(good.length ? good : ordered.slice(0, 5), { label: NAME }), good };
 }
 

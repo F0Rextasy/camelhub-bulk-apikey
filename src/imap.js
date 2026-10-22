@@ -112,8 +112,9 @@ class Imap {
   /** Opens the socket — through the proxy when one is given — and reads the greeting. */
   async connect() {
     if (this.socket) return;
+    let timer = null;
     const greeting = new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('IMAP greeting timeout')), this.timeoutMs);
+      timer = setTimeout(() => reject(new Error('IMAP greeting timeout')), this.timeoutMs);
       const onData = () => {
         if (/\* OK/.test(this.buffer)) {
           clearTimeout(timer);
@@ -127,10 +128,21 @@ class Imap {
         reject(e);
       };
     });
-
-    const socket = this.proxy
-      ? tls.connect({ socket: await openTunnel(this.proxy, { host: this.host, port: this.port, timeoutMs: this.timeoutMs }), servername: this.host })
-      : tls.connect({ host: this.host, port: this.port, servername: this.host });
+    // The mailbox pool falls back to DIRECT_EXIT, which means "no tunnel": dialing
+    // it would mean connecting to the literal host `direct`. A tunnel that *fails*
+    // must also take the greeting promise (and its timer) down with it, or that
+    // promise rejects 20 s later with nobody listening.
+    greeting.catch(() => {});
+    let socket;
+    try {
+      socket =
+        this.proxy && this.proxy.direct !== true
+          ? tls.connect({ socket: await openTunnel(this.proxy, { host: this.host, port: this.port, timeoutMs: this.timeoutMs }), servername: this.host })
+          : tls.connect({ host: this.host, port: this.port, servername: this.host });
+    } catch (e) {
+      clearTimeout(timer);
+      throw e;
+    }
     this.socket = socket;
     socket.setNoDelay(true);
     socket.on('data', (chunk) => this._onData(chunk));
@@ -171,6 +183,10 @@ class Imap {
       if (literal) {
         const need = parseInt(literal[1], 10);
         if (this.buffer.length < lineEnd + 1 + need + 1) return; // wait for the rest
+        // The literal *is* part of the answer: a `UID FETCH BODY[]` message body
+        // arrives this way. It is appended as one chunk so its own lines are never
+        // scanned for the command tag, and `fetchMessage` can cut the body out.
+        this.pending.response += line + this.buffer.slice(lineEnd + 1, lineEnd + 1 + need);
         this.buffer = this.buffer.slice(lineEnd + 1 + need);
         continue;
       }

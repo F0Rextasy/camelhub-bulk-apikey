@@ -30,7 +30,10 @@ function request(url, { method = 'GET', headers = {}, body, proxy = null, timeou
         host: u.hostname,
         port: 443,
         path: u.pathname + u.search,
-        agent: px ? createAgent(px) : undefined,
+        // DIRECT_EXIT is a valid value in the mail pool (see the engine's mail
+        // fallback) and means "no tunnel": handing it to createAgent() dials the
+        // literal host `direct` and every mailbox call dies with ENOTFOUND.
+        agent: px && px.direct !== true ? createAgent(px) : undefined,
         headers: { ...HEADERS, ...(payload ? { 'Content-Type': 'application/json', 'Content-Length': payload.length } : {}), ...headers },
       },
       (res) => {

@@ -19,7 +19,7 @@ const https = require('https');
 const path = require('path');
 const { URL } = require('url');
 
-const { parseProxy, createAgent, loadPoolFile } = require(path.join(__dirname, 'proxy'));
+const { parseProxy, createAgent, createHttpAgent, loadPoolFile } = require(path.join(__dirname, 'proxy'));
 
 /**
  * The direct-mode pseudo-exit: `req()`/`ExitPool`/`PinHunter` all speak
@@ -115,7 +115,10 @@ function req(proxy, url, { method = 'GET', headers = {}, body = null, timeoutMs 
         host: u.hostname,
         port: u.port || (u.protocol === 'https:' ? 443 : 80),
         path: u.pathname + u.search,
-        agent: agent || (isDirect(proxy) ? undefined : createAgent(proxy)),
+        // `http://` targets (a local fork, `--base http://127.0.0.1:3000`) need
+        // an http.Agent: Node refuses an https.Agent for an http request before
+        // any I/O ("Protocol http: not supported").
+        agent: agent || (isDirect(proxy) ? undefined : u.protocol === 'https:' ? createAgent(proxy) : createHttpAgent(proxy)),
         headers: h,
       },
       (res) => {
@@ -257,8 +260,9 @@ function brokerHttp(base, pathname, { method = 'GET', body = null, timeoutMs = 1
 }
 
 /**
- * Gmail aliases exist in two forms of the *same* mailbox: `<user>@gmail.com`
- * (plain) and `<u.s.e.r>@gmail.com` (dotted) — both deliver to one inbox.
+ * Gmail aliases exist in two spellings of the *same* mailbox: the plain local
+ * part and the same part with a dot between every character — both deliver to
+ * one inbox.
  * Measured (2026-10-15, five panels): the dotted form is read as a disposable sub-address and refused,
  * while the plain form is accepted. Emailnator hands out the dotted variant as
  * the box identity, so the reader keys on it — but what goes into a register
@@ -430,27 +434,71 @@ function providerDir(name) {
   return dir;
 }
 
+/**
+ * Reads a JSON file. A file that is *not there* is the caller's default, but a
+ * file that exists and does not parse is an error: `accounts.json` holds the
+ * only copy of every account's password, and treating a half-written ledger as
+ * "no accounts yet" is how the next run quietly rewrites it away.
+ */
 function readJson(file, dflt = null) {
+  let text;
   try {
-    return JSON.parse(fs.readFileSync(file, 'utf8'));
+    text = fs.readFileSync(file, 'utf8');
   } catch (e) {
-    return dflt;
+    return dflt; // no such file (or unreadable): the caller's default
+  }
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new Error(`${file} is not valid JSON (${e.message}) — move it aside if you want a fresh file`);
   }
 }
 
+/** Atomic: a reader never sees a half-written file, a crash cannot truncate it. */
 function writeJson(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, JSON.stringify(value, null, 2));
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(value, null, 2), { mode: 0o600 });
+  fs.renameSync(tmp, file);
 }
 
 /** Appends to a newline log without ever throwing (logging must not break a mint). */
 function appendLine(file, line) {
   try {
     fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.appendFileSync(file, line + '\n');
+    fs.appendFileSync(file, line + '\n', { mode: 0o600 });
   } catch (e) {
     /* ignore */
   }
+}
+
+/**
+ * Pool files that carry at least one candidate line. `loadExits()` answers with
+ * an empty list both for "no pool configured" and for "a pool whose lines do not
+ * parse" (junk, a saved HTML error page, `socks4` lines, credentials with no
+ * host) — and those two must not lead to the same decision, because the second
+ * one means the run would leave from this machine's own address while the log
+ * says there was no pool.
+ */
+function poolFilesWithLines(files) {
+  const out = [];
+  const seen = new Set();
+  for (const f of files) {
+    if (seen.has(String(f))) continue;
+    seen.add(String(f));
+    let n = 0;
+    try {
+      for (const l of fs.readFileSync(f, 'utf8').split(/\r?\n/)) {
+        const t = l.trim();
+        if (t && !t.startsWith('#') && !t.startsWith('//')) n++;
+      }
+    } catch (e) {
+      if (e.code !== 'ENOENT') out.push(`${path.basename(String(f))} (unreadable: ${e.code})`);
+      continue;
+    }
+    if (n) out.push(`${path.basename(String(f))} (${n} line${n === 1 ? '' : 's'})`);
+  }
+  return out;
 }
 
 module.exports = {
@@ -477,6 +525,7 @@ module.exports = {
   readJson,
   writeJson,
   appendLine,
+  poolFilesWithLines,
   BROKERS,
   DEFAULT_POOLS,
 };

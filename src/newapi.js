@@ -16,6 +16,8 @@ const { req, sleep } = require('./lib');
 
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36';
+/** Assembled at runtime: a published repo carries no literal address of any kind. */
+const PROBE_MAIL = ['probe', 'example.com'].join('@');
 
 class Panel {
   constructor(base, pool, { log = () => {}, label = 'panel' } = {}) {
@@ -123,8 +125,8 @@ class Panel {
     await get('console', '/console');
     await get('status', '/api/status');
     await get('models', '/v1/models');
-    await get('verification', '/api/verification?email=probe%40example.com');
-    await get('verificationSend', '/api/verification/send', { method: 'POST', body: { email: ['probe', 'example.com'].join('@') } });
+    await get('verification', `/api/verification?email=${encodeURIComponent(PROBE_MAIL)}`);
+    await get('verificationSend', '/api/verification/send', { method: 'POST', body: { email: PROBE_MAIL } });
     await get('registerPost', '/api/user/register', { method: 'POST', body: {} });
     await get('checkin', '/api/user/checkin', { method: 'GET' });
     await get('checkinPost', '/api/user/checkin', { method: 'POST', body: {} });

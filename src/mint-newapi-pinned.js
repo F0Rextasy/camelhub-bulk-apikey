@@ -35,7 +35,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { loadExits, ExitPool, providerDir, readJson, writeJson, appendLine, sleep, randHex, randPass, nowIso, extractCode, req, isExitError, DIRECT_EXIT, isDirect } = require('./lib');
+const { loadExits, ExitPool, providerDir, readJson, writeJson, appendLine, sleep, randHex, randPass, nowIso, extractCode, req, isExitError, DIRECT_EXIT, isDirect, poolFilesWithLines } = require('./lib');
 const { Panel, gates, UA } = require('./newapi');
 const { createAgent } = require(path.join(__dirname, 'proxy'));
 const { presetArgv, resolvePreset } = require('./preset');
@@ -54,6 +54,16 @@ const one = (name, dflt) => {
   const i = argv.indexOf(`--${name}`);
   return i >= 0 && argv[i + 1] ? argv[i + 1] : dflt;
 };
+/**
+ * Numeric flag. `one('count')` answers the next token whatever it is, so a bare
+ * `--count` (or `--count --conc=4`) used to become NaN: the worker pool was then
+ * `Array.from({length: NaN})` = empty, the run did nothing and still printed OK.
+ */
+const num = (name, dflt) => {
+  const v = one(name, null);
+  const n = v === null ? NaN : parseInt(v, 10);
+  return Number.isFinite(n) ? n : dflt;
+};
 const has = (name) => argv.includes(`--${name}`);
 const many = (name) => {
   const out = [];
@@ -64,7 +74,7 @@ const many = (name) => {
 const NAME = one('name');
 const BASE = one('base');
 const TAG = one('tag', (NAME || 'x').slice(0, 12));
-const COUNT = parseInt(one('count', '3'), 10);
+const COUNT = num('count', 3);
 const FOLDER = one('folder', `${NAME}-bulk`);
 const CHECKIN = !has('no-checkin');
 const POOLS = many('pool');
@@ -78,35 +88,39 @@ const PROBE_REGISTER = has('probe-register');
 // ai.cuz-lab.space, api.42w.shop, api.tniay.top all report em=false — the
 // cheapest mint class (no mailbox, no code wait, no wall).
 const NO_EMAIL = has('no-email');
-const POLL_MS = parseInt(one('poll-ms', '2500'), 10);
-const CODE_WAIT_MS = parseInt(one('code-wait', '150000'), 10);
-const MAX_CYCLE = parseInt(one('max-cycle', '3'), 10);
-const SCAN_MAX = parseInt(one('scan', '120'), 10);
-const SCAN_CONC = Math.min(parseInt(one('scan-conc', '6'), 10), 8);
-const BUDGET_MS = parseInt(one('budget', '2700'), 10) * 1000;
+const POLL_MS = num('poll-ms', 2500);
+const CODE_WAIT_MS = num('code-wait', 150000);
+const MAX_CYCLE = num('max-cycle', 3);
+const SCAN_MAX = num('scan', 120);
+const SCAN_CONC = Math.min(num('scan-conc', 6), 8);
+const BUDGET_MS = num('budget', 2700) * 1000;
 const AFF = one('aff', '');
 const OFFER_MODEL = one('model', '');
-const MAIL_TRIES = parseInt(one('mail-tries', '3'), 10);
+const MAIL_TRIES = num('mail-tries', 3);
 // Run shape (operator standard v3): `--preset` sets how many accounts are minted
 // at a time and the pause between account starts inside a worker. An explicit
 // --conc/--gap wins, and with no --preset the run stays the historical serial one.
 const PRESET = presetArgv(argv) || one('preset', null);
 const SHAPE = resolvePreset({
   preset: PRESET,
-  conc: one('conc', null) != null ? parseInt(one('conc'), 10) : null,
-  gap: one('gap', null) != null ? parseInt(one('gap'), 10) : null,
+  conc: one('conc', null) != null ? num('conc', null) : null,
+  gap: one('gap', null) != null ? num('gap', null) : null,
   defaultConc: 1,
   defaultGap: 0,
 });
 const CONC = Math.max(1, SHAPE.conc || 1);
 const GAP_MS = Math.max(0, Math.round((SHAPE.gap == null ? 0 : SHAPE.gap) * 1000));
+if (!Number.isFinite(COUNT) || COUNT < 1) {
+  console.error('--count takes a positive integer');
+  process.exit(2);
+}
 /** `user:pass@host` in an exit line is never printed (spec form: `user:***@host`). */
 const maskExit = (line) => String(line || 'direct').replace(/:[^:@/]+@/, ':***@');
 // Controls (Main, 2026-10-15): cycle 1 submits on the first poll; cycles
 // >= `--delay-from-cycle` deliberately wait `--delay-ms` before the register
 // POST, so "does a correct code survive 30 s of delay?" is measured, not guessed.
-const DELAY_MS = parseInt(one('delay-ms', '30000'), 10);
-const DELAY_FROM = parseInt(one('delay-from-cycle', '99'), 10);
+const DELAY_MS = num('delay-ms', 30000);
+const DELAY_FROM = num('delay-from-cycle', 99);
 // Reuse a mailbox that has demonstrably received this panel's mail before, instead
 // of generating a fresh Emailnator address (its boxes receive under different
 // underlying accounts; a box that already got the panel's mail is worth more).
@@ -651,7 +665,20 @@ async function probeRegister(panel, email) {
   // No pool at all = DIRECT mode: seed the hunter with the direct pseudo-exit so
   // the gates probe and the account pin ride this machine's own line. A pool is
   // still recommended at scale (per-IP limits, bans) — it is just optional.
-  if (!priority.length && !cold.length) priority.push(DIRECT_EXIT);
+  // A pool file that *is* there but yields no usable line is not "no pool": every
+  // request would leave from this machine's own address while the log reads as if
+  // none was configured (README: "a call with no exit left raises").
+  if (!priority.length && !cold.length) {
+    const poolFiles = POOLS.length ? POOLS : HOT_FILES;
+    const withLines = poolFilesWithLines([...poolFiles, path.join(ROOT, 'out', 'pool-exits.txt')]);
+    if (withLines.length) {
+      throw new Error(
+        `the exit list ${withLines.join(', ')} has candidate line(s) but no usable exit — a line must be scheme://host:port[#comment] (socks4 lines are dropped by the pool reader); refusing to run this mint from this machine's own address`
+      );
+    }
+    log('no exits configured — running WITHOUT a proxy (direct)');
+    priority.push(DIRECT_EXIT);
+  }
   const hunter = new PinHunter(priority, cold);
   const poolMail = await fetchPool({ target: 'www.emailnator.com', limit: 20 });
   const mailExits = [];
@@ -794,6 +821,8 @@ async function probeRegister(panel, email) {
     let box = null;
     let done = false;
     let started = false;
+    /** Keep-alive tunnels this account opened; closed when the account is done. */
+    const agents = [];
     /** The spec's live start line: printed once, with the exit this account got. */
     const startLine = (exitLine) => {
       if (started) return;
@@ -828,6 +857,7 @@ async function probeRegister(panel, email) {
         hunter.claim(pin, owner);
         log(`  pin ${pin.line}${pin.klass ? ` [class=${pin.klass}]` : ''}${reuse ? ' (reused)' : ` (scanned ${tested})`}`);
         panel = pinnedPanel(pin);
+        if (panel.agent) agents.push(panel.agent);
 
         if (!box) {
           if (MAIL_MODE === 'imap') {
@@ -970,6 +1000,7 @@ async function probeRegister(panel, email) {
             hunter.claim(got2.pin, owner);
             panel.supply.pin = got2.pin;
             panel.supply.dead = false;
+            if (panel.agent) agents.push(panel.agent);
             panel.agent = isDirect(got2.pin) ? undefined : createAgent(got2.pin, { keepAlive: true, maxSockets: 1 });
             log(`  re-pin for ${why}: ${got2.pin.line}`);
             return got2.pin;
@@ -1045,6 +1076,7 @@ async function probeRegister(panel, email) {
               const altLine = alt.pin && (alt.pin.line || `${alt.pin.host}:${alt.pin.port}`);
               if (alt.pin && altLine !== mintExit) {
                 verifier = pinnedPanel(alt.pin);
+                if (verifier.agent) agents.push(verifier.agent);
                 hunter.claim(alt.pin, owner);
                 verifyExit = altLine;
                 independent = true;
@@ -1163,6 +1195,17 @@ async function probeRegister(panel, email) {
       }
     }
 
+    // The pinned agents are keep-alive tunnels opened for this account: close
+    // them here, or the socket (and the exit's side of the tunnel) outlives the
+    // account and a finished run can no longer exit on its own.
+    for (const ag of agents) {
+      try {
+        ag.destroy();
+      } catch (e) {
+        /* already gone */
+      }
+    }
+
     accounts.push(rec);
     writeJson(ACCOUNTS, accounts);
     if (PROBE) return;
@@ -1193,7 +1236,17 @@ async function probeRegister(panel, email) {
 
   const minted = accounts.filter((a) => a.provider === NAME && a.status === 'minted').length;
   log(`done: ${NAME} — ${made.length} new key(s) this run, ${minted} minted account(s) total · pins scanned=${hunter.scanned} statuses=${JSON.stringify(hunter.statusHist)}`);
-  console.log(`${String(NAME || 'mint').toUpperCase()} ${made.length}/${total} OK`);
+  // Say what happened: `OK` only when the run met the count it was asked for, and
+  // a non-zero exit code otherwise, so a wrapper (cli.js, a scheduler, the
+  // launcher) cannot read success out of a run that minted nothing. `--probe`
+  // accounts are not meant to mint, so a probe run stays a success.
+  const label = String(NAME || 'mint').toUpperCase();
+  if (made.length >= total || PROBE) {
+    console.log(`${label} ${made.length}/${total} ${PROBE ? 'probe' : 'OK'}`);
+  } else {
+    console.log(`${label} ${made.length}/${total} — short of the target`);
+    process.exitCode = 1;
+  }
 })().catch((e) => {
   log(`FATAL ${e && e.stack ? e.stack.split('\n').slice(0, 3).join(' | ') : e}`);
   process.exit(1);
