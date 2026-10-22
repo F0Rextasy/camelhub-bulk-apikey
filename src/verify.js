@@ -183,7 +183,7 @@ async function reachable(p) {
   const res = await req(p, `${BASE_URL}/v1/models`, {
     timeoutMs: 20000,
     connectTimeoutMs: 6000,
-    headers: { authorization: 'Bearer screening-probe', accept: 'application/json' },
+    headers: { authorization: 'Bearer probe', accept: 'application/json' },
   });
   if (ipban.isBan(res)) {
     if (!bannedAtScreen.includes(p.line)) bannedAtScreen.push(p.line);

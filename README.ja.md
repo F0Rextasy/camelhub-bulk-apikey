@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | ゲート | パネル自身の設定 | `turnstile_check: false`、`email_verification: true` |
 | メールボックス | [Emailnator](https://www.emailnator.com) | アカウントごとに新しい gmail アドレスを、あなたの出口経由で読み取り |
-| 認証メール | パネル送信 | コードは、メールの送信元が `camelbot@kr777.top` / `CaMeL AI` と一致する場合にのみ受け付けられます |
+| 認証メール | パネル送信 | コードは、メールの送信元が `<panel-mail>` / `CaMeL AI` と一致する場合にのみ受け付けられます |
 | 登録 | パネルの登録ルート | 素の HTTP、キャプチャなし |
 | チェックイン | 毎日のチェックインルート | 残高に支給 |
 | キー | パネルのキールート | アカウントあたり 1 キー |

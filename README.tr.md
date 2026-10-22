@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | kapılar | panelin kendi yapılandırması | `turnstile_check: false`, `email_verification: true` |
 | posta kutusu | [Emailnator](https://www.emailnator.com) | hesap başına taze bir gmail adresi, çıkışlarınız üzerinden okunur |
-| doğrulama postası | panel gönderimi | kod yalnızca postanın göndericisi `camelbot@kr777.top` / `CaMeL AI` ile eşleştiğinde kabul edilir |
+| doğrulama postası | panel gönderimi | kod yalnızca postanın göndericisi `<panel-mail>` / `CaMeL AI` ile eşleştiğinde kabul edilir |
 | kayıt | panel kayıt rotası | düz HTTP, captcha yok |
 | giriş | günlük giriş rotası | bakiyeye ödeme yapar |
 | anahtar | panel anahtar rotası | hesap başına bir anahtar |

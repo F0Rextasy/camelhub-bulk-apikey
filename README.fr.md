@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | portes | configuration propre au panneau | `turnstile_check: false`, `email_verification: true` |
 | boîte mail | [Emailnator](https://www.emailnator.com) | une adresse gmail fraîche par compte, lue via vos sorties |
-| e-mail de vérification | envoi du panneau | le code n'est accepté que si l'expéditeur du mail correspond à `camelbot@kr777.top` / `CaMeL AI` |
+| e-mail de vérification | envoi du panneau | le code n'est accepté que si l'expéditeur du mail correspond à `<panel-mail>` / `CaMeL AI` |
 | inscription | route d'inscription du panneau | HTTP simple, sans captcha |
 | connexion | route de connexion quotidienne | crédite le solde |
 | clé | route de clé du panneau | une clé par compte |

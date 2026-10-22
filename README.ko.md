@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | 게이트 | 패널 자체 구성 | `turnstile_check: false`, `email_verification: true` |
 | 메일함 | [Emailnator](https://www.emailnator.com) | 계정당 새 gmail 주소, 당신의 exit를 통해 읽음 |
-| 인증 메일 | 패널 발송 | 메일 발신자가 `camelbot@kr777.top` / `CaMeL AI`와 일치할 때만 코드가 허용됨 |
+| 인증 메일 | 패널 발송 | 메일 발신자가 `<panel-mail>` / `CaMeL AI`와 일치할 때만 코드가 허용됨 |
 | 등록 | 패널 등록 경로 | 일반 HTTP, 캡차 없음 |
 | 출석 체크 | 일일 출석 체크 경로 | 잔액으로 지급 |
 | 키 | 패널 키 경로 | 계정당 키 하나 |

@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | Gates | die eigene Konfiguration des Panels | `turnstile_check: false`, `email_verification: true` |
 | Mailbox | [Emailnator](https://www.emailnator.com) | eine frische Gmail-Adresse pro Konto, gelesen über deine Exits |
-| Bestätigungsmail | Versand durch das Panel | der Code wird nur akzeptiert, wenn der Absender der Mail `camelbot@kr777.top` / `CaMeL AI` entspricht |
+| Bestätigungsmail | Versand durch das Panel | der Code wird nur akzeptiert, wenn der Absender der Mail `<panel-mail>` / `CaMeL AI` entspricht |
 | Registrierung | Registrierungsroute des Panels | einfaches HTTP, kein Captcha |
 | Check-in | tägliche Check-in-Route | zahlt auf das Guthaben ein |
 | Schlüssel | Schlüsselroute des Panels | ein Schlüssel pro Konto |

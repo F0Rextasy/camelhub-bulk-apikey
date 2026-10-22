@@ -150,7 +150,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | gates | the panel's own config | `turnstile_check: false`, `email_verification: true` |
 | mailbox | [Emailnator](https://www.emailnator.com) | a fresh gmail address per account, read over your exits |
-| verification mail | panel send | the code is only accepted when the mail's sender matches `camelbot@kr777.top` / `CaMeL AI` |
+| verification mail | panel send | the code is only accepted when the mail's sender matches `<panel-mail>` / `CaMeL AI` |
 | register | panel register route | plain HTTP, no captcha |
 | check-in | daily check-in route | pays into the balance |
 | key | panel key route | one key per account |

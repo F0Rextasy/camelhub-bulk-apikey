@@ -151,7 +151,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | 关卡 | 面板自身的配置 | `turnstile_check: false`，`email_verification: true` |
 | 邮箱 | [Emailnator](https://www.emailnator.com) | 每个账户一个全新的 gmail 地址，通过你的出口读取 |
-| 验证邮件 | 面板发送 | 仅当邮件发件人匹配 `camelbot@kr777.top` / `CaMeL AI` 时，验证码才会被接受 |
+| 验证邮件 | 面板发送 | 仅当邮件发件人匹配 `<panel-mail>` / `CaMeL AI` 时，验证码才会被接受 |
 | 注册 | 面板注册路由 | 纯 HTTP，无验证码 |
 | 签到 | 每日签到路由 | 计入余额 |
 | 密钥 | 面板密钥路由 | 每个账户一个密钥 |
