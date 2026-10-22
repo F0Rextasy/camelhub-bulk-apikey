@@ -125,7 +125,7 @@ A menu over the task modules: **mint**, **verify**, **9Router**. It asks for `co
 
 ## ✅ Verified working — every key is tested
 
-Measured **2026-10-15**: **4 accounts → 4 keys, one key per account**. Every key was checked after it existed, on an exit *independent* of the mint — and every key was re-checked later, because the panel bans by exit *and* by account.
+Measured **2026-10-15**: **keys verified**. Every key was checked after it existed, on an exit *independent* of the mint — and every key was re-checked later, because the panel bans by exit *and* by account.
 
 | Model | Live (models) | Real chat call | Measured |
 | --- | --- | --- | --- |
@@ -220,7 +220,7 @@ Defaults: `--base http://localhost:20128`, `--password 123456`, `--prefix camelh
 | | |
 | --- | --- |
 | 🏢 Provider | **CaMeL AI** — [camel-hub.cn](https://camel-hub.cn) |
-| 🎁 What the provider gives | 469 listed models · $1.00 credit on sign-up plus a daily check-in · every key live-verified |
+| 🎁 What the provider gives | 469 listed models · $1.00 credit on sign-up plus a daily check-in · every key verified |
 | 🔑 What one key gets you | one API key scoped to its own account: the 469 model ids on the endpoint below, at your plan's limits. The quota lives on the **account**, which is exactly why this tool creates one account per key |
 | 🌐 API shape | OpenAI-compatible: `POST https://api.camel-hub.com/v1/chat/completions` |
 | 🔒 Your data | only camel-hub.cn and the inbox backend you configure are contacted; keys stay on your machine |

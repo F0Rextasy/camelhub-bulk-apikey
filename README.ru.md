@@ -97,6 +97,7 @@ print(client.chat.completions.create(model="claude-haiku-4-5",
 ## 🛠 Быстрый старт
 
 ```bash
+
 # clone this repository (or download the ZIP), then:
 cd camelhub-bulk-apikey
 
