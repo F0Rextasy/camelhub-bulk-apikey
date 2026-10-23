@@ -385,11 +385,13 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
   writeJson(ACCOUNTS, accounts);
 
   // A key the panel refuses outright is dead: it leaves keys.txt and is parked
-  // in keys-dead.txt. "quota", "authentic" and the unmeasured verdicts are NOT
-  // dead — an exit problem or a spent allowance is not a key verdict.
-  const deadKeys = results.filter((r) => r.verdict === 'account_banned' || r.verdict === 'key_refused').map((r) => r.key);
-  if (deadKeys.length) {
-    for (const k of deadKeys) if (!fs.existsSync(KEYS_DEAD) || !fs.readFileSync(KEYS_DEAD, 'utf8').includes(k)) appendLine(KEYS_DEAD, k);
+  // in keys-dead.txt as `key<TAB>sebep<TAB>ISO`. "quota", "authentic" and the
+  // unmeasured verdicts are NOT dead — an exit problem or a spent allowance is
+  // not a key verdict.
+  const deadRows = results.filter((r) => r.verdict === 'account_banned' || r.verdict === 'key_refused');
+  const deadKeys = deadRows.map((r) => r.key);
+  if (deadRows.length) {
+    for (const r of deadRows) if (!fs.existsSync(KEYS_DEAD) || !fs.readFileSync(KEYS_DEAD, 'utf8').includes(r.key)) appendLine(KEYS_DEAD, `${r.key}\t${r.verdict}\t${new Date().toISOString()}`);
     const live = (fs.existsSync(KEYS) ? fs.readFileSync(KEYS, 'utf8').split(/\r?\n/) : []).map((l) => l.trim()).filter((l) => l && !deadKeys.includes(l));
     fs.writeFileSync(KEYS, live.length ? live.join('\n') + '\n' : '');
   }
