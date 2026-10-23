@@ -65,11 +65,13 @@ deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
 ```
 
-|Model|✓|
-|---|---|
-|`claude-haiku-4-5`|✓|
+| Call | Status | Body |
+| --- | --- | --- |
+| `claude-haiku-4-5` | **200** | `{"id":"<chat-id>","object":"chat.completion",…}` |
+| `ERNIE-Lite-8K` | **404** | `当前模型暂时不可用` (channel down) |
+| `claude-3-haiku-20240307` | **404** | `当前模型暂时不可用` (channel down) |
 
-A listed channel can answer `404 当前模型暂时不可用` even when your key is fine, so only the id the verifier actually got a completion from is ticked; `--model <id>` pins the one you care about.
+Both 404s came from the same key that answered 200 for `claude-haiku-4-5` seconds later, so a down channel is a property of the model, not of your key. `verify` walks the cheapest listed ids for that reason, and `--model <id>` pins the one you care about.
 
 ```bash
 curl https://api.camel-hub.com/v1/models -H "Authorization: Bearer <one of your keys>"
@@ -114,7 +116,7 @@ node src/cli.js help                       # task list
 node src/mint.js --help                    # the flags mint actually reads
 ```
 
-Keys are appended to `keys.txt`, one per line, once a key has answered `GET /v1/models` 200 *and* a model call has come back (a completion, or a credit refusal — only an error withholds it). Accounts run one after another; `--count 30` is a long run, and `out/pinned-<date>.log` is the running record of it. Nothing is sent to the panel that does not go through an exit from `proxies.txt` — a call with no exit left raises instead of dialing out directly.
+Keys are appended to `keys.txt`, one per line, once a key has answered `GET /v1/models` 200 *and* a model call has come back (a completion, or a credit refusal — only an error withholds it). Accounts run one after another; `--count 30` is a long run, and `out/pinned-<date>.log` is the running record of it. The proxy pool is OPTIONAL: with exits in `proxies.txt` every panel call rides one of them, and with no list at all the run goes out direct (recommended at scale, never required).
 
 ### 🖱️ The launcher
 
@@ -126,15 +128,24 @@ A menu over the task modules: **mint**, **verify**, **9Router**. It asks for `co
 
 ## ✅ Verified working — every key is tested
 
-Measured **2026-10-15**: **keys verified**. Every key was checked after it existed, on an exit *independent* of the mint — and every key was re-checked later, because the panel bans by exit *and* by account.
+Measured **2026-10-15**: **each account minted its own key, one key per account**. Every key was checked after it existed, on an exit *independent* of the mint — and every key was re-checked later, because the panel bans by exit *and* by account.
 
 | Model | Live (models) | Real chat call | Measured |
 | --- | --- | --- | --- |
+| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:57 |
+| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:55 |
+| `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:56 |
 | `claude-haiku-4-5` | **200** · 469 models | **200** · `claude-haiku-4-5` · `<chat-id>` · re-checked 12:05 · ✔ **live** | 2026-10-15 11:08 |
 
 `GET /v1/models` 200 proves a key is *authentic*; a completion 200 carrying a chat-completion body proves the account behind it can *spend*. `verify.js` (and every mint) records the exact status, body and observing exit of both calls per key in `accounts.json` — `verify` holds the current verdict, `verify.atMint` the measurement taken when the key was minted.
 
 **Exit screening is the work.** This panel blocks by source IP, so an exit that answered a minute ago can start answering `403 IP banned`. Verification filters banned exits before spending a key on them, retires any that get banned later, and counts them — a key that could not be measured says `unmeasured` instead of reading as dead. The panel's own account ban (`403 auth.user_banned`) is recorded as exactly that, so neither a blocked exit nor a banned account can be mistaken for a broken key.
+
+> **Quality gates.** Every key here passed a live `chat-200` before it was written to `keys.txt`
+> (dead keys are never shipped). Router combos follow the same rule at the model level: an entry is
+> added **only if the model answers `chat-200` and can call tools** — a model without tool support,
+> a dead key or a dead provider is dropped instead of added. Re-run the verify step any time;
+> failures are reported, never hidden.
 
 ## 🧭 How it works
 
@@ -151,7 +162,7 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | gates | the panel's own config | `turnstile_check: false`, `email_verification: true` |
 | mailbox | [Emailnator](https://www.emailnator.com) | a fresh gmail address per account, read over your exits |
-| verification mail | panel send | the code is only accepted when the mail's sender matches `<panel-mail>` / `CaMeL AI` |
+| verification mail | panel send | the code is only accepted when the mail's sender matches `noreply@<panel-mail>` / `CaMeL AI` |
 | register | panel register route | plain HTTP, no captcha |
 | check-in | daily check-in route | pays into the balance |
 | key | panel key route | one key per account |
@@ -203,8 +214,18 @@ node src/cli.js 9router
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+# or: node src/cli.js 9router
+```
+
+Every key in `keys.txt` becomes one connection of the `camelhub` provider node (`--api-key <key>` registers a single key instead, `--model <id>` overrides the default). Then pick a model inside 9Router:
 
 ```
+camelhub/claude-haiku-4-5
+camelhub/deepseek-chat
+camelhub/glm-4.5
+```
+
+Defaults: `--base http://localhost:20128`, `--password 123456`, `--prefix camelhub`, `--base-url https://api.camel-hub.com/v1`, default model `claude-haiku-4-5`. Point the connector at a refreshed `keys.txt` to add more accounts; the node and its model list stay the same.
 
 ## 🔌 Connect to OmniRoute
 
@@ -212,10 +233,10 @@ node src/connect-9router.js --base http://localhost:20128 --password 123456 --ke
 
 ```bash
 node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
-# or: node src/cli.js 9router
+# or: node src/cli.js omniroute
 ```
 
-Every key in `keys.txt` becomes one connection of the `camelhub` provider node (`--api-key <key>` registers a single key instead, `--model <id>` overrides the default). Then pick a model inside 9Router:
+Every key in `keys.txt` becomes one connection of the `camelhub` provider node (`--api-key <key>` registers a single key instead, `--model <id>` overrides the default). Then pick a model inside OmniRoute:
 
 ```
 camelhub/claude-haiku-4-5

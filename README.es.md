@@ -1,4 +1,5 @@
 <div align="center">
+
 ```
  ██████╗ █████╗ ███╗   ███╗███████╗██╗     ██╗  ██╗██╗   ██╗██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔════╝██║     ██║  ██║██║   ██║██╔══██╗
@@ -7,8 +8,10 @@
 ╚██████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
 ```
+
 # camelhub-bulk-apikey
-**Crea cuentas de CaMeL AI en lote con claves de API autogeneradas — inferencia compatible con OpenAI (469 modelos: Claude, Gemini, DeepSeek, GLM, Qwen) + conector 9Router.**
+
+**Crea cuentas de CaMeL AI en masa con claves API autogeneradas — inferencia compatible con OpenAI (469 modelos: Claude, Gemini, DeepSeek, GLM, Qwen) + conector 9Router.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
@@ -18,7 +21,7 @@
 [![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Inicio rápido](#-quick-start) · [🎁 Nivel gratuito](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-469-of-them) · [🧪 Usar la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [🔌 OmniRoute](#-connect-to-omniroute) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
+[🛠 Inicio rápido](#-quick-start) · [🎁 Nivel gratuito](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-469-of-them) · [🧪 Usa la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [🔌 OmniRoute](#-connect-to-omniroute) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
 
 </div>
 
@@ -32,21 +35,21 @@
 
 ## 🎁 Nivel gratuito — cuánto obtienes
 
-**Cada cuenta nueva incluye un crédito real y utilizable: $1.00 al registrarte más un check-in diario remunerado — sin tarjeta, sin captcha.**
+**Cada cuenta nueva tiene un crédito real y gastable: $1.00 al registrarte más un check-in diario de pago — sin tarjeta, sin captcha.**
 
 | Elemento | Medido |
 | --- | --- |
-| Bonificación por registro | **500,000 de cuota = $1.00** (`quota_per_unit: 500000`, `usd_exchange_rate: 1`) |
+| Concesión al registrarse | **500,000 de cuota = $1.00** (`quota_per_unit: 500000`, `usd_exchange_rate: 1`) |
 | Check-in diario | **habilitado**, pagó **$0.56 – $1.86** el primer día en tres cuentas |
-| Saldo tras el registro + un check-in el mismo día | **$1.556 · $2.062 · $2.856** |
+| Saldo tras registrarse + un check-in el mismo día | **$1.556 · $2.062 · $2.856** |
 | Captcha al registrarse | **ninguno** (`turnstile_check: false`) |
-| Correo electrónico que acepta el panel | `@gmail.com` simple (un alias con puntos se rechaza: `邮箱地址别名限制`); `@qq.com` funciona en el propio muro de correo del panel |
-| Límite de velocidad en una clave | **ninguno medido** — véase la nota sobre canales de modelos más abajo |
-| La unidad que escala | **una cuenta = una clave** → `--count N` significa realmente "N cuentas gratuitas" |
+| Correo electrónico que acepta el panel | `@gmail.com` simple (se rechaza un alias con puntos: `邮箱地址别名限制`); `@qq.com` funciona en el propio muro de correo del panel |
+| Límite de velocidad en una clave | **ninguno medido** — consulta la nota sobre canales de modelos más abajo |
+| La unidad que escala | **una cuenta = una clave** → `--count N` en realidad significa "N cuentas gratuitas" |
 
-**El crédito es real; no todos los canales de modelos están activos.** Un modelo *listado* puede responder `404 当前模型暂时不可用` mientras su canal está caído — medido en un lote: `ERNIE-Lite-8K` y `claude-3-haiku-20240307` caídos, `claude-haiku-4-5` respondiendo `200` en la misma clave segundos después. Por eso la herramienta recorre los ids listados más baratos en lugar de confiar en el primero.
+**El crédito es real; no todos los canales de modelos están activos.** Un modelo *listado* puede responder igualmente `404 当前模型暂时不可用` mientras su canal está caído — medido en un lote: `ERNIE-Lite-8K` y `claude-3-haiku-20240307` caídos, `claude-haiku-4-5` respondiendo `200` con la misma clave segundos después. Por eso la herramienta recorre los ids listados más baratos en lugar de confiar en el primero.
 
-> 💡 El nivel gratuito lo define CaMeL AI y puede cambiar. Consulta las cifras en vivo en [camel-hub.cn](https://camel-hub.cn) — y deja que la propia compuerta de la herramienta decida:
+> 💡 El nivel gratuito lo define CaMeL AI y puede cambiar. Consulta los números en vivo en [camel-hub.cn](https://camel-hub.cn) — y deja que la propia puerta de la herramienta decida:
 
 ```bash
 node src/cli.js --verify-only     # every key in keys.txt is re-tested with a real chat call
@@ -57,17 +60,18 @@ node src/cli.js --verify-only     # every key in keys.txt is re-tested with a re
 `GET https://api.camel-hub.com/v1/models` devuelve **469 ids de modelos** para una clave generada, por ejemplo:
 
 ```
-
 claude-haiku-4-5 · claude-opus-4-5 · gemini-2.5-flash · deepseek-chat
 deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
 ```
 
-|Modelo|✓|
-|---|---|
-|`claude-haiku-4-5`|✓|
+| Llamada | Estado | Cuerpo |
+| --- | --- | --- |
+| `claude-haiku-4-5` | **200** | `{"id":"<chat-id>","object":"chat.completion",…}` |
+| `ERNIE-Lite-8K` | **404** | `当前模型暂时不可用` (canal caído) |
+| `claude-3-haiku-20240307` | **404** | `当前模型暂时不可用` (canal caído) |
 
-Un canal listado puede responder `404 当前模型暂时不可用` aunque tu clave esté bien, por lo que solo se marca el id del que el verificador obtuvo realmente una respuesta; `--model <id>` fija el que te interesa.
+Ambos 404 provinieron de la misma clave que respondió 200 para `claude-haiku-4-5` segundos después, así que un canal caído es una propiedad del modelo, no de tu clave. `verify` recorre los ids listados más baratos por esa razón, y `--model <id>` fija el que te interesa.
 
 ```bash
 curl https://api.camel-hub.com/v1/models -H "Authorization: Bearer <one of your keys>"
@@ -75,7 +79,7 @@ curl https://api.camel-hub.com/v1/models -H "Authorization: Bearer <one of your 
 
 ## 🧪 Cómo usar la API
 
-La URL base es **`https://api.camel-hub.com/v1`** — compatible con OpenAI, así que funciona cualquier cosa que hable OpenAI (SDKs, Cursor, OpenCode, Kilo Code, …).
+La URL base es **`https://api.camel-hub.com/v1`** — compatible con OpenAI, así que cualquier cosa que hable OpenAI funciona (SDKs, Cursor, OpenCode, Kilo Code, …).
 
 ```bash
 curl https://api.camel-hub.com/v1/chat/completions \
@@ -91,7 +95,7 @@ print(client.chat.completions.create(model="claude-haiku-4-5",
       messages=[{"role": "user", "content": "hi"}]).choices[0].message.content)
 ```
 
-El panel ejecuta varios hosts de API; `https://api.camel-hub.com` es contra el que se midió este lote, y `--base URL` apunta las herramientas a otro (las propias compuertas del panel nombran `https://api.camel-hub.cn` como la línea principal actual).
+El panel ejecuta varios hosts de API; `https://api.camel-hub.com` es contra el que se midió este lote, y `--base URL` apunta las herramientas a otro (las propias puertas del panel nombran `https://api.camel-hub.cn` como la línea principal actual).
 
 ## 🛠 Inicio rápido
 
@@ -100,12 +104,11 @@ El panel ejecuta varios hosts de API; `https://api.camel-hub.com` es contra el q
 # clone this repository (or download the ZIP), then:
 cd camelhub-bulk-apikey
 
-# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
-printf 'socks5://127.0.0.1:1080\n' > proxies.txt
+# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port) — optional
+printf 'socks5://127.0.0.1:1080\n' > proxies.txt   # optional — without it the tool runs direct
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
-
 # or drive it directly:
 node src/cli.js mint --count 30            # any N; 5 is the sample default
 node src/cli.js mint --count 10 --scan-conc 8
@@ -114,7 +117,7 @@ node src/cli.js help                       # task list
 node src/mint.js --help                    # the flags mint actually reads
 ```
 
-Las claves se añaden a `keys.txt`, una por línea, una vez que una clave ha respondido `GET /v1/models` 200 *y* ha regresado una llamada a un modelo (una respuesta completa, o un rechazo por crédito — solo un error la retiene). Las cuentas se ejecutan una tras otra; `--count 30` es una ejecución larga, y `out/pinned-<date>.log` es el registro continuo de esta. Nada se envía al panel que no pase por una salida de `proxies.txt` — una llamada sin salida disponible lanza un error en lugar de marcar directamente.
+Las claves se añaden a `keys.txt`, una por línea, una vez que una clave ha respondido `GET /v1/models` 200 *y* ha vuelto una llamada a un modelo (una completion, o un rechazo por crédito — solo un error la retiene). Las cuentas se ejecutan una tras otra; `--count 30` es una ejecución larga, y `out/pinned-<date>.log` es el registro continuo de la misma. El grupo de proxies es OPCIONAL: con salidas en `proxies.txt` cada llamada al panel viaja por una de ellas, y sin ninguna lista la ejecución sale directa (recomendado a escala, nunca obligatorio).
 
 ### 🖱️ El lanzador
 
@@ -122,19 +125,28 @@ Las claves se añaden a `keys.txt`, una por línea, una vez que una clave ha res
 node src/launcher.js
 ```
 
-Un menú sobre los módulos de tareas: **mint**, **verify**, **9Router**. Pide `count` (claves por ejecución) y `conc` (sondeos de salida en paralelo), los guarda en `launcher.config.json` y lanza `node src/cli.js <tarea>` con las marcas adecuadas. `node src/launcher.js --connect-9router` ejecuta el registro en 9Router directamente y pide primero la URL base y la contraseña.
+Un menú sobre los módulos de tareas: **mint**, **verify**, **9Router**. Pregunta por `count` (claves por ejecución) y `conc` (sondeos de salida en paralelo), los guarda en `launcher.config.json`, y lanza `node src/cli.js <task>` con los flags correctos. `node src/launcher.js --connect-9router` ejecuta el registro en 9Router directamente y pregunta primero por la URL base y la contraseña.
 
-## ✅ Verificado funcionando — cada clave se prueba
+## ✅ Verificado y funcionando — cada clave se prueba
 
-Medido el **2026-10-15**: **4 cuentas → 4 claves, una clave por cuenta**. Cada clave se comprobó después de existir, en una salida *independiente* de la de generación — y cada clave se volvió a comprobar más tarde, porque el panel banea por salida *y* por cuenta.
+Medido el **2026-10-15**: **cada cuenta generó su propia clave, una clave por cuenta**. Cada clave se comprobó después de existir, en una salida *independiente* de la generación — y cada clave se volvió a comprobar más tarde, porque el panel banea por salida *y* por cuenta.
 
-| Modelo | En vivo (modelos) | Llamada de chat real | Medido |
+| Modelo | En vivo (models) | Llamada de chat real | Medido |
 | --- | --- | --- | --- |
-| `claude-haiku-4-5` | **200** · 469 modelos | **200** · `claude-haiku-4-5` · `<chat-id>` · recomprobado 12:05 · ✔ **en vivo** | 2026-10-15 11:08 |
+| `claude-haiku-4-5` | **200** · 469 modelos | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:57 |
+| `claude-haiku-4-5` | **200** · 469 modelos | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:55 |
+| `claude-haiku-4-5` | **200** · 469 modelos | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:56 |
+| `claude-haiku-4-5` | **200** · 469 modelos | **200** · `claude-haiku-4-5` · `<chat-id>` · re-comprobado 12:05 · ✔ **en vivo** | 2026-10-15 11:08 |
 
-`GET /v1/models` 200 demuestra que una clave es *auténtica*; una respuesta completa 200 que lleva un cuerpo de chat-completion demuestra que la cuenta detrás puede *gastar*. `verify.js` (y cada generación) registra el estado exacto, el cuerpo y la salida observadora de ambas llamadas por clave en `accounts.json` — `verify` contiene el veredicto actual, `verify.atMint` la medición tomada cuando se generó la clave.
+`GET /v1/models` 200 demuestra que una clave es *auténtica*; una completion 200 con un cuerpo de chat-completion demuestra que la cuenta detrás puede *gastar*. `verify.js` (y cada generación) registra el estado exacto, el cuerpo y la salida observadora de ambas llamadas por clave en `accounts.json` — `verify` contiene el veredicto actual, `verify.atMint` la medición tomada cuando se generó la clave.
 
-**El filtrado de salidas es la parte importante.** Este panel bloquea por IP de origen, así que una salida que respondió hace un minuto puede empezar a responder `403 IP banned`. La verificación filtra las salidas baneadas antes de gastar una clave en ellas, retira cualquiera que sea baneada más tarde y las cuenta — una clave que no se pudo medir dice `unmeasured` en lugar de leerse como muerta. El propio baneo de cuentas del panel (`403 auth.user_banned`) se registra como tal, de modo que ni una salida bloqueada ni una cuenta baneada pueden confundirse con una clave rota.
+**El filtrado de salidas es el trabajo.** Este panel bloquea por IP de origen, así que una salida que respondió hace un minuto puede empezar a responder `403 IP banned`. La verificación filtra las salidas baneadas antes de gastar una clave en ellas, retira cualquiera que sea baneada después, y las cuenta — una clave que no pudo medirse dice `unmeasured` en lugar de leerse como muerta. El propio baneo de cuenta del panel (`403 auth.user_banned`) se registra como exactamente eso, así que ni una salida bloqueada ni una cuenta baneada pueden confundirse con una clave rota.
+
+> **Puertas de calidad.** Cada clave aquí pasó un `chat-200` en vivo antes de escribirse en `keys.txt`
+> (las claves muertas nunca se entregan). Las combinaciones del router siguen la misma regla a nivel de modelo: una entrada se
+> añade **solo si el modelo responde `chat-200` y puede llamar herramientas** — un modelo sin soporte de herramientas,
+> una clave muerta o un proveedor muerto se descarta en lugar de añadirse. Vuelve a ejecutar el paso de verificación cuando quieras;
+> los fallos se reportan, nunca se ocultan.
 
 ## 🧭 Cómo funciona
 
@@ -149,23 +161,23 @@ inbox (one address per account)                                  a fresh address
 
 | Paso | Llamada | Notas |
 | --- | --- | --- |
-| compuertas | la propia configuración del panel | `turnstile_check: false`, `email_verification: true` |
+| puertas | la propia configuración del panel | `turnstile_check: false`, `email_verification: true` |
 | buzón | [Emailnator](https://www.emailnator.com) | una dirección gmail nueva por cuenta, leída a través de tus salidas |
-| correo de verificación | envío del panel | el código solo se acepta cuando el remitente del correo coincide con `<panel-mail>` / `CaMeL AI` |
+| correo de verificación | envío del panel | el código solo se acepta cuando el remitente del correo coincide con `noreply@<panel-mail>` / `CaMeL AI` |
 | registro | ruta de registro del panel | HTTP simple, sin captcha |
-| check-in | ruta de check-in diario | abona al saldo |
-| clave | ruta de claves del panel | una clave por cuenta |
-| probar | `GET /v1/models` + una respuesta completa real | ambas registradas, con la salida observadora |
+| check-in | ruta de check-in diario | paga al saldo |
+| clave | ruta de clave del panel | una clave por cuenta |
+| probar | `GET /v1/models` + una completion real | ambas registradas, con la salida observadora |
 
-Una salida baneada nunca se interpreta como una clave mala: la herramienta retira esa salida y vuelve a medir en otro lugar. El buzón puede cambiarse con `--mail imap --imap-user … --imap-pass …` cuando posees las direcciones (el panel rechaza alias, así que entonces cada cuenta necesita la suya).
+Una salida baneada nunca se lee como una clave mala: la herramienta retira esa salida y vuelve a medir en otro lugar. El buzón puede cambiarse con `--mail imap --imap-user … --imap-pass …` cuando posees las direcciones (el panel rechaza alias, así que cada cuenta necesita entonces la suya propia).
 
-## ⚙️ Opciones de la CLI
+## ⚙️ Opciones de CLI
 
 Todo el código vive en `src/` — ejecútalo desde la raíz del repositorio como `node src/<file>.js`; los archivos de datos (`keys.txt`, `proxies.txt`, `accounts.json`, `out/`) permanecen en la raíz del repositorio.
 
-| Herramienta | Marcas |
+| Herramienta | Flags |
 | --- | --- |
-| `src/mint.js` | `--count N` (5) · `--pool FILE` (`proxies.txt`) · `--mail emailnator\|imap` · `--imap-user` / `--imap-pass` (o `IMAP_USER` / `IMAP_PASS`) · `--mail-address` · `--base URL` · `--model ID` · `--poll-ms` (2000) · `--code-wait` (300000) · `--max-cycle` (3) · `--scan` (200) · `--scan-conc` (8, max 8) · `--budget` (2400 s) |
+| `src/mint.js` | `--count N` (5) · `--pool FILE` (`proxies.txt`) · `--mail emailnator\|imap` · `--imap-user` / `--imap-pass` (o `IMAP_USER` / `IMAP_PASS`) · `--mail-address` · `--base URL` · `--model ID` · `--poll-ms` (2000) · `--code-wait` (300000) · `--max-cycle` (3) · `--scan` (200) · `--scan-conc` (8, máx 8) · `--budget` (2400 s) |
 | `src/verify.js` | `--key K` · `--all` · `--model ID` · `--max-tokens` (8) · `--want` (3) · `--pool FILE` · `--base URL` |
 | `src/launcher.js` | interactivo: mint / verify / settings — `count` y `conc` persisten en `launcher.config.json` |
 
@@ -175,12 +187,13 @@ node src/cli.js verify
 node src/cli.js 9router
 ```
 
-`--count` controla cuántas claves produce una ejecución; la bonificación del panel es por cuenta, así que N claves son N cuentas. `--scan` / `--scan-conc` controlan cuánto de tu lista de salidas se sondea por salida fijada — sube `--scan` en una lista desactualizada, bájalo en una pequeña.
+`--count` controla cuántas claves produce una ejecución; la concesión del panel es por cuenta, así que N claves son N cuentas. `--scan` / `--scan-conc` controlan cuánto de tu lista de salidas se sondea por salida fijada — sube `--scan` en una lista obsoleta, bájalo en una pequeña.
 
 ## 🛰️ Detrás de un proxy
 
-* Las salidas provienen de `proxies.txt` (una línea por salida, `scheme://host:port`, se admite `user:pass@`, los comentarios `#` se ignoran). El mismo pool alimenta las llamadas al panel, la verificación de claves y las lecturas del buzón; las herramientas nunca marcan directamente al proveedor.
-* **El filtrado es la parte importante.** Cada cuenta fija la primera salida que supera `GET /api/status` contra el host del panel, y la verificación fija una salida *diferente* ya probada — una salida que muere a mitad de ejecución se retira y la cuenta continúa con la siguiente.
+* Las salidas provienen de `proxies.txt` (una línea por salida, `scheme://host:port`, `user:pass@` soportado, comentarios con `#` ignorados). El mismo grupo alimenta las llamadas al panel, la verificación de claves y las lecturas del buzón.
+* **Opcional — recomendado a escala (límites por IP, baneos).** La herramienta también funciona sin proxy: sin lista de salidas (o con una vacía) la CLI imprime `running WITHOUT a proxy (direct)` y cada petición sale desde tu propia línea — el registro, la generación de claves y la verificación no cambian.
+* **El filtrado es el trabajo.** Cada cuenta fija la primera salida que demuestra `GET /api/status` contra el host del panel (sin grupo, la "salida" fijada es la ruta directa), y la verificación fija una salida probada *diferente* — una salida que muere a mitad de ejecución se retira sola y la cuenta continúa con la siguiente.
 * Una salida baneada responde `403 IP banned`; se filtra antes de gastar una clave en ella y se retira cuando ocurre más tarde.
 * El buzón ([Emailnator](https://www.emailnator.com)) es un servicio de correo temporal de terceros en lugar del panel; su API también se lee a través de tus salidas.
 
@@ -198,24 +211,14 @@ node src/cli.js 9router
 
 ## 🔌 Conectar con 9Router
 
-[9Router](https://9router.com) es un router autohospedado compatible con OpenAI. CaMeL AI es compatible con OpenAI, así que regístralo una vez y usa todas las claves:
+[9Router](https://9router.com) es un router autoalojado y compatible con OpenAI. CaMeL AI es compatible con OpenAI, así que regístralo una vez y usa todas las claves:
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
-
-```
-
-## 🔌 Conectar con OmniRoute
-
-[OmniRoute](https://omniroute.online) es un router autohospedado compatible con OpenAI. CaMeL AI es compatible con OpenAI, así que regístralo una vez y usa todas las claves:
-
-```bash
-node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
-
 # or: node src/cli.js 9router
 ```
 
-Cada clave en `keys.txt` se convierte en una conexión del nodo del proveedor `camelhub` (`--api-key <key>` registra una sola clave en su lugar, `--model <id>` sobrescribe el predeterminado). Luego elige un modelo dentro de 9Router:
+Cada clave en `keys.txt` se convierte en una conexión del nodo proveedor `camelhub` (`--api-key <key>` registra una sola clave en su lugar, `--model <id>` sobrescribe el predeterminado). Luego elige un modelo dentro de 9Router:
 
 ```
 camelhub/claude-haiku-4-5
@@ -223,25 +226,44 @@ camelhub/deepseek-chat
 camelhub/glm-4.5
 ```
 
-Valores predeterminados: `--base http://localhost:20128`, `--password 123456`, `--prefix camelhub`, `--base-url https://api.camel-hub.com/v1`, modelo predeterminado `claude-haiku-4-5`. Apunta el conector a un `keys.txt` actualizado para añadir más cuentas; el nodo y su lista de modelos permanecen iguales.
+Valores predeterminados: `--base http://localhost:20128`, `--password 123456`, `--prefix camelhub`, `--base-url https://api.camel-hub.com/v1`, modelo predeterminado `claude-haiku-4-5`. Apunta el conector a un `keys.txt` actualizado para añadir más cuentas; el nodo y su lista de modelos permanecen igual.
+
+## 🔌 Conectar con OmniRoute
+
+[OmniRoute](https://omniroute.online) es un router autoalojado y compatible con OpenAI. CaMeL AI es compatible con OpenAI, así que regístralo una vez y usa todas las claves:
+
+```bash
+node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+# or: node src/cli.js omniroute
+```
+
+Cada clave en `keys.txt` se convierte en una conexión del nodo proveedor `camelhub` (`--api-key <key>` registra una sola clave en su lugar, `--model <id>` sobrescribe el predeterminado). Luego elige un modelo dentro de OmniRoute:
+
+```
+camelhub/claude-haiku-4-5
+camelhub/deepseek-chat
+camelhub/glm-4.5
+```
+
+Valores predeterminados: `--base http://localhost:20128`, `--password 123456`, `--prefix camelhub`, `--base-url https://api.camel-hub.com/v1`, modelo predeterminado `claude-haiku-4-5`. Apunta el conector a un `keys.txt` actualizado para añadir más cuentas; el nodo y su lista de modelos permanecen igual.
 
 ## 🔑 Qué te da una clave
 
 | | |
 | --- | --- |
 | 🏢 Proveedor | **CaMeL AI** — [camel-hub.cn](https://camel-hub.cn) |
-| 🎁 Qué da el proveedor | 469 modelos listados · $1.00 de crédito al registrarte más un check-in diario · cada clave verificada en vivo |
-| 🔑 Qué te da una clave | una clave de API limitada a su propia cuenta: los 469 ids de modelos en el endpoint de abajo, con los límites de tu plan. La cuota vive en la **cuenta**, y por eso precisamente esta herramienta crea una cuenta por clave |
-| 🌐 Forma de la API | compatible con OpenAI: `POST https://api.camel-hub.com/v1/chat/completions` |
+| 🎁 Qué da el proveedor | 469 modelos listados · $1.00 de crédito al registrarte más un check-in diario · cada clave verificada |
+| 🔑 Qué te da una clave | una clave API limitada a su propia cuenta: los 469 ids de modelos en el endpoint de abajo, con los límites de tu plan. La cuota vive en la **cuenta**, que es exactamente por lo que esta herramienta crea una cuenta por clave |
+| 🌐 Forma de la API | Compatible con OpenAI: `POST https://api.camel-hub.com/v1/chat/completions` |
 | 🔒 Tus datos | solo se contacta con camel-hub.cn y el backend de buzón que configures; las claves permanecen en tu máquina |
 
 ## 🐞 Problemas
 
-Abre una incidencia con el paso fallido y el final del registro de la ejecución (`out/pinned-<date>.log`) — contiene la salida, los tiempos y la respuesta exacta del servidor, que es todo lo necesario para reproducir un fallo. Nunca adjuntes una clave. **[Abre un issue](../../issues)** y los PRs son bienvenidos.
+Abre un issue con el paso que falla y la cola del registro de ejecución (`out/pinned-<date>.log`) — contiene la salida, los tiempos y la respuesta exacta del servidor, que es todo lo necesario para reproducir un fallo. Nunca adjuntes una clave. **[Abre un issue](../../issues)** y las PRs son bienvenidas.
 
 ## 📄 Licencia
 
-MIT © 2026 — véase [LICENSE](LICENSE).
+MIT © 2026 — consulta [LICENSE](LICENSE).
 
 <div align="center">
 

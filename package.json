@@ -1,12 +1,11 @@
 {
   "name": "camelhub-bulk-apikey",
   "version": "1.0.0",
-  "description": "Bulk API keys for camel-hub.cn (CaMeL AI) — free tier: 469 models (claude-haiku-4-5, gemini-2.5-flash, deepseek-chat, glm-4.5), $1.00 on sign-up plus a daily check-in. One account per key; mint any number.",
+  "description": "Bulk-create CaMeL AI accounts with auto-generated API keys — OpenAI-compatible inference (469 models: Claude, Gemini, DeepSeek, GLM, Qwen) + 9Router connector.",
   "license": "MIT",
   "type": "commonjs",
   "bin": {
     "camelhub-bulk-apikey": "src/cli.js",
-    "camelhub-bulk-apikey-9router": "src/connect-9router.js",
     "camelhub-bulk-apikey-launcher": "src/launcher.js"
   },
   "main": "src/cli.js",
@@ -25,7 +24,6 @@
     "register",
     "launcher",
     "camelhub",
-    "bulk",
     "apikey"
   ],
   "files": [

@@ -1,4 +1,5 @@
 <div align="center">
+
 ```
  ██████╗ █████╗ ███╗   ███╗███████╗██╗     ██╗  ██╗██╗   ██╗██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔════╝██║     ██║  ██║██║   ██║██╔══██╗
@@ -7,8 +8,10 @@
 ╚██████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
 ```
+
 # camelhub-bulk-apikey
-**Otomatik oluşturulan API anahtarlarıyla toplu CaMeL AI hesabı açın — OpenAI uyumlu çıkarım (469 model: Claude, Gemini, DeepSeek, GLM, Qwen) + 9Router bağlayıcısı.**
+
+**Otomatik oluşturulan API anahtarlarıyla toplu CaMeL AI hesabı oluşturun — OpenAI uyumlu çıkarım (469 model: Claude, Gemini, DeepSeek, GLM, Qwen) + 9Router bağlayıcısı.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=for-the-badge)](#)
@@ -30,7 +33,7 @@
 
 ---
 
-## 🎁 Ücretsiz katman — ne kadar alıyorsunuz
+## 🎁 Ücretsiz katman — ne kadar kredi alırsınız
 
 **Her yeni hesap gerçek, harcanabilir bir kredi taşır: kayıtta $1.00 artı ücretli günlük giriş — kart yok, captcha yok.**
 
@@ -41,12 +44,12 @@
 | Kayıt + aynı gün bir giriş sonrası bakiye | **$1.556 · $2.062 · $2.856** |
 | Kayıtta captcha | **yok** (`turnstile_check: false`) |
 | Panelin kabul ettiği e-posta | düz `@gmail.com` (noktalı takma ad reddedilir: `邮箱地址别名限制`); `@qq.com` panelin kendi posta duvarında çalışır |
-| Bir anahtarda hız sınırı | **ölçülmedi** — aşağıdaki model kanalı notuna bakın |
-| Ölçeklenen birim | **bir hesap = bir anahtar** → `--count N` aslında "N ücretsiz hesap" demektir |
+| Anahtardaki hız sınırı | **ölçülmedi** — aşağıdaki model kanalı notuna bakın |
+| Ölçeklenen birim | **bir hesap = bir anahtar** → `--count N` gerçekte "N ücretsiz hesap" demektir |
 
-**Kredi gerçek; ancak her model kanalı ayakta değil.** *Listelenen* bir model, kanalı kapalıyken yine de `404 当前模型暂时不可用` yanıtı verebilir — bir partide ölçüldü: `ERNIE-Lite-8K` ve `claude-3-haiku-20240307` kapalı, `claude-haiku-4-5` aynı anahtarla saniyeler sonra `200` yanıtı veriyor. Bu yüzden araç, ilkine güvenmek yerine en ucuz listelenen kimlikleri dolaşır.
+**Kredi gerçek; ancak her model kanalı ayakta değil.** *Listelenen* bir model, kanalı kapalıyken yine de `404 当前模型暂时不可用` yanıtı verebilir — bir partide ölçüldü: `ERNIE-Lite-8K` ve `claude-3-haiku-20240307` kapalı, `claude-haiku-4-5` aynı anahtarla saniyeler sonra `200` yanıtı verdi. Bu yüzden araç, ilkine güvenmek yerine en ucuz listelenen kimlikleri dolaşır.
 
-> 💡 Ücretsiz katman CaMeL AI tarafından belirlenir ve değişebilir. Canlı sayıları [camel-hub.cn](https://camel-hub.cn) adresinden kontrol edin — ve kararı aracın kendi kapısına bırakın:
+> 💡 Ücretsiz katman CaMeL AI tarafından belirlenir ve değişebilir. Güncel sayıları [camel-hub.cn](https://camel-hub.cn) adresinden kontrol edin — ve kararı aracın kendi kapısına bırakın:
 
 ```bash
 node src/cli.js --verify-only     # every key in keys.txt is re-tested with a real chat call
@@ -57,17 +60,18 @@ node src/cli.js --verify-only     # every key in keys.txt is re-tested with a re
 `GET https://api.camel-hub.com/v1/models`, oluşturulmuş bir anahtar için **469 model kimliği** döndürür, örneğin:
 
 ```
-
 claude-haiku-4-5 · claude-opus-4-5 · gemini-2.5-flash · deepseek-chat
 deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
 ```
 
-|Model|✓|
-|---|---|
-|`claude-haiku-4-5`|✓|
+| Çağrı | Durum | Gövde |
+| --- | --- | --- |
+| `claude-haiku-4-5` | **200** | `{"id":"<chat-id>","object":"chat.completion",…}` |
+| `ERNIE-Lite-8K` | **404** | `当前模型暂时不可用` (kanal kapalı) |
+| `claude-3-haiku-20240307` | **404** | `当前模型暂时不可用` (kanal kapalı) |
 
-Listelenen bir kanal, anahtarınız sağlam olsa bile `404 当前模型暂时不可用` yanıtı verebilir; bu yüzden yalnızca doğrulayıcının gerçekten bir tamamlama aldığı kimlik işaretlenir; `--model <id>` önemsediğiniz modeli sabitler.
+Her iki 404 de, saniyeler sonra `claude-haiku-4-5` için 200 yanıtı veren aynı anahtardan geldi; yani kapalı bir kanal anahtarınızın değil, modelin bir özelliğidir. Bu nedenle `verify` en ucuz listelenen kimlikleri dolaşır ve `--model <id>` önemsediğiniz modeli sabitler.
 
 ```bash
 curl https://api.camel-hub.com/v1/models -H "Authorization: Bearer <one of your keys>"
@@ -91,7 +95,7 @@ print(client.chat.completions.create(model="claude-haiku-4-5",
       messages=[{"role": "user", "content": "hi"}]).choices[0].message.content)
 ```
 
-Panel birkaç API sunucusu işletir; `https://api.camel-hub.com` bu partinin ölçüldüğü sunucudur ve `--base URL` araçları başka bir sunucuya yönlendirir (panelin kendi kapıları `https://api.camel-hub.cn` adresini güncel ana hat olarak belirtir).
+Panel birkaç API sunucusu işletir; `https://api.camel-hub.com` bu partinin ölçüldüğü sunucudur ve `--base URL` araçları başka bir sunucuya yönlendirir (panelin kendi kapıları güncel ana hat olarak `https://api.camel-hub.cn` adresini belirtir).
 
 ## 🛠 Hızlı başlangıç
 
@@ -100,12 +104,11 @@ Panel birkaç API sunucusu işletir; `https://api.camel-hub.com` bu partinin öl
 # clone this repository (or download the ZIP), then:
 cd camelhub-bulk-apikey
 
-# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port)
-printf 'socks5://127.0.0.1:1080\n' > proxies.txt
+# 1) your proxy list, one exit per line (http://, socks5://, socks4:// or bare host:port) — optional
+printf 'socks5://127.0.0.1:1080\n' > proxies.txt   # optional — without it the tool runs direct
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
-
 # or drive it directly:
 node src/cli.js mint --count 30            # any N; 5 is the sample default
 node src/cli.js mint --count 10 --scan-conc 8
@@ -114,7 +117,7 @@ node src/cli.js help                       # task list
 node src/mint.js --help                    # the flags mint actually reads
 ```
 
-Anahtarlar, bir anahtar `GET /v1/models` 200 yanıtı verdiğinde *ve* bir model çağrısı geri döndüğünde (bir tamamlama ya da bir kredi reddi — yalnızca bir hata anahtarı alıkoyar) `keys.txt` dosyasına her satırda bir tane olacak şekilde eklenir. Hesaplar birbiri ardına çalışır; `--count 30` uzun bir çalışmadır ve `out/pinned-<date>.log` bunun sürekli kaydıdır. `proxies.txt` içindeki bir çıkıştan geçmeyen hiçbir şey panele gönderilmez — çıkışı kalmayan bir çağrı doğrudan bağlanmak yerine hata verir.
+Anahtarlar, bir anahtar `GET /v1/models` 200 yanıtı verdiğinde *ve* bir model çağrısı geri döndüğünde (bir tamamlama ya da bir kredi reddi — yalnızca bir hata anahtarı alıkoyar) `keys.txt` dosyasına her satırda bir tane olacak şekilde eklenir. Hesaplar birbiri ardına çalışır; `--count 30` uzun bir çalışmadır ve `out/pinned-<date>.log` bunun sürekli kaydıdır. Proxy havuzu İSTEĞE BAĞLIDIR: `proxies.txt` içinde çıkışlar varsa her panel çağrısı bunlardan biri üzerinden gider, hiç liste yoksa çalışma doğrudan dışarı çıkar (ölçekte önerilir, asla zorunlu değildir).
 
 ### 🖱️ Başlatıcı
 
@@ -126,15 +129,24 @@ Görev modülleri üzerinde bir menü: **mint**, **verify**, **9Router**. `count
 
 ## ✅ Çalıştığı doğrulandı — her anahtar test edilir
 
-Ölçüm **2026-10-15**: **4 hesap → 4 anahtar, hesap başına bir anahtar**. Her anahtar var olduktan sonra, oluşturmadan *bağımsız* bir çıkış üzerinden kontrol edildi — ve her anahtar daha sonra yeniden kontrol edildi, çünkü panel hem çıkışa *hem de* hesaba göre yasaklama uygular.
+Ölçüm **2026-10-15**: **her hesap kendi anahtarını oluşturdu, hesap başına bir anahtar**. Her anahtar var olduktan sonra, oluşturmadan *bağımsız* bir çıkış üzerinden kontrol edildi — ve her anahtar daha sonra yeniden kontrol edildi, çünkü panel hem çıkışa *hem de* hesaba göre yasaklar.
 
-| Model | Canlı (modeller) | Gerçek sohbet çağrısı | Ölçüldü |
+| Model | Canlı (modeller) | Gerçek sohbet çağrısı | Ölçüm |
 | --- | --- | --- | --- |
+| `claude-haiku-4-5` | **200** · 469 model | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:57 |
+| `claude-haiku-4-5` | **200** · 469 model | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:55 |
+| `claude-haiku-4-5` | **200** · 469 model | **200** · `claude-haiku-4-5` · `<chat-id>` | 2026-10-15 09:56 |
 | `claude-haiku-4-5` | **200** · 469 model | **200** · `claude-haiku-4-5` · `<chat-id>` · 12:05'te yeniden kontrol edildi · ✔ **canlı** | 2026-10-15 11:08 |
 
 `GET /v1/models` 200 yanıtı bir anahtarın *gerçek* olduğunu kanıtlar; sohbet tamamlama gövdesi taşıyan bir tamamlama 200 yanıtı ise arkasındaki hesabın *harcayabildiğini* kanıtlar. `verify.js` (ve her oluşturma) her anahtar için her iki çağrının tam durumunu, gövdesini ve gözlemleyen çıkışını `accounts.json` içine kaydeder — `verify` güncel kararı, `verify.atMint` ise anahtar oluşturulduğunda alınan ölçümü tutar.
 
-**Asıl iş çıkış taramasıdır.** Bu panel kaynak IP'ye göre engeller, yani bir dakika önce yanıt veren bir çıkış `403 IP banned` yanıtı vermeye başlayabilir. Doğrulama, yasaklı çıkışları üzerlerinde bir anahtar harcamadan önce filtreler, sonradan yasaklananları devre dışı bırakır ve sayar — ölçülemeyen bir anahtar ölü olarak okunmak yerine `unmeasured` der. Panelin kendi hesap yasağı (`403 auth.user_banned`) tam olarak bu şekilde kaydedilir, böylece ne engellenmiş bir çıkış ne de yasaklanmış bir hesap bozuk bir anahtarla karıştırılabilir.
+**Çıkış taraması asıl iştir.** Bu panel kaynak IP'ye göre engeller, yani bir dakika önce yanıt veren bir çıkış `403 IP banned` yanıtı vermeye başlayabilir. Doğrulama, yasaklı çıkışları üzerlerinde bir anahtar harcamadan önce filtreler, sonradan yasaklananları devre dışı bırakır ve sayar — ölçülemeyen bir anahtar ölü olarak okunmak yerine `unmeasured` der. Panelin kendi hesap yasağı (`403 auth.user_banned`) tam olarak bu şekilde kaydedilir, böylece ne engellenmiş bir çıkış ne de yasaklanmış bir hesap bozuk bir anahtarla karıştırılabilir.
+
+> **Kalite kapıları.** Buradaki her anahtar `keys.txt` dosyasına yazılmadan önce canlı bir `chat-200` geçti
+> (ölü anahtarlar asla gönderilmez). Yönlendirici kombinasyonları model düzeyinde aynı kuralı izler: bir giriş
+> **yalnızca model `chat-200` yanıtı veriyorsa ve araçları çağırabiliyorsa** eklenir — araç desteği olmayan bir model,
+> ölü bir anahtar veya ölü bir sağlayıcı eklenmek yerine çıkarılır. Doğrulama adımını istediğiniz zaman yeniden çalıştırın;
+> başarısızlıklar bildirilir, asla gizlenmez.
 
 ## 🧭 Nasıl çalışır
 
@@ -151,17 +163,17 @@ inbox (one address per account)                                  a fresh address
 | --- | --- | --- |
 | kapılar | panelin kendi yapılandırması | `turnstile_check: false`, `email_verification: true` |
 | posta kutusu | [Emailnator](https://www.emailnator.com) | hesap başına taze bir gmail adresi, çıkışlarınız üzerinden okunur |
-| doğrulama postası | panel gönderimi | kod yalnızca postanın göndericisi `<panel-mail>` / `CaMeL AI` ile eşleştiğinde kabul edilir |
+| doğrulama postası | panel gönderimi | kod yalnızca postanın göndericisi `noreply@<panel-mail>` / `CaMeL AI` ile eşleştiğinde kabul edilir |
 | kayıt | panel kayıt rotası | düz HTTP, captcha yok |
-| giriş | günlük giriş rotası | bakiyeye ödeme yapar |
+| günlük giriş | günlük giriş rotası | bakiyeye ödeme yapar |
 | anahtar | panel anahtar rotası | hesap başına bir anahtar |
-| kanıt | `GET /v1/models` + gerçek bir tamamlama | her ikisi de gözlemleyen çıkışla birlikte kaydedilir |
+| kanıtla | `GET /v1/models` + gerçek bir tamamlama | her ikisi de gözlemleyen çıkışla birlikte kaydedilir |
 
 Yasaklı bir çıkış asla kötü bir anahtar olarak okunmaz: araç o çıkışı devre dışı bırakır ve başka bir yerde yeniden ölçer. Adreslere siz sahipseniz posta kutusu `--mail imap --imap-user … --imap-pass …` ile değiştirilebilir (panel takma adları reddeder, bu yüzden her hesabın kendi adresi olması gerekir).
 
 ## ⚙️ CLI seçenekleri
 
-Tüm kod `src/` içinde bulunur — depo kökünden `node src/<file>.js` olarak çalıştırın; veri dosyaları (`keys.txt`, `proxies.txt`, `accounts.json`, `out/`) depo kökünde kalır.
+Tüm kod `src/` içinde yaşar — depo kökünden `node src/<file>.js` olarak çalıştırın; veri dosyaları (`keys.txt`, `proxies.txt`, `accounts.json`, `out/`) depo kökünde kalır.
 
 | Araç | Bayraklar |
 | --- | --- |
@@ -175,21 +187,22 @@ node src/cli.js verify
 node src/cli.js 9router
 ```
 
-`--count` bir çalışmanın kaç anahtar ürettiğini kontrol eder; panelin hediyesi hesap başına olduğundan N anahtar N hesap demektir. `--scan` / `--scan-conc` çıkış listenizin ne kadarının sabitlenmiş çıkış başına yoklanacağını kontrol eder — eski bir listede `--scan` değerini yükseltin, küçük bir listede düşürün.
+`--count` bir çalışmanın kaç anahtar ürettiğini kontrol eder; panelin hediyesi hesap başına olduğundan N anahtar N hesap demektir. `--scan` / `--scan-conc`, sabitlenmiş çıkış başına çıkış listenizin ne kadarının yoklanacağını kontrol eder — eski bir listede `--scan` değerini artırın, küçük bir listede azaltın.
 
 ## 🛰️ Proxy arkasında
 
-* Çıkışlar `proxies.txt` dosyasından gelir (çıkış başına bir satır, `scheme://host:port`, `user:pass@` desteklenir, `#` yorumları yok sayılır). Aynı havuz panel çağrılarını, anahtar doğrulamasını ve posta kutusu okumalarını besler; araçlar sağlayıcıya asla doğrudan bağlanmaz.
-* **Asıl iş taramadır.** Her hesap, panel sunucusuna karşı `GET /api/status` kanıtlayan ilk çıkışı sabitler ve doğrulama *farklı* bir kanıtlanmış çıkışı sabitler — çalışma ortasında ölen bir çıkış kendini devre dışı bırakır ve hesap bir sonrakiyle devam eder.
+* Çıkışlar `proxies.txt` dosyasından gelir (çıkış başına bir satır, `scheme://host:port`, `user:pass@` desteklenir, `#` yorumları yok sayılır). Aynı havuz panel çağrılarını, anahtar doğrulamasını ve posta kutusu okumalarını besler.
+* **İsteğe bağlı — ölçekte önerilir (IP başına sınırlar, yasaklar).** Araç proxy olmadan da çalışır: çıkış listesi yoksa (veya boşsa) CLI `running WITHOUT a proxy (direct)` yazdırır ve her istek kendi hattınızdan çıkar — kayıt, anahtar oluşturma ve doğrulama değişmez.
+* **Tarama asıl iştir.** Her hesap, panel sunucusuna karşı `GET /api/status` kanıtlayan ilk çıkışı sabitler (havuz yoksa sabitlenen "çıkış" doğrudan rotadır) ve doğrulama *farklı* bir kanıtlanmış çıkışı sabitler — çalışma sırasında ölen bir çıkış kendini devre dışı bırakır ve hesap bir sonrakiyle devam eder.
 * Yasaklı bir çıkış `403 IP banned` yanıtı verir; üzerinde bir anahtar harcanmadan önce filtrelenir ve sonradan olduğunda devre dışı bırakılır.
-* Posta kutusu ([Emailnator](https://www.emailnator.com)) panel yerine üçüncü taraf bir geçici posta servisidir; API'si de çıkışlarınız üzerinden okunur.
+* Posta kutusu ([Emailnator](https://www.emailnator.com)) panel yerine üçüncü taraf bir geçici posta hizmetidir; API'si de çıkışlarınız üzerinden okunur.
 
 ## 📄 Dosyalar
 
 | Yol | İçerik |
 | --- | --- |
 | `keys.txt` | satır başına bir canlı doğrulanmış anahtar — git tarafından yok sayılır |
-| `accounts.json` | hesap başına posta kutusu, adımlar, giriş, her iki doğrulama çıkışı — git tarafından yok sayılır |
+| `accounts.json` | hesap başına posta kutusu, adımlar, günlük giriş, her iki doğrulama çıkışı — git tarafından yok sayılır |
 | `models.json` | çalışma başına taze bir `/v1/models` kaydı — git tarafından yok sayılır |
 | `proxies.txt` | çıkışlarınız, satır başına bir tane — git tarafından yok sayılır |
 | `out/pinned-<date>.log` | çalışma başına günlük (çıkış, zamanlama, sunucunun tam yanıtı) — git tarafından yok sayılır |
@@ -198,24 +211,33 @@ node src/cli.js 9router
 
 ## 🔌 9Router'a bağlanma
 
-[9Router](https://9router.com) kendi kendine barındırılan, OpenAI uyumlu bir yönlendiricidir. CaMeL AI OpenAI uyumlu olduğundan bir kez kaydedin ve tüm anahtarları kullanın:
+[9Router](https://9router.com) kendi kendine barındırılan, OpenAI uyumlu bir yönlendiricidir. CaMeL AI OpenAI uyumlu olduğundan bir kez kaydedin ve her anahtarı kullanın:
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
-
-```
-
-## 🔌 OmniRoute'a bağlanma
-
-[OmniRoute](https://omniroute.online) kendi kendine barındırılan, OpenAI uyumlu bir yönlendiricidir. CaMeL AI OpenAI uyumlu olduğundan bir kez kaydedin ve tüm anahtarları kullanın:
-
-```bash
-node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
-
 # or: node src/cli.js 9router
 ```
 
 `keys.txt` içindeki her anahtar `camelhub` sağlayıcı düğümünün bir bağlantısı olur (`--api-key <key>` bunun yerine tek bir anahtar kaydeder, `--model <id>` varsayılanı geçersiz kılar). Ardından 9Router içinde bir model seçin:
+
+```
+camelhub/claude-haiku-4-5
+camelhub/deepseek-chat
+camelhub/glm-4.5
+```
+
+Varsayılanlar: `--base http://localhost:20128`, `--password 123456`, `--prefix camelhub`, `--base-url https://api.camel-hub.com/v1`, varsayılan model `claude-haiku-4-5`. Daha fazla hesap eklemek için bağlayıcıyı yenilenmiş bir `keys.txt` dosyasına yönlendirin; düğüm ve model listesi aynı kalır.
+
+## 🔌 OmniRoute'a bağlanma
+
+[OmniRoute](https://omniroute.online) kendi kendine barındırılan, OpenAI uyumlu bir yönlendiricidir. CaMeL AI OpenAI uyumlu olduğundan bir kez kaydedin ve her anahtarı kullanın:
+
+```bash
+node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+# or: node src/cli.js omniroute
+```
+
+`keys.txt` içindeki her anahtar `camelhub` sağlayıcı düğümünün bir bağlantısı olur (`--api-key <key>` bunun yerine tek bir anahtar kaydeder, `--model <id>` varsayılanı geçersiz kılar). Ardından OmniRoute içinde bir model seçin:
 
 ```
 camelhub/claude-haiku-4-5
@@ -230,14 +252,14 @@ Varsayılanlar: `--base http://localhost:20128`, `--password 123456`, `--prefix 
 | | |
 | --- | --- |
 | 🏢 Sağlayıcı | **CaMeL AI** — [camel-hub.cn](https://camel-hub.cn) |
-| 🎁 Sağlayıcının verdikleri | 469 listelenen model · kayıtta $1.00 kredi artı günlük giriş · her anahtar canlı doğrulanmış |
+| 🎁 Sağlayıcının verdikleri | 469 listelenen model · kayıtta $1.00 kredi artı günlük giriş · her anahtar doğrulanır |
 | 🔑 Bir anahtarın size kazandırdıkları | kendi hesabına kapsanmış bir API anahtarı: aşağıdaki uç noktada 469 model kimliği, planınızın sınırlarında. Kota **hesapta** yaşar, bu aracın anahtar başına bir hesap oluşturmasının nedeni tam da budur |
 | 🌐 API biçimi | OpenAI uyumlu: `POST https://api.camel-hub.com/v1/chat/completions` |
 | 🔒 Verileriniz | yalnızca camel-hub.cn ve yapılandırdığınız posta kutusu arka ucuna bağlanılır; anahtarlar makinenizde kalır |
 
 ## 🐞 Sorunlar
 
-Başarısız adımı ve çalışma günlüğünün sonunu (`out/pinned-<date>.log`) içeren bir sorun açın — günlük çıkışı, zamanlamayı ve sunucunun tam yanıtını taşır, ki bu bir hatayı yeniden üretmek için gereken her şeydir. Asla bir anahtar eklemeyin. **[Sorun açın](../../issues)** ve PR'lar memnuniyetle karşılanır.
+Başarısız adımı ve çalışma günlüğünün sonunu (`out/pinned-<date>.log`) içeren bir sorun açın — bu günlük çıkışı, zamanlamayı ve sunucunun tam yanıtını taşır; bir hatayı yeniden üretmek için gereken her şey budur. Asla bir anahtar eklemeyin. **[Bir sorun açın](../../issues)** ve PR'lar memnuniyetle karşılanır.
 
 ## 📄 Lisans
 
@@ -245,6 +267,6 @@ MIT © 2026 — bkz. [LICENSE](LICENSE).
 
 <div align="center">
 
-**[MIT](LICENSE)** © 2026 camelhub-bulk-apikey contributors
+**[MIT](LICENSE)** © 2026 camelhub-bulk-apikey katkıda bulunanlar
 
 </div>
