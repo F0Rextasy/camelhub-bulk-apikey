@@ -83,10 +83,25 @@ async function nineRouter() {
   const r = spawnSync(process.execPath, [path.join(__dirname, 'connect-9router.js'), '--base', base, '--password', password, '--keys-file', file, '--model', model], { windowsHide: true, cwd: ROOT, stdio: 'inherit' });
   if (r.status !== 0) console.log('\n⚠ exited with code ' + r.status);
 }
+async function omniRouter() {
+  console.log('\nOmniRoute — register the keys in keys.txt as one connection each');
+  const base = await ask('OmniRoute base URL', 'http://localhost:20128');
+  const password = await ask('OmniRoute password', '123456');
+  const file = await ask('Key file to register (one key per line)', 'keys.txt');
+  const model = await ask('Default model for the connection', 'claude-haiku-4-5');
+  console.log('\n▶ node src/connect-omniroute.js --base ' + base + ' --keys-file ' + file + ' --model ' + model + '\n');
+  const r = spawnSync(process.execPath, [path.join(__dirname, 'connect-omniroute.js'), '--base', base, '--password', password, '--keys-file', file, '--model', model], { windowsHide: true, cwd: ROOT, stdio: 'inherit' });
+  if (r.status !== 0) console.log('\n⚠ exited with code ' + r.status);
+}
 
 async function main() {
   if (process.argv.includes('--connect-9router')) {
     await nineRouter();
+    rl.close();
+    return;
+  }
+  if (process.argv.includes('--connect-omniroute')) {
+    await omniRouter();
     rl.close();
     return;
   }
@@ -96,7 +111,8 @@ async function main() {
   console.log('  1) mint      create fresh accounts and mint one key each');
   console.log('  2) verify    re-check keys that are already on disk');
   console.log('  3) Settings');
-  console.log('  4) 9Router   register the keys in keys.txt with a 9Router instance');
+  console.log('  4) Connect to 9Router   register the keys in keys.txt with a 9Router instance');
+  console.log('  5) Connect to OmniRoute   register the keys in keys.txt with an OmniRoute instance');
   console.log('  0) Exit\n');
   const choice = await ask('choose', '1');
   if (choice === '1') {
@@ -110,6 +126,9 @@ async function main() {
   }
   else if (choice === '4') {
     await nineRouter();
+  }
+  else if (choice === '5') {
+    await omniRouter();
   } else {
     rl.close();
     return;

@@ -1,5 +1,4 @@
 <div align="center">
-
 ```
  ██████╗ █████╗ ███╗   ███╗███████╗██╗     ██╗  ██╗██╗   ██╗██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔════╝██║     ██║  ██║██║   ██║██╔══██╗
@@ -8,9 +7,7 @@
 ╚██████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
 ```
-
 # camelhub-bulk-apikey
-
 **自動生成された API キーで CaMeL AI アカウントを一括作成 — OpenAI 互換の推論（469 モデル: Claude、Gemini、DeepSeek、GLM、Qwen）＋ 9Router コネクタ。**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
@@ -59,6 +56,7 @@ node src/cli.js --verify-only     # keys.txt 内のすべてのキーを実際�
 `GET https://api.camel-hub.com/v1/models` は、発行されたキーに対して **469 個のモデル id** を返します。例:
 
 ```
+
 claude-haiku-4-5 · claude-opus-4-5 · gemini-2.5-flash · deepseek-chat
 deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
@@ -106,6 +104,7 @@ printf 'socks5://127.0.0.1:1080\n' > proxies.txt
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
+
 # or drive it directly:
 node src/cli.js mint --count 30            # any N; 5 is the sample default
 node src/cli.js mint --count 10 --scan-conc 8
@@ -202,6 +201,16 @@ node src/cli.js 9router
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
+```
+
+## 🔌 OmniRoute への接続
+
+[OmniRoute](https://omniroute.online) はセルフホスト型の OpenAI 互換ルーターです。CaMeL AI は OpenAI 互換なので、1 回登録すればすべてのキーを使えます:
+
+```bash
+node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
 # or: node src/cli.js 9router
 ```
 

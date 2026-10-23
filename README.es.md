@@ -1,5 +1,4 @@
 <div align="center">
-
 ```
  ██████╗ █████╗ ███╗   ███╗███████╗██╗     ██╗  ██╗██╗   ██╗██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔════╝██║     ██║  ██║██║   ██║██╔══██╗
@@ -8,9 +7,7 @@
 ╚██████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
 ```
-
 # camelhub-bulk-apikey
-
 **Crea cuentas de CaMeL AI en lote con claves de API autogeneradas — inferencia compatible con OpenAI (469 modelos: Claude, Gemini, DeepSeek, GLM, Qwen) + conector 9Router.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
@@ -18,9 +15,10 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-469%20served-412991?style=for-the-badge)](https://camel-hub.cn)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 Inicio rápido](#-quick-start) · [🎁 Nivel gratuito](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-469-of-them) · [🧪 Usar la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
+[🛠 Inicio rápido](#-quick-start) · [🎁 Nivel gratuito](#-free-tier--how-much-you-get) · [🤖 Modelos](#-models--all-469-of-them) · [🧪 Usar la API](#-how-to-use-the-api) · [✅ Verificado](#-verified-working--every-key-is-tested) · [🧭 Cómo funciona](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [🔌 OmniRoute](#-connect-to-omniroute) · [⚙️ Opciones](#️-cli-options) · [🛰️ Proxies](#️-behind-a-proxy) · [🐞 Problemas](#-issues)
 
 </div>
 
@@ -59,6 +57,7 @@ node src/cli.js --verify-only     # every key in keys.txt is re-tested with a re
 `GET https://api.camel-hub.com/v1/models` devuelve **469 ids de modelos** para una clave generada, por ejemplo:
 
 ```
+
 claude-haiku-4-5 · claude-opus-4-5 · gemini-2.5-flash · deepseek-chat
 deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
@@ -106,6 +105,7 @@ printf 'socks5://127.0.0.1:1080\n' > proxies.txt
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
+
 # or drive it directly:
 node src/cli.js mint --count 30            # any N; 5 is the sample default
 node src/cli.js mint --count 10 --scan-conc 8
@@ -202,6 +202,16 @@ node src/cli.js 9router
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
+```
+
+## 🔌 Conectar con OmniRoute
+
+[OmniRoute](https://omniroute.online) es un router autohospedado compatible con OpenAI. CaMeL AI es compatible con OpenAI, así que regístralo una vez y usa todas las claves:
+
+```bash
+node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
 # or: node src/cli.js 9router
 ```
 

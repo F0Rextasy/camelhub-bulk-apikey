@@ -1,5 +1,4 @@
 <div align="center">
-
 ```
  ██████╗ █████╗ ███╗   ███╗███████╗██╗     ██╗  ██╗██╗   ██╗██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔════╝██║     ██║  ██║██║   ██║██╔══██╗
@@ -8,9 +7,7 @@
 ╚██████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
 ```
-
 # camelhub-bulk-apikey
-
 **자동 생성된 API 키로 CaMeL AI 계정을 대량 생성 — OpenAI 호환 추론 (469개 모델: Claude, Gemini, DeepSeek, GLM, Qwen) + 9Router 커넥터.**
 
 [![Node](https://img.shields.io/badge/Node-%E2%89%A518-3DA639?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
@@ -18,9 +15,10 @@
 [![License](https://img.shields.io/badge/license-MIT-6ea8fe?style=for-the-badge)](LICENSE)
 [![Models](https://img.shields.io/badge/models-469%20served-412991?style=for-the-badge)](https://camel-hub.cn)
 [![9Router](https://img.shields.io/badge/9Router-connector-8B5CF6?style=for-the-badge)](#-connect-to-9router)
+[![OmniRoute](https://img.shields.io/badge/OmniRoute-connector-8B5CF6?style=for-the-badge)](#-connect-to-omniroute)
 [![X](https://img.shields.io/badge/X-%40bigbullapp-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bigbullapp)
 
-[🛠 빠른 시작](#-quick-start) · [🎁 무료 티어](#-free-tier--how-much-you-get) · [🤖 모델](#-models--all-469-of-them) · [🧪 API 사용하기](#-how-to-use-the-api) · [✅ 검증 완료](#-verified-working--every-key-is-tested) · [🧭 동작 방식](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [⚙️ 옵션](#️-cli-options) · [🛰️ 프록시](#️-behind-a-proxy) · [🐞 이슈](#-issues)
+[🛠 빠른 시작](#-quick-start) · [🎁 무료 티어](#-free-tier--how-much-you-get) · [🤖 모델](#-models--all-469-of-them) · [🧪 API 사용하기](#-how-to-use-the-api) · [✅ 검증 완료](#-verified-working--every-key-is-tested) · [🧭 동작 방식](#-how-it-works) · [🔌 9Router](#-connect-to-9router) · [🔌 OmniRoute](#-connect-to-omniroute) · [⚙️ 옵션](#️-cli-options) · [🛰️ 프록시](#️-behind-a-proxy) · [🐞 이슈](#-issues)
 
 </div>
 
@@ -59,6 +57,7 @@ node src/cli.js --verify-only     # every key in keys.txt is re-tested with a re
 `GET https://api.camel-hub.com/v1/models`는 발급된 키에 대해 **469개의 모델 id**를 반환합니다. 예를 들어:
 
 ```
+
 claude-haiku-4-5 · claude-opus-4-5 · gemini-2.5-flash · deepseek-chat
 deepseek-r1-250528 · qwen-flash · glm-4.5 · kimi-k2.5
 grok-4 · gpt-3.5-turbo · llama-3.1-405b
@@ -106,6 +105,7 @@ printf 'socks5://127.0.0.1:1080\n' > proxies.txt
 
 # 2) go
 node src/launcher.js               # interactive: mint / verify / settings
+
 # or drive it directly:
 node src/cli.js mint --count 30            # any N; 5 is the sample default
 node src/cli.js mint --count 10 --scan-conc 8
@@ -202,6 +202,16 @@ node src/cli.js 9router
 
 ```bash
 node src/connect-9router.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
+```
+
+## 🔌 OmniRoute 연결
+
+[OmniRoute](https://omniroute.online)는 셀프 호스팅, OpenAI 호환 라우터입니다. CaMeL AI는 OpenAI 호환이므로, 한 번 등록하면 모든 키를 사용할 수 있습니다:
+
+```bash
+node src/connect-omniroute.js --base http://localhost:20128 --password 123456 --keys-file keys.txt
+
 # or: node src/cli.js 9router
 ```
 
