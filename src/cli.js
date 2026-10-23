@@ -25,10 +25,15 @@ const TASKS = {
 function help() {
   console.log('camelhub-bulk-apikey — One CaMeL AI account per API key — 469 models, $1.00 on sign-up plus a daily check-in, every key live-verified\n');
   console.log('usage: node src/cli.js <task> [options]\n');
+  console.log('one command (captcha step automatic — nothing to answer):');
+  console.log('  node src/cli.js mint --count N        mint N accounts, one key each\n');
   console.log('tasks:');
   for (const [name, t] of Object.entries(TASKS)) console.log('  ' + name.padEnd(9) + ' ' + t.note);
   console.log('\noptions: every task takes its own flags — ask it directly:');
   console.log('  node src/mint.js --help');
+  console.log('  --count N   accounts (= keys) to mint or re-check (verify: 0 = every key on disk)');
+  console.log('\nkeys: keys.txt holds only live-verified keys; a key the panel refuses in a verify');
+  console.log('      run leaves keys.txt and is parked in keys-dead.txt');
   console.log('\nproxy pool:');
   console.log('  one exit per line in proxies.txt — scheme://host:port[#comment], user:pass@ supported');
   console.log('\nno options? run the interactive launcher:  node src/launcher.js');

@@ -49,6 +49,7 @@ const ROOT = path.resolve(__dirname, '..'); // data root (the repo root)
 const POOL = path.join(ROOT, 'proxies.txt');
 const ACCOUNTS = path.join(ROOT, 'accounts.json');
 const KEYS = path.join(ROOT, 'keys.txt');
+const KEYS_DEAD = path.join(ROOT, 'keys-dead.txt');
 const MODELS_FILE = path.join(__dirname, 'models.json'); // the shipped catalogue sits beside the code
 
 const USAGE = `camelhub-bulk-apikey · verify — re-check keys already on disk
@@ -383,6 +384,15 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
   }
   writeJson(ACCOUNTS, accounts);
 
+  // A key the panel refuses outright is dead: it leaves keys.txt and is parked
+  // in keys-dead.txt. "quota", "authentic" and the unmeasured verdicts are NOT
+  // dead — an exit problem or a spent allowance is not a key verdict.
+  const deadKeys = results.filter((r) => r.verdict === 'account_banned' || r.verdict === 'key_refused').map((r) => r.key);
+  if (deadKeys.length) {
+    for (const k of deadKeys) if (!fs.existsSync(KEYS_DEAD) || !fs.readFileSync(KEYS_DEAD, 'utf8').includes(k)) appendLine(KEYS_DEAD, k);
+    const live = (fs.existsSync(KEYS) ? fs.readFileSync(KEYS, 'utf8').split(/\r?\n/) : []).map((l) => l.trim()).filter((l) => l && !deadKeys.includes(l));
+    fs.writeFileSync(KEYS, live.length ? live.join('\n') + '\n' : '');
+  }
   const ok = results.filter((r) => r.models && r.models.status === 200).length;
   const spendable = results.filter((r) => r.verdict === 'ok').length;
   const authentic = results.filter((r) => r.verdict === 'authentic').length;
@@ -399,6 +409,7 @@ async function measure(rec, cursor, { bannedThisRun, deadExits }) {
   if (accountBanned) parts.push(`${accountBanned} account(s) banned by the panel (auth.user_banned)`);
   if (refused) parts.push(`${refused} key(s) refused`);
   const unmeasured = bannedUnmeasured + deadUnmeasured;
+  if (deadKeys.length) parts.push(`${deadKeys.length} dead key(s) → keys-dead.txt (out of keys.txt)`);
   if (bannedUnmeasured) parts.push(`${bannedUnmeasured} unmeasured: ${banned.length} exit(s) banned by the panel`);
   if (deadUnmeasured) parts.push(`${deadUnmeasured} unmeasured: ${new Set(deadExits).size} exit(s) did not answer`);
   if (!unmeasured && banned.length) parts.push(`${banned.length} exit(s) banned by the panel and retired`);
